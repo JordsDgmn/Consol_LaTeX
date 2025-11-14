@@ -1,0 +1,89 @@
+# LaTeX Thesis - Consol Project
+## Gitignore for LaTeX compilation artifacts
+
+# LaTeX auxiliary files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+*.synctex.gz
+*.synctex(busy)
+*.pdfsync
+
+# LaTeX temporary files
+*.nav
+*.snm
+*.vrb
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.loa
+*.thm
+*.figlist
+*.makefile
+*.listing
+
+# LaTeX build directories
+build/
+dist/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# Backup files
+*.backup
+*.bak
+*.orig
+
+# Keep the final PDF but ignore intermediate PDFs
+# Remove this line if you want to track the PDF
+# *.pdf
+
+# MiKTeX specific
+*.fdb_latexmk
+*.synctex.gz
+
+# Glossaries
+*.glo
+*.gls
+*.glsdefs
+
+# Hyperref
+*.out
+
+# knitr
+*-concordance.tex
+
+# TODO comments
+*.run.xml
+*.bcf
+
+# xindy
+*.xdy

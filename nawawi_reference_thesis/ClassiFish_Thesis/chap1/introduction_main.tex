@@ -1,0 +1,50 @@
+\chapter{Introduction}
+
+\section{Research Description}
+
+The Philippines is an archipelagic nation located at the spot of the Coral Triangle, home to a large number of marine resources. Its ecological and geographic richness positions the country as the center of marine biodiversity (Dorente, 2016). In 2021, the country's fisheries sector made a significant contribution of around 1.52 percent gross domestic product, measured at current and constant prices (SEAFDEC, 2022). In addition to its contribution, the Philippine waters are abundant in various fish species, which are home to over 2,500 species—considering that the country is part of The Coral Triangle: A Global Hotspot encompassing 75 percent of coral species, 37 percent of reef fish species, and 53 percent of the world’s coral reefs, the Philippines is renowned as a hotspot for marine biodiversity (United Fish, 2023). 
+
+However, diverse fish species make it more difficult for aquatic experts to identify fish distinctively since the most commonly used method relies on casting nets or underwater human monitoring (Fouad et al., 2014). Species observation plays an important role in evaluating conservation actions such as population management, health assessments of ecosystems, and extinction analysis. Accurately identifying fish species is critical to ecological monitoring; conversely, fish species misidentification can lead to the accidental culling of endangered species. Identification accuracy of non-experts remains largely uncertain and unverified assumptions of correctness can lead to flawed conservation decisions and population assessments (Austen et al., 2016).
+
+Despite these challenges, rapid advancements in technologies such as deep learning techniques have led to automating tasks such as species classification, fish identification, and behavioral analysis that would greatly enhance the need for manual fish identification methods  (Yang et al., 2020).
+
+%\cofeBm{0.7}{1}{0}{3cm}{-1cm}
+
+\section{Overview of the Current State of Technology}
+
+In recent years, deep learning has emerged as a powerful tool for image recognition that greatly contributed to the field of computer vision (Li, 2022). The use of deep learning algorithms, particularly object detection technologies like YOLO has gained prominence in fish classification and identification (Dharshana et al., 2023). 
+
+YOLO (You Only Look Once) is a deep learning method for classifying real-time images (Chengji Liu et al., 2018). The YOLO series has been the subject of several studies in fish classification such as using the YOLOv4 model with a unique labeling technique for fish detection and classification (Kuswantori et al., 2023). Similarly, a YOLOv8 model was used to utilize and classify five aquarium fish species (Isik et. al., 2024). In addition, the S2F-YOLO model, based on YOLOv5 was used for commercial fish species detection (Wang et al., 2023). Its latest iteration series is YOLOv11, which also excels in accuracy, and computational efficiency, achieving high-performing scores on a diverse dataset with an average inference time of 2.4ms, making it ideal for real-time application (Jegham et. al., 2024).
+
+In the local context, several studies in the Philippines have adopted the use of YOLO and other deep neural networks for fish identification and classification. In the study of Samaniego et al. (2023), YOLOv8 was used to classify the stages of milkfish freshness. Similarly, the YOLOv7 model was used for fish detection in underwater aquaculture (Tomas et.al., 2024). While YOLO has shown great potential, other models like VGG16 deep convolutional neural networks were used to identify three common fish species in Verde Island (Montalbo et. al., 2024). In another study, Feedforward Neural Networks in mobile applications were used to identify the freshness of milkfish, round scad, and tilapia based on RGB values (Navotas et al., 2018). Similarly, in the study of Cabasag and Sanchez (2020), a Mobilenet-SSD model integrated into a mobile application was used to detect and classify eight different fish species based on their body parts which demonstrated 89.83 percent accuracy but only limited to detecting and classifying a small number of local fish species in Iligan City. Regarding mobile applications, it only identifies fish by their species and does not provide comprehensive information about the fish that will be displayed in addition to the fish classification. This information includes its taxonomic classification, nutritional content (e.g., omega-3 levels, allergens, vitamins, etc.), health benefits and risks, conservation status (e.g., endangered or not), and its environmental impact which can help people informed decisions about consumption and sustainability.
+
+\section{Statement of the Problem}
+
+The existing studies in fish identification and classification focus solely on species recognition, lacking implementation to provide nutritional and ecological information after detection. Moreover, it does not incorporate a user feedback mechanism to validate detections, aiding in retraining for model accuracy. 
+
+
+\section{Objectives} 
+
+\subsection{General Objective}
+To develop a fish identification system utilizing the YOLO-v11 model, that will also facilitate user submission of new fish images and data, as well as the feedback of identification accuracy.
+
+
+\subsection{Specific Objectives}
+\begin{enumerate}
+ \item To collect images of different fish species. 
+ \item To create a dataset by annotating fish images by labeling them according to their species.
+ \item To develop a YOLO-v11 model to identify different fish species using the created dataset.
+ \item To evaluate the fish identification system using performance metrics such as mAP (mean Average Precision).
+ \item To develop a mobile application using a YOLO-based fish identification algorithm that provides information including its name, taxonomic classification, description, nutrition, conservation status, and health benefits.
+ \item To create a mobile user feedback mechanism to validate detections, for retraining the system's accuracy.
+\end{enumerate}
+
+
+
+%\section{Proposed Solution} 
+
+\section{Scope and Limitations of the Study }
+The study will use 18 different fish species for training and testing namely a.) Tilapia (Oreochromis niloticus); b.) Molmol (Chlorurus bleekeri); c.) Bilong-bilong (Mene maculata); d.) Anduhaw (Rastrelliger faughni); e.) Barungoy(Cypselurus simus); f.) Budlisan (Katsuwonus pelamis); g.) Talakitok (Carangoides ferdau); h.) Pompano (Trachinotus); i.) Maya-Maya (Cyprinodon maya); j.) Sulid (Caesio caerulaurea); k.) Gutob (Selaroides leptolepis); l.) Kitong (Siganus guttatus); m.) Bangus (Chanos chanos); n.) Pulag-ikog (Decapterus kurroides); o.) Bisugo; p.) Tamban (Sardinella lemuru); q.) Labahita (Acanthurus bleekeri); and r.) Danggit (Siganus javus). The images of the different fish species will be captured in local wet markets in Iligan City.
+
+\section{Significance of the Study} % why is this a non trivial problem
+By providing nutritional and ecological fish information such as their local/scientific name, taxonomic classification, physical description, nutritional information, conservation status, and health benefits, this application serves as a valuable tool for multiple stakeholders, promoting awareness and fostering responsible consumption. For individual users, such as students and consumers, the application offers valuable insights that raise awareness about marine biodiversity and promote informed, responsible consumption. While benefiting researchers and professionals by streamlining fish identification for study and fieldwork. Local fishing communities will also benefit by supporting sustainable fishing practices and the importance of conserving endangered or overfished species and other conservation guidelines.

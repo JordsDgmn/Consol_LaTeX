@@ -1,0 +1,126 @@
+\chapter{Review of Related Literature}
+
+This chapter reviews relevant literature on note-taking strategies, memory processes, natural language processing (NLP) for semantic similarity, and progress tracking techniques. These areas provide the theoretical basis for understanding information encoding, memory consolidation, textual comparison, and user engagement. By examining these interconnected concepts, the review establishes a foundation for exploring methods that enhance learning, recall, and performance. The studies discussed offer insights into optimizing knowledge retention, evaluating recall accuracy, and motivating users through structured feedback mechanisms.
+
+\section{Memory and Cognitive Processes}
+
+Memory plays a crucial role in the learning process, specifically in the retention and recall of information. Studies have demonstrated that memory prioritizes the retention of meaning over surface-level details, which has direct implications for comprehension and learning.
+
+\subsection{The Role of Semantic and Syntactic Memory}
+
+Sachs (1967) explored the relationship between semantic and syntactic memory in the context of comprehension. In her study, participants were presented with sentences and tested on their ability to recognize changes in meaning and form after brief intervals. The findings revealed that memory retention is primarily focused on semantic content, while syntactic details, such as active-to-passive transformations, fade quickly. Even when participants retained the overall meaning of the sentences, the formal properties of the sentences were quickly forgotten. This study concludes that memory is structured to prioritize the “deep structure” or meaning of a sentence over its “surface structure” or syntax, suggesting that comprehension relies on extracting and retaining the core meaning of information.
+
+\subsection{Cognitive Processes in Memory Retention}
+
+Rashid and Rigas (2006) provide an analysis of memory stages and their relationship to learning and information retention. The study outlines the progression of information through sensory memory, short-term memory, and long-term memory, highlighting the necessity of active cognitive processing for effective retention. Encoding, which involves the initial capture of relevant information, and reviewing, which reinforces the transfer of information to long-term memory, are identified as critical phases in the learning process. This study also discusses retrieval failure as a cause of forgetting, where proactive interference and retroactive interference disrupt recall. 
+
+Proactive interference occurs when previously learned information impairs the learning of new material, while retroactive interference arises when newly acquired knowledge interferes with the recall of older information. These findings emphasize that memory retention is optimized when learners engage in deep processing activities, such as organizing and summarizing information, rather than relying on surface-level strategies. This perspective aligns with the findings of Sachs (1967), reinforcing the importance of meaningful encoding and the prioritization of core content over superficial details.
+
+\subsection{Memory and Recall}
+
+Naim et al. (2020) identified that recall performance grows sublinearly as the list length increases. This sublinear growth highlights a saturation effect, where the number of items retrieved plateaus despite an increase in encoded material. The study also revealed that encoding quality plays a crucial role in determining recall performance. Slower presentation rates allowed participants to encode a higher number of words into memory, which improved the total recall capacity. These findings provide evidence that memory recall adheres to universal laws, offering a structured and deterministic perspective on retrieval processes.
+
+\subsubsection{Retrieval-Based Testing}
+
+Karpicke and Roediger (2008) emphasize that testing is not merely a means of assessment but a potent strategy for enhancing long-term memory retention. Their study debunks the conventional belief that once information is initially learned, further practice adds little value. Instead, repeated retrieval—through testing—promotes deeper encoding and strengthens memory consolidation, highlighting retrieval as an active mechanism essential for sustained learning performance.
+
+\subsubsection{Optimizing Retrieval Practice for Long-term Retention}
+
+Karpicke and Roediger (2008) demonstrated that retrieval practice plays a central role in consolidating memories and improving long-term retention. Their experiments revealed that repeated retrieval significantly outperforms repeated study in enhancing memory performance. This finding validates the importance of active recall over passive encoding strategies.
+
+\section{Note-Taking Techniques and Tools}
+
+Note-taking serves as an essential tool for facilitating memory retention and comprehension. Various techniques and tools have been developed to assist learners in organizing and processing information effectively.
+
+\subsection{Traditional Note-Taking Techniques}
+
+Rashid and Rigas (2006) examine the comparative effectiveness of traditional note-taking methods, including the Cornell Method, the Outlining Method, and the Mapping Method. These methods provide learners with strategies for organizing content to improve comprehension and retention.
+
+\subsection{Digital Note-Taking and E-Learning Tools}
+
+Rashid and Rigas (2006) further explore the role of technology in enhancing note-taking and memory retention within e-learning environments. The integration of tools such as Microsoft OneNote and Tablet PCs has provided learners with new ways to engage with content, enabling multimedia annotations and portable accessibility.
+
+\subsubsection{Quizlet}
+
+Tran and Nguyen (2022) demonstrate that Quizlet integrates notes, spaced repetition, and active learning into an engaging platform, effectively improving vocabulary retention and long-term memory consolidation.
+
+\subsubsection{ChatGPT and the Generation of Educational Content}
+
+Mishra and Anthony (2023) highlight both the benefits and drawbacks of AI tools like ChatGPT in education, emphasizing the need for responsible integration to enhance critical thinking and active learning processes.
+
+\subsubsection{Self-Regulated Learning by Using Study Applications}
+
+Baars, Khare, and Ridderstap (2022) demonstrate that study applications with well-designed user interfaces support self-regulated learning by enabling goal-setting, time management, and feedback during study sessions.
+
+\section{NLP and Semantic Similarity}
+
+The development of NLP techniques has significantly advanced models that analyze and quantify semantic similarity.
+
+\subsection{Text Semantic Similarity}
+
+Corley et al. (2005) provided foundational insights into computational methods for evaluating semantic similarity, focusing on techniques that measure the closeness of meaning between texts.
+
+\subsection{The BERT Framework}
+
+Devlin et al. (2019) emphasize that BERT leverages bidirectional representations of language to capture semantic relationships through its transformer-based architecture.
+
+\subsubsection{SimCSE}
+
+Gao, Yao, and Chen (2021) developed SimCSE, a fine-tuning approach that enhances the quality of sentence embeddings, making them suitable for tasks like semantic similarity evaluation and textual entailment.
+
+\subsubsection{Contrastive Learning}
+
+SimCSE’s unsupervised framework generates "positive pairs" by applying independent dropout masks to the same input sentence. Specifically, when a sentence is passed through the BERT encoder twice, the randomness introduced by dropout produces two slightly different embeddings.
+
+\begin{figure}[ht!]
+    \centering
+    \[
+    \ell_i = - \log \frac{\exp(\text{sim}(h_i, h_i^+)/\tau)}{\sum_{j=1}^N \exp(\text{sim}(h_i, h_j)/\tau)}
+    \]
+    \caption[Formula for Contrastive Learning]{Formula for Contrastive Learning}
+    \label{fig:contrastive_learning}
+\end{figure}
+
+\subsubsection{Cosine Similarity}
+
+Cosine similarity quantifies the angular distance between embeddings, ensuring that semantically similar sentences are pulled closer together, while dissimilar ones are pushed apart. The temperature parameter $\tau$ sharpens the similarity distribution, controlling the influence of positive and negative pairs during training.
+
+\begin{figure}[ht!]
+    \centering
+    \[
+    \text{sim}(h_1, h_2) = \frac{h_1^\top h_2}{\|h_1\|\|h_2\|}
+    \]
+    \caption[Formula for Cosine Similarity]{Formula for Cosine Similarity}
+    \label{fig:cosine_similarity}
+\end{figure}
+
+
+
+\section{Progress Tracking}
+
+Progress tracking refers to systems that enable users to monitor and evaluate their advancement toward specific goals.
+
+\subsection{Progress Tracking as Part of Gameful Design}
+
+Deterding et al. (2011) emphasize the importance of structured systems that guide users through progressive goals and stages of development, helping maintain motivation and engagement.
+
+\subsubsection{The Three-Star Scoring System}
+
+Gastón and Cooper (2017) explore the efficacy of the three-star scoring system, highlighting its ability to improve user engagement and performance in educational and gamified applications.
+
+\section{Summary}
+
+The studies reviewed in this chapter highlight key advancements in note-taking strategies, memory processes, NLP, and progress tracking. These insights establish a foundation for the proposed system, integrating effective learning strategies and semantic similarity evaluation to optimize recall and knowledge retention.
+
+The table compares various studies based on their focus on specific aspects
+or features that are relevant to the proposed approach. It highlights which aspects are
+addressed and identifies gaps that the proposed approach aims to fill by integrating
+these features into a unified framework.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{comparison_table.png} % Replace with your image file's name
+    \caption[Comparison Table of Related Literature]{Comparison Table of Related Literature}
+    \label{fig:comparison_table}
+\end{figure}
+

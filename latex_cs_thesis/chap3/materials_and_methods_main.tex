@@ -1,0 +1,94 @@
+\chapter{Research Methodology}
+
+This methodology covers the steps taken to design, implement, and evaluate the system, ensuring its functionality, usability, and effectiveness in improving note recall and learning outcomes. Key phases include requirements analysis, system design, implementation, system testing, and data collection for user performance assessment. Each phase is carefully planned to address the objectives of the study, from identifying the necessary tools and technologies to evaluating the system’s ability to process and assess diverse note structures through semantic similarity.
+
+\section{Design of System Architecture}
+
+For this phase, the proponent will create and finalize the overall structure of the system based on its initial system architecture (Figure~\ref{fig:sys_arch}) and user flow (Figure~\ref{fig:user_flow}). This includes the development of the Entity-Relationship Diagram (ERD) for the database and wireframes for the user interface to ensure usability and functionality.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{sys_arch}
+    \caption[System Architecture]{Initial system architecture design.}
+    \label{fig:sys_arch}
+\end{figure}
+\FloatBarrier % Forces figure placement here
+
+\subsection{User Flow}
+
+The user flow starts at the dashboard, where users can create notes or view performance stats. Notes can be added individually or in batches, with an option to tag verbatim segments for exclusion during evaluation. Users configure recall sessions with time limits and optional hints, then recreate notes from memory. Upon submission, the system uses the SimCSE model to evaluate inputs, flags untagged verbatim matches as "copy-pasted," and generates semantic similarity scores. Results, including benchmarks, are displayed to help users assess progress, with options to retry or exit (Figure~\ref{fig:user_flow}).
+
+\begin{figure}[!htbp]
+    \centering
+    \scalebox{0.54}{ % Adjusted scaling factor to 65% of the original size
+        \includegraphics{user_flow}
+    }
+    \caption[User Flow]{Initial flowchart for user interaction}
+    \label{fig:user_flow}
+\end{figure}
+
+
+
+
+\FloatBarrier
+
+\section{Devising Pre-Processing Procedures}
+
+To ensure compatibility with SimCSE’s semantic comparison, a pre-processing procedure will be implemented to clean and prepare Markdown-formatted text. The process begins by acquiring user input in the form of notes, which are loaded as raw text. Using regular expressions, unnecessary non-alphanumeric symbols (such as \#, *, -) and other formatting artifacts will be systematically removed, preserving only letters, numbers, and spaces. Line breaks will be eliminated to flatten the text into a single continuous line, and multiple spaces will be normalized into a single space. The resulting output will be plain text, free of extraneous formatting, ensuring it is suitable for semantic evaluation by SimCSE.
+
+\section{Implementation}
+
+During this phase, the proponent will develop the core system components. Flask will serve as the backend to process inputs and handle system logic, while the SimCSE model, customized via Hugging Face and PyTorch, will account for varied note structures, including formatted text and bullet points, ensuring flexibility in evaluating semantic similarity. REST API will enable communication between the backend and the frontend, which will be built using Jinja templates and styled with TailwindCSS for a responsive and user-friendly interface. PostgreSQL will manage the storage and retrieval of user notes, scores, and performance metrics. The devised pre-processing procedures will also be integrated during this phase.
+
+\subsection{Implementation of Progress Tracking Strategies}
+
+The proponent will integrate additional progress tracking features to enhance user engagement and promote consistent learning practices. Self-benchmarking will allow users to view their performance history, providing actionable insights into their progress over time. By enabling users to track previous scores and observe trends, this feature encourages reflection on learning outcomes and fosters a sense of achievement (Baars et al., 2022).
+
+A three-star scoring system will be implemented to incentivize retrial and rehearsal. This scoring model, as highlighted by Gastón and Cooper (2017), provides users with clear performance benchmarks, encouraging multiple attempts to achieve mastery. The three-star approach will add an element of completion and a sense of mastery to the learning process by rewarding incremental improvements and creating a structured path toward better results. Combined with the self-benchmarking system, these features reinforce active recall and repetition, which are critical for long-term retention and sustained engagement with the material (Deterding et al., 2011).
+
+\subsection{User Interface Mockup}
+
+To provide a visual representation of the proposed application, these user interface mockups were created to outline the layout and intended functionality of the application. These mockups are preliminary and serve as a foundation for the interface design, but they remain subject to refinement as the implementation phase progresses.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{dashboard_mockup}
+    \caption[Dashboard Mockup]{Initial wireframe for the dashboard.}
+    \label{fig:dashboard_mockup}
+\end{figure}
+\FloatBarrier
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.8\linewidth]{stats_mockup}
+    \caption[User Stats Mockup]{Initial wireframe for user stats page.}
+    \label{fig:stats_mockup}
+\end{figure}
+\FloatBarrier
+
+\section{System Testing and Evaluation}
+
+During this phase, the proponent will test the system to verify its functionality, accuracy, and usability. This includes functional testing, integration testing, and user acceptance testing to ensure the system works seamlessly across all components and meets the identified requirements.
+
+\section{Post-Implementation Data Collection}
+
+In this last phase, the proponent will gather data to evaluate user performance and assess the system's effectiveness in improving recall accuracy and knowledge retention. Metrics such as similarity scores, recall success rates, and user engagement will be collected and analyzed to determine the system’s impact on participants' learning outcomes.
+
+
+
+
+
+
+
+\chapter{Research Schedule}
+
+This chapter contains the Gantt chart showing the schedule of activities outlined in Chapter 3 of the Thesis Proposal.
+
+
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{schedule.png} % Ensure schedule.png is in the correct folder
+    \caption[Research Schedule]{The Gantt chart showing the research schedule and timeline of activities.}
+    \label{fig:research_schedule}
+\end{figure}

@@ -1,0 +1,54 @@
+\chapter{Introduction}
+
+Memory is not merely the result of recording information but the outcome of consistent review and active engagement with what has been learned. Notes, while essential for capturing ideas, do not inherently lead to long-term retention or understanding simply by being created. Instead, it is through revisiting, processing, and consolidating these notes that individuals truly reinforce their knowledge (Karpicke and Roediger, 2008; Klemm, 2012). 
+
+For students, teachers, and professionals alike, the challenge lies in establishing consistent learning practices and receiving validation for their efforts—validation that not only measures recall but also provides meaningful feedback on comprehension (Stojanovic et al., 2020; Baars et al., 2022). Traditional note-taking methods often focus on transcription, prioritizing the exact wording of information over its deeper meaning. However, research by Sachs (1967) highlights that individuals naturally retain the semantic meaning—the "gist" of information—rather than its verbatim form.
+
+This tendency to paraphrase and restructure ideas reflects the cognitive process of abstraction, where understanding takes precedence over memorization. Conventional systems that evaluate recall by word-for-word accuracy fail to account for this natural process, offering an incomplete and often discouraging measure of learning performance (Corley et al., 2005; Gao et al., 2021). 
+
+Additionally, progress tracking has proven to be an effective strategy for sustaining motivation and fostering consistent learning habits. By incorporating elements such as performance metrics, mastery indicators, and progress tracking, such systems provide users with actionable insights and a sense of achievement (Deterding et al., 2011; Gaston and Cooper, 2017). These tools not only validate the user’s learning progress but also make the process more interactive and rewarding, promoting deeper engagement and long-term retention (Tran and Nguyen, 2022; Viscu, 2024).
+
+\section{Background of the Study}
+
+Now, as technology continues to advance in the current “information age,” the demand for fast, accurate, and easily accessible information has increased dramatically. This is particularly evident in fields where knowledge acquisition is critical, such as education, research, and personal development. The proliferation of generative AI technologies and digital tools has revolutionized the ways individuals gather, process, and manage information. Digital note-taking tools, such as Evernote, Notion, Obsidian, and various AI-assisted applications, offer features like automatic transcription, cloud synchronization, and summarization, making the recording of ideas and knowledge more efficient and convenient to the modern user (Baars et al., 2022; Rashid and Rigas, 2006).
+
+Existing studies confirm that effective learning requires more than passive note creation. Research conducted by Sachs (1967) indicates that individuals are better at retaining semantic meaning rather than exact syntactic details. This means that during memory retrieval, individuals often paraphrase, restructure, and abstract ideas rather than reproduce content verbatim. Traditional systems that rely on word-for-word accuracy to evaluate recall fail to account for this natural cognitive process, leading to an incomplete understanding of memory performance (Corley et al., 2005; Gao et al., 2021).
+
+Building on this, the integration of AI-driven systems in learning environments has opened new avenues for assessing memory and comprehension more effectively. By including the more recent advancements in natural language processing (NLP) and similarity-based algorithms, these systems can evaluate recall beyond mere verbatim reproduction, focusing instead on the semantic alignment between original and recalled content (Devlin et al., 2019; Gao et al., 2021). Such approaches recognize the inherent flexibility of human cognition, where meaningful understanding takes precedence over exact replication. For example, sentence-transformer models like SimCSE have demonstrated the ability to measure semantic similarity with high accuracy, making them suitable for applications that assess memory recall in a way that mirrors human evaluation (Gao et al., 2021; Corley et al., 2005).
+
+This shift toward semantic-based assessment not only provides a more accurate measure of knowledge retention but also aligns with modern pedagogical principles that emphasize deep learning and critical thinking. By rewarding comprehension and conceptual mastery over rote memorization, AI-assisted systems encourage learners to engage more actively with the material, fostering long-term knowledge retention and improved cognitive performance (Karpicke and Roediger, 2008; Klemm, 2012). As these technologies continue to evolve, they hold the potential to transform traditional methods of learning evaluation and pave the way for more adaptive and personalized educational tools (Stojanovic et al., 2020; Viscu, 2024).
+
+\section{Statement of the Problem}
+
+The rapid development and advancement of Generative AI has led to the overwhelming abundance of knowledge, and with that, an unlimited opportunity to take notes. While this is clearly for some benefit, it is not put into actual use if the increasing number of notes are not consolidated into memory, thereby hindering the cumulative learning process (Karpicke & Roediger, 2008; Klemm, 2012). Additionally, in individual study contexts, there is a lack of mechanisms to verify whether a learner has truly understood or mastered the material. This problem is compounded by the fact that human recall often involves paraphrasing and abstracting information, making it difficult for current systems to accurately assess a learner’s understanding (Sachs, 1967; Corley et al., 2005). Consequently, there is a need for a system that can evaluate learning by recognizing and comparing both the original content and its reconstructed ideas through context clues, ensuring that abstracted yet relevant concepts are acknowledged without overlooking their presence in the material (Gao et al., 2021; Devlin et al., 2019).
+
+
+
+\section{Objectives}
+
+\subsection{General Objective}
+To develop a web-based memorization system that refers to the user’s pre-made notes and prompts the user to perform active textual recall, leveraging SimCSE to maintain fairness during comparison despite non-verbatim phrasing of ideas.
+
+\subsection{Specific Objectives}
+\begin{enumerate}
+    \item Design the system architecture of the notes-to-recollection comparison system, including its scoring criteria for evaluating recall accuracy.
+    \item Devise pre-processing procedures for removing unnecessary non-alphanumeric symbols and formatting artifacts to be suitable for semantic comparison.
+    \item Employ Simple Contrastive Sentence Embeddings (SimCSE) for semantic comparison of two given texts.
+    \item Implement a web-based application integrating the SimCSE Model, giving it an appropriate user experience that facilitates motivation through progress tracking and active learning.
+    \item Conduct a usability test on the web-based application and document the results.
+\end{enumerate}
+
+\section{Scope and Limitation}
+The study is strictly limited to a maximum of 10 test participants. The study will be conducted from January 2025 through April of the same year.
+
+\section{Significance and Contribution}
+The proposed implementation will assist users in memorizing their notes and incentivize steady progress in content mastery through various tracking strategies.
+
+%\section{Document Structure}
+%The rest of this thesis is organized as follows:
+%\begin{itemize}
+ %   \item Chapter 2 reviews the related literature, covering memory processes, note-taking strategies, semantic similarity, and gamification techniques.
+  %  \item Chapter 3 outlines the methodology, including the system design and evaluation process.
+   % \item Chapter 4 presents the results and discussion of the findings.
+    %\item Chapter 5 concludes the study and suggests future directions.
+%\end{itemize}

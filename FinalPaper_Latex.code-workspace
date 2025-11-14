@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../my-app"
+		},
+		{
+			"path": "../consol_debrief_csv/consol_debrief_markdown"
+		},
+		{
+			"path": "../Thesis_Proposal (latestcopyfromoverleaf)"
+		}
+	],
+	"settings": {}
+}

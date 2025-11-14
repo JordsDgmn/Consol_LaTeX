@@ -1,0 +1,212 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% The updated version of this document should be downloaded from
+%%      https://github.com/jp-um/university_of_malta_LaTeX_dissertation_template
+%%
+%% In case of any difficulties please contact Dr JP Ebejer on jean.p.ebejer@um.edu.mt
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Before you embark on this quest you should probably read some of:
+%% Deadly sins - http://ctan.mirror.garr.it/mirrors/CTAN/info/l2tabu/english/l2tabuen.pdf
+%% Writing a thesis in LaTeX - http://tug.org/pracjourn/2008-1/mori/mori.pdf
+
+\RequirePackage[l2tabu, orthodox]{nag} % tells you of any bad LaTeX usage
+                                       % must be first thing in class (with the exception of comments)
+
+%% There is one option you should define; oneside or twoside
+%% Use twoside for your viva docs (examiners hate long docs they need to carry around)
+%% and oneside for the final thing you submit to the library.  Note that margins will
+%% change accordingly
+
+%\documentclass[twoside]{um}  % custom University of Malta project/dissertation/thesis 
+\documentclass[oneside]{um}
+
+%% **************** (Your) Packages (Start) ******************
+
+% \listfiles % uncomment this to know which packages you are using
+              % the list of packages will be in the bottom of the .log file
+
+%% Note that packges may already be loaded from the um (and memoir) classes.
+%% Do not add your packages to the template, but rather add them here.
+
+\usepackage{blindtext} %% for some dummy text, remove in your writeup
+\usepackage{coffee4}    %% for some fun
+
+%% Essential packages for professional thesis formatting
+\usepackage{caption}        %% Enhanced caption formatting for figures/tables
+\usepackage{float}          %% Better control of figure/table placement
+\usepackage{booktabs}       %% Professional-looking tables
+\usepackage{tabularx}       %% Advanced table formatting with auto-sizing columns
+\usepackage{listings}       %% Code listings with syntax highlighting
+\usepackage{xcolor}         %% Color support for text and code
+\usepackage{algorithm}      %% Algorithm pseudocode blocks
+\usepackage{algpseudocode}  %% Enhanced pseudocode formatting
+\usepackage{amsmath}        %% Advanced mathematical equations
+
+%% Code styling configuration for your technical content
+\lstdefinestyle{pythonstyle}{
+    language=Python,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue}\bfseries,
+    stringstyle=\color{teal},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true,
+    tabsize=4,
+    captionpos=b
+}
+
+\lstdefinestyle{jsstyle}{
+    language=JavaScript,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{purple}\bfseries,
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    frame=single,
+    breaklines=true,
+    tabsize=2,
+    captionpos=b
+}
+
+%% ***************** (Your) Packages (End) *******************
+
+
+%% **************** (Your) Data (Start) ******************
+
+\title{Consol: A\\
+       Notes-to-Recollection\\
+       Application Using\\
+       SimCSE for its\\
+       Textual Semantic\\
+       Comparison
+}                                                   % use \\ here otherwise you get a justified title
+                                                    % note capitalization of the title (only common 
+                                                    % words in lower case)
+\tagline{}   % NEWADDITION: Added missing tagline to fix compilation error
+  % tag line
+\author{George Christopher C. Daguman\\
+        }                              % your names
+%\authorID{2021-0995}                              % your University Identifier (not used)
+\supervisor{Dante D. Dinawanao}                 % your supervisor(s) name - no . in Dr
+%\cosupervisor{Dr Who}                              % your cosupervisor(s) name - no . in Dr ** OPTIONAL ** 
+                                                    % simply comment out the above line if absent
+\department{Department of Computer Science}         % your department 
+\faculty{College of Computer Studies}               % your faculty (e.g. ICT)
+\degree{B.S. in Computer Science}                   % the degree you are reading
+                                                    % note the \ after the dot, so not to consider it a fullstop
+\doctype{undergraduate thesis}                      % the type of document (fyp, dissertation, thesis)
+\degreedate{December, 2024}                             % when did you submit -- officially after your corrections !
+
+%%\subjectcode{CSC198}                             % the study unit-code (currently not used)
+
+%% ***************** (Your) Data (End) *******************
+
+
+%% ******** (Your) Document Settings (Start) *************
+
+% You should have an images directory in every chapX subdir
+% NOTE:  Trailing / for subdirs is required.
+\graphicspath{{./images/}{./chap1/images/}{./chap2/images/}{./chap3/images/}{./chap4/images/}{./chap5/images/}{./chap6/images/}}   % Paths where to look for images, if defined "images" must always be there as it holds the images in-use by the template.
+
+\makeindex
+
+%% ********* (Your) Document Settings (End) **************
+
+% DOCTOR'S (JP) ORDERS: MAKE SURE TO READ MY TWO BLOG ENTRIES WITH
+% CONTENT AND LaTeX TIPS FOR YOUR WRITE-UP.  THESE ARE BASED ON  
+% EXAMINER'S FEEDBACK
+%
+% URLS:
+% https://bitsilla.com/blog/2019/03/content-tips-for-your-dissertation-or-project-write-up/
+% https://bitsilla.com/blog/2019/01/latex-tips-for-your-dissertation-or-project-write-up/
+
+\usepackage[none]{hyphenat}
+\sloppy
+
+\parskip 7.2pt
+
+%\raggedright
+
+% end the preamble and start the document
+
+\begin{document}
+\frontmatter 
+    \input{frontmatter/revision_table}       % NEWADDITION: Added revision table first to match ClassiFish
+    \pagenumbering{gobble} % NEWADDITION: Disable page numbering to match ClassiFish
+    \maketitle
+    \input{frontmatter/copyright}          %
+    %\input{frontmatter/originality}       % 
+    \input{frontmatter/dedication}         % include a dedication.tex file
+    \input{frontmatter/acknowledgements}   % include an acknowledgements.tex file
+    \input{frontmatter/abstract}\if@openright\cleardoublepage\else\clearpage\fi
+    \tableofcontents*\if@openright\cleardoublepage\else\clearpage\fi
+    \listoffigures*\if@openright\cleardoublepage\else\clearpage\fi
+    \listoftables*\if@openright\cleardoublepage\else\clearpage\fi  % NEWADDITION: Enabled listoftables to match ClassiFish
+   %  \input{frontmatter/abbreviations}\if@openright\cleardoublepage\else\clearpage\fi
+
+%% Note: always use \input as you cannot nest \includes (amongst other things)
+\pagestyle{umpage}
+\mainmatter 
+    \input{chap1/introduction_main} 
+    \input{chap2/lit_overview_main}
+    \input{chap3/theoretical_framework}        % NEWADDITION: Added theoretical framework chapter to match ClassiFish
+    \input{chap4/methodology}                  % NEWADDITION: Added methodology chapter to match ClassiFish
+    \input{chap5/results_and_discussion}       % NEWADDITION: Renamed from evaluation to match ClassiFish structure
+    \input{chap6/conclusions_main}
+    \appendix
+        \input{appA/appendix_a_main}     % System architecture diagrams
+        \input{appB/appendix_b_main}     % Code samples and technical details
+        \input{appC/appendix_c_main}     % User interface screenshots 
+
+\backmatter
+
+\addcontentsline{toc}{chapter}{References}
+
+\begin{thebibliography}{}
+
+\bibitem{} Baars, M., Khare, S., \& Ridderstap, L. (2022). Exploring students’ use of a mobile application to support their self-regulated learning processes. \textit{Frontiers in Psychology, 13}, 793002. \url{https://doi.org/10.3389/fpsyg.2022.793002}
+
+\bibitem{} Corley, C., Csomai, A., \& Mihalcea, R. (2005). Text semantic similarity, with applications. \textit{Proceedings of the 20th National Conference on Artificial Intelligence (AAAI-05)}.
+
+\bibitem{} Deterding, S., Dixon, D., Khaled, R., \& Nacke, L. (2011). From game design elements to gamefulness: Defining “gamification.” \textit{Proceedings of the 15th International Academic MindTrek Conference}, 9–15. \url{https://doi.org/10.1145/2181037.2181040}
+
+\bibitem{} Devlin, J., Chang, M. W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. \textit{arXiv preprint arXiv:1810.04805}. \url{https://doi.org/10.48550/arXiv.1810.04805}
+
+\bibitem{} Gao, T., Yao, X., \& Chen, D. (2021). SimCSE: Simple contrastive learning of sentence embeddings. \textit{arXiv preprint arXiv:2104.08821}. \url{https://doi.org/10.48550/arXiv.2104.08821}
+
+\bibitem{} Gaston, J., \& Cooper, S. (2017). To three or not to three: Improving human computation game onboarding with a three-star system. \textit{Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems}, 1519–1525. \url{https://doi.org/10.1145/3025453.3026053}
+
+\bibitem{} Karpicke, J. D., \& Roediger, H. L. (2008). The critical importance of retrieval for learning. \textit{Science, 319}(5865), 966–968. \url{https://doi.org/10.1126/science.1152408}
+
+\bibitem{} Klemm, W. R. (2012). What good is learning if you don’t remember it? \textit{The Journal of Effective Teaching, 12}(1), 61–73.
+
+\bibitem{} Mishra, M., \& Anthony, M. (2023). Behavioural intention and dependency on ChatGPT among college students: Scale development and validation. \textit{International Journal of Science and Research, 13}(4), 104–110. \url{https://doi.org/10.21275/SR2441155305}
+
+\bibitem{} Naim, M., Katkov, M., Romani, S., \& Tsodyks, M. (2020). Fundamental law of memory recall. \textit{Physical Review Letters, 124}(1), 018101. \url{https://doi.org/10.1103/PhysRevLett.124.018101}
+
+\bibitem{} Rashid, S., \& Rigas, D. (2006). E-learning \& note-taking: A comparative study. \textit{Proceedings of the 4th International Conference on Computer Science and Information Technology}, 1–6.
+
+\bibitem{} Sachs, J. S. (1967). Recognition memory for syntactic and semantic aspects of connected discourse. \textit{Perception \& Psychophysics, 2}, 437–442. \url{https://doi.org/10.3758/BF03208784}
+
+\bibitem{} Stojanovic, M., Grund, A., \& Fries, S. (2020). App-based habit building reduces motivational impairments during studying – An event sampling study. \textit{Frontiers in Psychology, 11}, 167. \url{https://doi.org/10.3389/fpsyg.2020.00167}
+
+\bibitem{} Tran, M. D., \& Nguyen, T. M. L. (2022). Improving students’ vocabulary retention through using Quizlet: An action research at high school. \textit{TNU Journal of Science and Technology, 227}(04), 170–177. \url{https://doi.org/10.34238/tnu-jst.5647}
+
+\bibitem{} Vișcu, I. (2024). Optimizing the educational environment for implementing active learning methodologies. \textit{Acta et Commentationes, Sciences of Education, 3}(37), 97–105. \url{https://doi.org/10.36120/2587-3636.v37i3.97-105}
+
+\end{thebibliography}
+
+
+
+\end{document}
+
+%%% The End %%%

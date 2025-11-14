@@ -1,0 +1,11 @@
+%% For tips on how to write a great abstract, have a look at
+%%	-	https://www.cdc.gov/stdconference/2018/How-to-Write-an-Abstract_v4.pdf (presentation, start here)
+%%	-	https://users.ece.cmu.edu/~koopman/essays/abstract.html
+%%	-	https://search.proquest.com/docview/1417403858
+%%  - 	https://www.sciencedirect.com/science/article/pii/S037837821830402X
+
+\begin{abstract}
+This study presents \textit{ClassiFish}, a mobile application that classifies 18 local fish species in real-time using the YOLOv11 object detection algorithm. The system addresses the limitations of manual fish identification by integrating deep learning with mobile technology and user feedback. A total of 2,700 raw images were collected from local wet markets and augmented fourfold using horizontal and vertical flipping, hue-saturation shifts, and CLAHE (Contrast Limited Adaptive Histogram Equalization), resulting in a diverse training dataset. After annotation and class remapping, the YOLOv11 model was trained with a 640$\times$640 input size, batch size of 2, and 30 epochs. Evaluation results demonstrated reliable performance, with a precision of 0.78, recall of 0.72, F1-score of 0.74, and mAP@0.5 of 0.79. The mobile application, built using Flutter and integrated with a TensorFlow Lite model, enables users to identify fish via live camera, gallery, or photo capture, and provides access to each species’ taxonomic, nutritional, and conservation information. A user feedback mechanism allows validation of predictions, with corrections reviewed by an administrator through a Django-based web panel. The findings establish \textit{ClassiFish} as a practical and accessible tool for fish species identification, with applicability in ecological monitoring, education, and sustainable fisheries management.
+
+\textit{\textbf{Keywords:} fish classification, YOLOv11, mobile application, object detection, deep learning, dataset augmentation, real-time inference, TensorFlow Lite, Flutter, sustainable fisheries, computer vision.}
+\end{abstract}
