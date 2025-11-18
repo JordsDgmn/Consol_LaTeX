@@ -1,0 +1,59 @@
+% Figure: SimCSE Test Cases for Threshold Validation
+\begin{figure}[htbp]
+    \centering
+    \fbox{\begin{minipage}{0.95\textwidth}
+    \footnotesize
+    \begin{enumerate}
+        \item \textbf{Simple Opposite Meanings}
+        \begin{itemize}
+            \item S1: \textit{The apple is green.}
+            \item S2: \textit{The apple is red.}
+            \item Expected Score: 0.40 - 0.60
+        \end{itemize}
+        
+        \item \textbf{Paraphrased Sentences (Synonyms \\& Rewording)}
+        \begin{itemize}
+            \item S1: \textit{She quickly finished her homework.}
+            \item S2: \textit{She completed her assignment in no time.}
+            \item Expected Score: 0.75 - 0.95
+        \end{itemize}
+        
+        \item \textbf{Sentence Expansion (Short to Long Text)}
+        \begin{itemize}
+            \item S1: \textit{The cat sat on the mat.}
+            \item S2: \textit{A small, fluffy cat was resting on the comfortable mat by the fireplace.}
+            \item Expected Score: 0.65 - 0.85
+        \end{itemize}
+        
+        \item \textbf{Summarization (Long to Short Text)}
+        \begin{itemize}
+            \item S1: \textit{The city of Rome, known for its rich history and cultural heritage, is home to iconic landmarks such as the Colosseum and Vatican City, attracting millions of tourists every year.}
+            \item S2: \textit{Rome is a historic city with famous landmarks and many visitors.}
+            \item Expected Score: 0.70 - 0.85
+        \end{itemize}
+        
+        \item \textbf{Common Words, Different Meaning (False Similarity Trap)}
+        \begin{itemize}
+            \item S1: \textit{She runs a software company.}
+            \item S2: \textit{He runs five miles every morning.}
+            \item Expected Score: 0.30 - 0.50
+        \end{itemize}
+        
+        \item \textbf{Different Sentence Structures (Same Idea, Different Style)}
+        \begin{itemize}
+            \item S1: \textit{The storm caused massive destruction in the city.}
+            \item S2: \textit{A devastating storm wrecked the city.}
+            \item Expected Score: 0.75 - 0.95
+        \end{itemize}
+        
+        \item \textbf{Adding Markdown \& Symbols (Effect on Similarity)}
+        \begin{itemize}
+            \item S1: \textit{The quick brown fox jumps over the lazy dog.}
+            \item S2: \textit{The quick brown fox jumps over the lazy dog!}
+            \item Expected Score: 0.85 - 0.98
+        \end{itemize}
+    \end{enumerate}
+    \end{minipage}}
+    \caption{SimCSE Test Cases for Threshold Validation: Seven representative scenarios designed to evaluate semantic similarity detection across common linguistic variations in educational contexts.}
+    \label{fig:simcse_test_cases}
+\end{figure}

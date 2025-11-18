@@ -43,6 +43,10 @@
 \usepackage{algorithm}      %% Algorithm pseudocode blocks
 \usepackage{algpseudocode}  %% Enhanced pseudocode formatting
 \usepackage{amsmath}        %% Advanced mathematical equations
+\usepackage{tcolorbox}      %% Colored boxes for figures and examples
+
+%% Define custom colors
+\definecolor{maroon}{RGB}{128,0,0}  %% Define maroon color for AI-generated content
 
 %% Code styling configuration for your technical content
 \lstdefinestyle{pythonstyle}{
@@ -171,37 +175,37 @@
 
 \addcontentsline{toc}{chapter}{References}
 
-\begin{thebibliography}{}
+\begin{thebibliography}{99}
 
-\bibitem{} Baars, M., Khare, S., \& Ridderstap, L. (2022). Exploring students’ use of a mobile application to support their self-regulated learning processes. \textit{Frontiers in Psychology, 13}, 793002. \url{https://doi.org/10.3389/fpsyg.2022.793002}
+\bibitem{baars2022exploring} Baars, M., Khare, S., \& Ridderstap, L. (2022). Exploring students' use of a mobile application to support their self-regulated learning processes. \textit{Frontiers in Psychology, 13}, 793002. \url{https://doi.org/10.3389/fpsyg.2022.793002}
 
-\bibitem{} Corley, C., Csomai, A., \& Mihalcea, R. (2005). Text semantic similarity, with applications. \textit{Proceedings of the 20th National Conference on Artificial Intelligence (AAAI-05)}.
+\bibitem{corley2005text} Corley, C., Csomai, A., \& Mihalcea, R. (2005). Text semantic similarity, with applications. \textit{Proceedings of the 20th National Conference on Artificial Intelligence (AAAI-05)}.
 
-\bibitem{} Deterding, S., Dixon, D., Khaled, R., \& Nacke, L. (2011). From game design elements to gamefulness: Defining “gamification.” \textit{Proceedings of the 15th International Academic MindTrek Conference}, 9–15. \url{https://doi.org/10.1145/2181037.2181040}
+\bibitem{deterding2011game} Deterding, S., Dixon, D., Khaled, R., \& Nacke, L. (2011). From game design elements to gamefulness: Defining "gamification." \textit{Proceedings of the 15th International Academic MindTrek Conference}, 9–15. \url{https://doi.org/10.1145/2181037.2181040}
 
-\bibitem{} Devlin, J., Chang, M. W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. \textit{arXiv preprint arXiv:1810.04805}. \url{https://doi.org/10.48550/arXiv.1810.04805}
+\bibitem{devlin2019bert} Devlin, J., Chang, M. W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. \textit{arXiv preprint arXiv:1810.04805}. \url{https://doi.org/10.48550/arXiv.1810.04805}
 
-\bibitem{} Gao, T., Yao, X., \& Chen, D. (2021). SimCSE: Simple contrastive learning of sentence embeddings. \textit{arXiv preprint arXiv:2104.08821}. \url{https://doi.org/10.48550/arXiv.2104.08821}
+\bibitem{gao2021simcse} Gao, T., Yao, X., \& Chen, D. (2021). SimCSE: Simple contrastive learning of sentence embeddings. \textit{arXiv preprint arXiv:2104.08821}. \url{https://doi.org/10.48550/arXiv.2104.08821}
 
-\bibitem{} Gaston, J., \& Cooper, S. (2017). To three or not to three: Improving human computation game onboarding with a three-star system. \textit{Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems}, 1519–1525. \url{https://doi.org/10.1145/3025453.3026053}
+\bibitem{gaston2017three} Gaston, J., \& Cooper, S. (2017). To three or not to three: Improving human computation game onboarding with a three-star system. \textit{Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems}, 1519–1525. \url{https://doi.org/10.1145/3025453.3026053}
 
-\bibitem{} Karpicke, J. D., \& Roediger, H. L. (2008). The critical importance of retrieval for learning. \textit{Science, 319}(5865), 966–968. \url{https://doi.org/10.1126/science.1152408}
+\bibitem{karpicke2008critical} Karpicke, J. D., \& Roediger, H. L. (2008). The critical importance of retrieval for learning. \textit{Science, 319}(5865), 966–968. \url{https://doi.org/10.1126/science.1152408}
 
-\bibitem{} Klemm, W. R. (2012). What good is learning if you don’t remember it? \textit{The Journal of Effective Teaching, 12}(1), 61–73.
+\bibitem{klemm2012good} Klemm, W. R. (2012). What good is learning if you don't remember it? \textit{The Journal of Effective Teaching, 12}(1), 61–73.
 
-\bibitem{} Mishra, M., \& Anthony, M. (2023). Behavioural intention and dependency on ChatGPT among college students: Scale development and validation. \textit{International Journal of Science and Research, 13}(4), 104–110. \url{https://doi.org/10.21275/SR2441155305}
+\bibitem{mishra2023behavioural} Mishra, M., \& Anthony, M. (2023). Behavioural intention and dependency on ChatGPT among college students: Scale development and validation. \textit{International Journal of Science and Research, 13}(4), 104–110. \url{https://doi.org/10.21275/SR2441155305}
 
-\bibitem{} Naim, M., Katkov, M., Romani, S., \& Tsodyks, M. (2020). Fundamental law of memory recall. \textit{Physical Review Letters, 124}(1), 018101. \url{https://doi.org/10.1103/PhysRevLett.124.018101}
+\bibitem{naim2020fundamental} Naim, M., Katkov, M., Romani, S., \& Tsodyks, M. (2020). Fundamental law of memory recall. \textit{Physical Review Letters, 124}(1), 018101. \url{https://doi.org/10.1103/PhysRevLett.124.018101}
 
-\bibitem{} Rashid, S., \& Rigas, D. (2006). E-learning \& note-taking: A comparative study. \textit{Proceedings of the 4th International Conference on Computer Science and Information Technology}, 1–6.
+\bibitem{rashid2006elearning} Rashid, S., \& Rigas, D. (2006). E-learning \& note-taking: A comparative study. \textit{Proceedings of the 4th International Conference on Computer Science and Information Technology}, 1–6.
 
-\bibitem{} Sachs, J. S. (1967). Recognition memory for syntactic and semantic aspects of connected discourse. \textit{Perception \& Psychophysics, 2}, 437–442. \url{https://doi.org/10.3758/BF03208784}
+\bibitem{sachs1967recognition} Sachs, J. S. (1967). Recognition memory for syntactic and semantic aspects of connected discourse. \textit{Perception \& Psychophysics, 2}, 437–442. \url{https://doi.org/10.3758/BF03208784}
 
-\bibitem{} Stojanovic, M., Grund, A., \& Fries, S. (2020). App-based habit building reduces motivational impairments during studying – An event sampling study. \textit{Frontiers in Psychology, 11}, 167. \url{https://doi.org/10.3389/fpsyg.2020.00167}
+\bibitem{stojanovic2020app} Stojanovic, M., Grund, A., \& Fries, S. (2020). App-based habit building reduces motivational impairments during studying – An event sampling study. \textit{Frontiers in Psychology, 11}, 167. \url{https://doi.org/10.3389/fpsyg.2020.00167}
 
-\bibitem{} Tran, M. D., \& Nguyen, T. M. L. (2022). Improving students’ vocabulary retention through using Quizlet: An action research at high school. \textit{TNU Journal of Science and Technology, 227}(04), 170–177. \url{https://doi.org/10.34238/tnu-jst.5647}
+\bibitem{tran2022improving} Tran, M. D., \& Nguyen, T. M. L. (2022). Improving students' vocabulary retention through using Quizlet: An action research at high school. \textit{TNU Journal of Science and Technology, 227}(04), 170–177. \url{https://doi.org/10.34238/tnu-jst.5647}
 
-\bibitem{} Vișcu, I. (2024). Optimizing the educational environment for implementing active learning methodologies. \textit{Acta et Commentationes, Sciences of Education, 3}(37), 97–105. \url{https://doi.org/10.36120/2587-3636.v37i3.97-105}
+\bibitem{viscu2024optimizing} Vișcu, I. (2024). Optimizing the educational environment for implementing active learning methodologies. \textit{Acta et Commentationes, Sciences of Education, 3}(37), 97–105. \url{https://doi.org/10.36120/2587-3636.v37i3.97-105}
 
 \end{thebibliography}
 

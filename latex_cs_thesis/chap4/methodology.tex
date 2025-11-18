@@ -30,10 +30,70 @@
 % - Session analytics methodology
 
 \section{Evaluation Framework}
-% This section will describe:
-% - Similarity scoring validation methodology
-% - User experience testing protocol
-% - Performance assessment criteria
+
+\subsection{SimCSE Similarity Threshold Calibration}
+
+{\color{maroon}
+One of the critical aspects of developing Consol was establishing appropriate similarity thresholds for the star rating system that would provide meaningful and fair assessment of student recall performance. This required systematic validation of SimCSE's behavior across various linguistic scenarios commonly encountered in educational contexts.
+
+The initial threshold hypothesis was established based on educational assessment principles:
+\begin{itemize}
+    \item 3 stars (Excellent): Similarity $\geq$ 0.81 - Demonstrates comprehensive understanding
+    \item 2 stars (Good): Similarity $\geq$ 0.60 - Shows adequate recall with minor gaps
+    \item 1 star (Basic): Similarity $\geq$ 0.30 - Indicates partial understanding
+    \item 0 stars (Poor): Similarity $<$ 0.30 - Requires significant improvement
+\end{itemize}
+
+To validate these thresholds, we designed a comprehensive test suite encompassing various linguistic transformations that students might employ during recall sessions. The test cases were selected to represent common scenarios in educational recall, including paraphrasing, summarization, expansion, and potential edge cases that could lead to misleading similarity scores.
+}
+
+\subsection{Test Case Design and Implementation}
+
+{\color{maroon}
+Seven representative test cases were developed and evaluated to assess SimCSE performance across different linguistic scenarios. Each test case consisted of an original sentence (S1) and a student response variant (S2), with expected similarity ranges based on semantic preservation and educational value.
+
+Figure \ref{fig:simcse_test_cases} presents the complete set of test cases used for threshold validation, while Table \ref{table:threshold_validation} summarizes the quantitative results and analysis.
+
+The test cases were specifically designed to address:
+\begin{enumerate}
+    \item \textbf{Semantic Opposition}: Testing SimCSE's ability to detect contradictory meanings
+    \item \textbf{Paraphrasing Detection}: Evaluating performance on synonym-based rewording
+    \item \textbf{Content Expansion}: Assessing similarity when students provide additional detail
+    \item \textbf{Content Summarization}: Testing condensed versions of original content
+    \item \textbf{False Similarity Traps}: Identifying cases where word overlap doesn't indicate understanding
+    \item \textbf{Structural Variations}: Examining different sentence constructions with preserved meaning
+    \item \textbf{Formatting Robustness}: Testing resilience to punctuation and formatting changes
+\end{enumerate}
+
+This systematic approach ensured that the final threshold settings would be both educationally meaningful and technically robust, providing students with fair and consistent assessment of their recall performance.
+}
+
+% Include the test cases figure
+\input{figures/simcse_test_cases}
+
+% Include the validation results table  
+\input{tables/threshold_validation}
+
+\subsection{Validation Results and Threshold Refinement}
+
+{\color{maroon}
+The systematic testing revealed both strengths and areas for improvement in SimCSE's performance for educational assessment. Analysis of the seven test cases provided crucial insights into the model's behavior across different linguistic scenarios.
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item \textbf{False Similarity Detection}: SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments.
+    
+    \item \textbf{Structural Robustness}: The model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding.
+    
+    \item \textbf{Formatting Resilience}: Punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style.
+    
+    \item \textbf{Paraphrasing Sensitivity}: Synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording.
+    
+    \item \textbf{Opposite Meaning Handling}: Contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.
+\end{itemize}
+
+These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
+}
 
 \section{Implementation Tools and Technologies}
 % This section will describe:
