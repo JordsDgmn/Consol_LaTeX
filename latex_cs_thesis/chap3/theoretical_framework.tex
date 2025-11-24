@@ -20,6 +20,28 @@
 % - Semantic similarity measurement principles
 % - SimCSE theoretical basis (Gao et al., 2021)
 
+{\color{maroon}
+The theoretical foundation of semantic similarity measurement in natural language processing rests on the principle that semantic relationships can be captured through geometric relationships in vector space. This framework establishes the mathematical and computational foundations underlying the Consol system's approach to evaluating recall performance.
+
+\subsection{Vector Space Semantics}
+
+The vector space model of semantics, pioneered by Salton, Wong, and Yang (1975) and refined through neural embedding approaches, represents linguistic units as points in high-dimensional space. The fundamental assumption is that semantic similarity correlates with spatial proximity, enabling quantitative measurement of meaning relationships through distance metrics.
+
+Church (2017) emphasizes that Word2Vec's success stems from its ability to capture semantic analogies through vector arithmetic, demonstrating that mathematical operations in embedding space correspond to meaningful semantic transformations. The relationship $\vec{king} - \vec{man} + \vec{woman} \approx \vec{queen}$ illustrates how vector mathematics can encode complex semantic relationships, establishing the foundation for similarity measurement that extends to sentence-level embeddings.
+
+\subsection{Uniform Distribution Property}
+
+A critical theoretical requirement for effective semantic similarity measurement is the uniform distribution of embeddings in vector space. Gao, Yao, and Chen (2021) demonstrate that anisotropic embedding distributions, where representations cluster in narrow regions, artificially inflate similarity scores regardless of semantic content.
+
+The uniform distribution property ensures that high similarity scores indicate genuine semantic relationships rather than distributional artifacts, that the similarity function maintains discriminative power across diverse semantic contexts, and that false positives resulting from embedding collapse are minimized. Mathematically, uniform distribution maximizes the entropy of the embedding space, where representations utilize the full dimensional capacity available.
+
+\subsection{Representation Collapse Prevention}
+
+Representation collapse occurs when distinct inputs produce nearly identical embeddings, eliminating the model's ability to discriminate between different semantic content. This phenomenon is particularly problematic in pre-trained language models where embeddings may concentrate in narrow regions of the vector space, making similarity measurements unreliable for educational assessment.
+
+SimCSE addresses representation collapse through its contrastive learning objective, which actively separates embeddings while maintaining semantic relationships. The theoretical mechanism involves distributional regularization where the contrastive loss encourages embeddings to occupy diverse regions of the vector space, anisotropy reduction where the framework transforms concentrated distributions into more uniform ones, and semantic preservation where genuine similarities are maintained despite increased distribution uniformity.
+}
+
 \section{Educational Technology Framework}
 % This section will cover:
 % - Digital learning platform theory

@@ -17,6 +17,18 @@
 % - Technology stack selection criteria
 % - Architecture design principles
 
+{\color{maroon}
+\subsection{Encoder Architecture Design}
+
+The Consol system implements a sentence embedding architecture based on SimCSE principles, utilizing BERT as the foundational encoder with specific adaptations for educational assessment contexts. The encoder architecture employs BERT-base-uncased with [CLS] token pooling for sentence representation, differing from mean pooling strategies by utilizing BERT's special classification token trained to capture sentence-level information during pre-training.
+
+The architectural choice of [CLS] pooling over mean pooling is motivated by concentrated representation where the [CLS] token is specifically designed to encode sentence-level information, computational efficiency where single token extraction requires less processing than mean aggregation, and empirical performance where previous studies demonstrate superior results for similarity tasks.
+
+\subsection{Temperature Parameter Configuration}
+
+The temperature parameter $\tau$ in the contrastive learning formula requires careful calibration to achieve optimal similarity discrimination. The parameter controls the sharpness of the similarity distribution, with implications for both precision and recall in educational assessment. The Consol system implements $\tau = 0.05$ based on empirical validation across diverse educational content domains, balancing discriminative power with generalization ability while preventing over-confident predictions that could lead to poor assessment reliability.
+}
+
 \section{Development Process}
 % This section will describe:
 % - Iterative development approach

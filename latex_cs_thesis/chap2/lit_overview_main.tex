@@ -56,6 +56,16 @@ Baars, Khare, and Ridderstap (2022) demonstrate that study applications with wel
 
 The development of NLP techniques has significantly advanced models that analyze and quantify semantic similarity.
 
+{\color{maroon}
+\subsection{Word Embedding Foundations}
+
+The evolution of neural word embeddings represents a foundational shift in computational linguistics, establishing the vector space principles that underpin contemporary sentence embedding methodologies. Church (2017) demonstrates that Word2Vec's widespread adoption stems not from theoretical complexity, but from its practical accessibility and the availability of downloadable implementations that enable immediate application. The method's core innovation lies in representing words as dense vectors in continuous space, where semantic relationships are preserved through geometric relationships rather than symbolic representations.
+
+Mikolov et al. (2013) introduced the skip-gram architecture that learns word representations by predicting contextual words, establishing contrastive learning principles that would later be adapted for sentence-level embeddings. The famous analogy \textit{man : woman :: king : queen} illustrates how vector arithmetic captures semantic relationships, with the mathematical operation $\vec{king} - \vec{man} + \vec{woman} \approx \vec{queen}$ demonstrating the foundation of semantic similarity computation through vector mathematics.
+
+Jatnika, Bijaksana, and Suryani (2019) provide empirical validation of Word2Vec's semantic similarity capabilities through extensive evaluation on WordSim-353 and SimLex-999 datasets. Their analysis reveals that cosine similarity, computed as the angular distance between word vectors, effectively quantifies semantic relationships with correlation scores reaching 0.665 on WordSim-353. This establishes the mathematical foundation for similarity measurement that extends to sentence-level embeddings, where the principle that semantically similar entities should be positioned closer in vector space forms the theoretical basis for contrastive learning objectives used in SimCSE and similar frameworks.
+}
+
 \subsection{Text Semantic Similarity}
 
 Corley et al. (2005) provided foundational insights into computational methods for evaluating semantic similarity, focusing on techniques that measure the closeness of meaning between texts.
@@ -68,9 +78,25 @@ Devlin et al. (2019) emphasize that BERT leverages bidirectional representations
 
 Gao, Yao, and Chen (2021) developed SimCSE, a fine-tuning approach that enhances the quality of sentence embeddings, making them suitable for tasks like semantic similarity evaluation and textual entailment.
 
+{\color{maroon}
+SimCSE addresses a fundamental challenge in sentence embeddings known as representation collapse, where different sentences produce nearly identical vector representations, rendering similarity measurements meaningless. Traditional BERT embeddings suffer from this phenomenon due to anisotropic distribution of representations in vector space, where embeddings cluster in narrow regions rather than utilizing the full dimensional space effectively.
+
+The theoretical contribution of SimCSE lies in transforming anisotropic embedding distributions into more isotropic ones. Anisotropic embeddings concentrate in narrow cones within the vector space, limiting their ability to capture fine-grained semantic distinctions necessary for educational assessment. The contrastive learning framework regularizes the embedding space to achieve uniform distribution, where sentences with different meanings occupy distinct regions while semantically similar sentences remain proximate.
+
+Unlike previous approaches requiring complex data augmentation techniques such as back-translation, paraphrasing, or syntactic transformations, SimCSE achieves superior performance using only dropout noise as minimal data augmentation. This approach preserves semantic content while introducing controlled perturbations necessary for contrastive learning. When the same sentence passes through the encoder twice with different dropout masks, the resulting embeddings form natural positive pairs without external modification.
+
+The mathematical foundation of SimCSE rests on achieving uniform distribution property in the embedding space. This property ensures that the similarity function can effectively discriminate between sentences with varying degrees of semantic overlap, eliminating the bias present in anisotropic embeddings where high similarity scores may result from distributional artifacts rather than genuine semantic relationships.
+}
+
 \subsubsection{Contrastive Learning}
 
-SimCSE’s unsupervised framework generates "positive pairs" by applying independent dropout masks to the same input sentence. Specifically, when a sentence is passed through the BERT encoder twice, the randomness introduced by dropout produces two slightly different embeddings.
+SimCSE's unsupervised framework generates "positive pairs" by applying independent dropout masks to the same input sentence. Specifically, when a sentence is passed through the BERT encoder twice, the randomness introduced by dropout produces two slightly different embeddings.
+
+{\color{maroon}
+SimCSE's contrastive learning framework builds upon foundational principles established in Word2Vec's skip-gram model while extending them to sentence-level representations. The approach creates positive pairs through minimal data augmentation and efficiently generates negative samples through in-batch negatives, eliminating the computational overhead of explicitly creating negative pairs while ensuring diverse negative samples.
+
+For a given sentence $s_i$, all other sentences $s_j$ where $j \neq i$ in the batch serve as negatives, creating rich contrastive signals without additional data preprocessing. This in-batch negative sampling strategy demonstrates continuity with Word2Vec's contrastive learning principles, where the fundamental approach of learning through contrast remains consistent across word-level and sentence-level embeddings.
+}
 
 \begin{figure}[ht!]
     \centering
@@ -84,6 +110,10 @@ SimCSE’s unsupervised framework generates "positive pairs" by applying indepen
 \subsubsection{Cosine Similarity}
 
 Cosine similarity quantifies the angular distance between embeddings, ensuring that semantically similar sentences are pulled closer together, while dissimilar ones are pushed apart. The temperature parameter $\tau$ sharpens the similarity distribution, controlling the influence of positive and negative pairs during training.
+
+{\color{maroon}
+The temperature parameter $\tau$ in the contrastive learning formula plays a critical role in controlling the sharpness of the similarity distribution. Lower temperature values create more peaked distributions, emphasizing high-confidence similarities, while higher values produce smoother distributions. The optimal temperature balances discriminative power with stability, preventing over-confident predictions that could lead to poor generalization in educational assessment contexts.
+}
 
 \begin{figure}[ht!]
     \centering
