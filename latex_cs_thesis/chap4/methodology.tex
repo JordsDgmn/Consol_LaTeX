@@ -265,16 +265,24 @@ The temperature parameter $\tau$ in the contrastive learning formula requires ca
 }
 
 \section{Development Process}
-% This section will describe:
-% - Iterative development approach
-% - Project evolution from proposal to implementation
-% - Feature development prioritization
+
+{\color{maroon}
+The development process followed an iterative approach prioritizing core semantic similarity functionality before expanding to advanced educational features. Initial development focused on establishing robust SimCSE integration and database architecture to ensure reliable assessment capability as the foundational system component.
+
+Project evolution progressed through three distinct phases beginning with proof-of-concept implementation validating SimCSE integration with basic note comparison functionality. The second phase introduced user interface development with authentication systems, dashboard design, and session management capabilities. The final phase incorporated advanced analytics features, performance optimization, and comprehensive testing protocols.
+
+Feature development prioritization emphasized educational effectiveness over technical complexity, ensuring that each component directly supported learning objectives. User feedback integration occurred throughout development cycles, with rapid prototyping enabling continuous refinement based on pedagogical requirements and usability observations.
+}
 
 \section{Data Collection Methods}
-% This section will describe:
-% - User interaction data collection
-% - Performance metrics gathering
-% - Session analytics methodology
+
+{\color{maroon}
+Data collection methodology integrated automated system logging with structured user interaction recording to capture comprehensive performance metrics and behavioral patterns. User interaction data collection occurred transparently during normal system usage, recording session timing, similarity scores, navigation patterns, and feature utilization frequencies without interrupting the educational workflow.
+
+Performance metrics gathering emphasized educationally meaningful indicators including similarity score trends, improvement rates, session completion times, and learning consistency patterns. Database logging captured detailed metadata for each assessment session, enabling longitudinal analysis of learning progression and system effectiveness measurement.
+
+Session analytics methodology incorporated both quantitative performance measurement and qualitative feedback collection through integrated survey tools and optional interview protocols. Data standardization procedures ensured consistency across different user devices and interaction contexts, maintaining research validity while supporting diverse educational technology environments.
+}
 
 \section{Evaluation Framework}
 
@@ -354,20 +362,21 @@ These findings informed the refinement of similarity thresholds and provided val
 
 This section outlines the comprehensive data collection strategy employed to evaluate the system's effectiveness in educational assessment and user experience. Two distinct but complementary testing methodologies were implemented: scoring accuracy validation and usability assessment, each designed to address specific research objectives and provide empirical evidence for system performance.
 
+{\color{maroon}
 \subsection{Scoring Accuracy Testing}
+
+The scoring accuracy testing phase focused exclusively on evaluating the precision and reliability of SimCSE-based assessment compared to alternative methods, conducted independently from system usability evaluation to ensure methodological rigor.
 
 \subsubsection{Participant Selection and Demographics}
 
-Five participants were recruited for the scoring accuracy evaluation phase, representing a diverse sample of college-level students in STEM disciplines. The selection criteria included:
+Five participants were recruited for the scoring accuracy evaluation phase, representing a diverse sample of college-level students in STEM disciplines. The selection criteria emphasized academic preparation rather than technology proficiency, as this phase evaluated content assessment accuracy rather than interface usability.
+}
 
-\begin{itemize}
-    \item Current enrollment in or completion of college-level biology/science courses
-    \item Willingness to participate in a 15-day testing period (5 topics × 3 days each)
-    \item Basic computer literacy and note-taking experience
-    \item Informed consent for data collection and analysis
-\end{itemize}
+{\color{maroon}
+Selection criteria emphasized current enrollment in or recent completion of college-level biology/science courses, ensuring participants possessed adequate subject matter knowledge for meaningful assessment. Participants demonstrated willingness to engage in the 3-day testing protocol involving 5 topics assessed daily, maintained basic computer literacy sufficient for Google Docs interaction, and provided informed consent for comprehensive data collection and analysis procedures.
 
-The participants included students from various educational backgrounds to ensure generalizability of results across different learning styles and academic preparation levels.
+Participant demographics included students from various educational backgrounds to ensure generalizability of results across different learning styles and academic preparation levels, while maintaining focus on content assessment rather than technology adoption patterns.
+}
 
 \subsubsection{Experimental Design}
 
@@ -382,20 +391,13 @@ A within-subjects experimental design was employed, where each participant serve
     \item Earthquakes - Interdisciplinary earth science phenomena
 \end{enumerate}
 
-\textbf{Temporal Structure:} Each topic was assessed over three consecutive days to capture learning progression and retention patterns. This 3-day cycle allowed for:
-\begin{itemize}
-    \item Initial learning assessment (Day 1)
-    \item Knowledge consolidation evaluation (Day 2)
-    \item Retention and improvement measurement (Day 3)
-\end{itemize}
+{\color{maroon}
+\textbf{Temporal Structure:} Each topic was assessed over three consecutive days to capture learning progression and retention patterns. This 3-day cycle allowed for initial learning assessment (Day 1), knowledge consolidation evaluation (Day 2), and retention and improvement measurement (Day 3). All five topics were assessed simultaneously within this 3-day period, with participants completing 5-minute recall sessions per topic per day, totaling 25 assessment instances per participant across the complete evaluation period.
+}
 
-\textbf{Assessment Protocol:} For each topic-day combination, participants completed the following standardized procedure:
-\begin{enumerate}
-    \item Review provided educational materials for the designated topic
-    \item Create comprehensive notes in their preferred format
-    \item After a specified retention interval, attempt to recall the material from memory
-    \item Submit both original notes and recalled content for comparative assessment
-\end{enumerate}
+{\color{maroon}
+\textbf{Assessment Protocol:} For each topic-day combination, participants completed a standardized individual assessment procedure on Google Docs rather than through the main application interface. The scoring testing was conducted separately from app usability testing to ensure methodological isolation. Days 1 and 2 were conducted simultaneously under supervised conditions with strict 5-minute time limits per topic recollection. Day 3 assessments were completed asynchronously at participants' convenience while maintaining the same 5-minute time constraint per topic. Participants submitted both original study materials and recalled content for triple-assessment comparison (SimCSE, ChatGPT, teacher evaluation).
+}
 
 \subsubsection{Multi-Scorer Evaluation Framework}
 
@@ -479,7 +481,9 @@ A comprehensive usability evaluation was conducted using a modified System Usabi
 
 \subsubsection{Participant Recruitment and Testing Protocol}
 
-\textbf{Sample Size and Demographics:} Fourteen participants were recruited for usability testing, representing a diverse cross-section of potential system users:
+{\color{maroon}
+\textbf{Sample Size and Demographics:} Seven participants were recruited for usability testing, representing a diverse cross-section of potential system users across various educational institutions. The usability testing was conducted independently from scoring accuracy validation to maintain methodological separation between technical performance assessment and user experience evaluation.
+}
 \begin{itemize}
     \item Age range: 18-33+ years, with representation across multiple age cohorts
     \item Education level: Currently enrolled college students and recent graduates

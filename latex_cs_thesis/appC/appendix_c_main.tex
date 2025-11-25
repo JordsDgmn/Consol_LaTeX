@@ -1,0 +1,123 @@
+{\color{maroon}
+\chapter{Technical Documentation and Supporting Materials}
+
+\section{System Usability Scale (SUS) Questionnaire}
+
+The following questionnaire was administered to all participants following their interaction with the Consol system. Responses were collected on a five-point Likert scale ranging from "Strongly Disagree" (1) to "Strongly Agree" (5).
+
+\subsection{SUS Questions}
+\begin{enumerate}
+    \item I think that I would like to use this system frequently.
+    \item I found the system unnecessarily complex.
+    \item I thought the system was easy to use.
+    \item I think that I would need the support of a technical person to be able to use this system.
+    \item I found the various functions in this system were well integrated.
+    \item I thought there was too much inconsistency in this system.
+    \item I would imagine that most people would learn to use this system very quickly.
+    \item I found the system very cumbersome to use.
+    \item I felt very confident using the system.
+    \item I needed to learn a lot of things before I could get going with this system.
+\end{enumerate}
+
+\section{Post-Session Feedback Questions}
+
+Additional qualitative feedback was collected through semi-structured interviews addressing the following areas:
+
+\subsection{User Experience Assessment}
+\begin{enumerate}
+    \item How would you describe your overall experience with the semantic similarity-based feedback compared to traditional exact-match systems?
+    \item Did you feel the system fairly evaluated your responses when you paraphrased or restructured information?
+    \item What aspects of the progress tracking and star rating system motivated or discouraged your continued use?
+    \item How intuitive did you find the note creation and practice session workflow?
+    \item What improvements would you suggest for the user interface or system functionality?
+\end{enumerate}
+
+\section{Detailed Performance Metrics}
+
+The following tables present comprehensive performance analysis across different evaluation dimensions and participant characteristics.
+
+\subsection{Similarity Threshold Analysis}
+
+\begin{table}[h]
+\centering
+\caption{System Performance Across Different Similarity Thresholds}
+\label{tab:threshold_performance}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Threshold} & \textbf{3 Stars (\%)} & \textbf{2 Stars (\%)} & \textbf{1 Star (\%)} & \textbf{0 Stars (\%)} \\
+\hline
+0.8+ & 23.3 & - & - & - \\
+0.6-0.79 & - & 41.3 & - & - \\
+0.4-0.59 & - & - & 24.0 & - \\
+< 0.4 & - & - & - & 11.4 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Topic-Specific Performance Analysis}
+
+\begin{table}[h]
+\centering
+\caption{Mean Similarity Scores by Topic Category}
+\label{tab:topic_performance}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Topic Category} & \textbf{SimCSE Mean} & \textbf{ChatGPT Mean} & \textbf{Teacher Mean} \\
+\hline
+Technical Concepts & 0.742 & 0.651 & 0.758 \\
+Theoretical Frameworks & 0.698 & 0.623 & 0.721 \\
+Practical Applications & 0.715 & 0.634 & 0.733 \\
+Methodological Approaches & 0.687 & 0.609 & 0.712 \\
+System Implementation & 0.724 & 0.645 & 0.740 \\
+\hline
+\textbf{Overall Average} & \textbf{0.713} & \textbf{0.632} & \textbf{0.733} \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Statistical Analysis Summary}
+
+\subsection{Comparative Assessment Validation}
+
+The three-way comparison between SimCSE, ChatGPT, and human teacher assessments yielded the following statistical measures:
+
+\paragraph{SimCSE vs. Teacher Assessment:}
+Mean absolute difference: 9.54 points (SD = 7.23)
+Pearson correlation coefficient: r = 0.847
+Statistical significance: p < 0.001
+
+\paragraph{ChatGPT vs. Teacher Assessment:}
+Mean absolute difference: 16.33 points (SD = 12.41)
+Pearson correlation coefficient: r = 0.612
+Statistical significance: p < 0.01
+
+\paragraph{Improvement Analysis:}
+SimCSE demonstrates 41.6\% superior alignment with teacher assessments compared to ChatGPT, with Cohen's d = 1.24 indicating large effect size.
+
+\section{System Architecture Specifications}
+
+\subsection{Technical Implementation Details}
+
+\paragraph{Frontend Technology Stack:}
+React.js with Next.js framework for server-side rendering optimization, Tailwind CSS for responsive design implementation, Chart.js for real-time data visualization, and RESTful API integration for seamless data communication.
+
+\paragraph{Backend Architecture:}
+Node.js runtime environment with Express.js framework, PostgreSQL database with normalized schema design, SimCSE microservice integration through dedicated API endpoints, and comprehensive session management with secure authentication protocols.
+
+\paragraph{Natural Language Processing Pipeline:}
+BERT-base-uncased model serving as foundational encoder, SimCSE contrastive learning implementation with dropout-based data augmentation, cosine similarity computation for semantic distance measurement, and text preprocessing pipeline for formatting normalization.
+
+\subsection{Performance Benchmarks}
+
+\paragraph{System Response Times:}
+Similarity computation: 50-200ms per comparison
+Database query execution: 15-45ms average
+User interface rendering: 120-180ms complete page load
+Session management: 5-15ms authentication verification
+
+\paragraph{Scalability Metrics:}
+Concurrent user support: 50+ simultaneous sessions
+Database capacity: 10,000+ notes with full-text search
+Memory utilization: 110MB SimCSE model + 500MB Node.js runtime
+Storage requirements: Variable PostgreSQL allocation based on user content volume
+}

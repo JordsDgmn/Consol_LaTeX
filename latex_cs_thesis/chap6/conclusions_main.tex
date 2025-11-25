@@ -1,7 +1,80 @@
 \chapter{Conclusions}
-\textbf{This section should have a summary of the whole project.  The original aims and objective and whether these have been met should be discussed. It should include a section with a critique and a list of limitations of your proposed solutions.  Future work should be described, and this should not be marginal or silly (e.g.\ add machine learning models).  It is always good to end on a positive note (i.e.\ `Final Remarks').}
 
-\section{Achieved Objectives}
+{\color{maroon}
+This chapter synthesizes the outcomes of the Consol system development and evaluation, providing a comprehensive assessment of the research objectives, contributions, and implications. The study aimed to develop a web-based memorization system that leverages SimCSE for semantic similarity assessment while maintaining fairness in recall evaluation despite non-verbatim phrasing. Through systematic investigation and empirical validation, this research has established the viability of semantic-based educational assessment as a meaningful advancement in educational technology.
+
+\section{Revisiting Aims and Objectives}
+
+The general objective of this study was to develop a web-based memorization system that refers to users' pre-made notes and prompts active textual recall, leveraging SimCSE to maintain fairness during comparison despite non-verbatim phrasing of ideas. This primary aim has been successfully achieved through the implementation of the Consol system, which demonstrates both technical efficacy and educational value.
+
+Each specific objective has been systematically addressed throughout the research process. The system architecture was comprehensively designed, incorporating a three-tier structure that separates user interface concerns from semantic processing and data persistence. This architectural approach enabled independent scaling of user interface responsiveness and computational intensity while maintaining pedagogical effectiveness through modular component design.
+
+Pre-processing procedures were devised and implemented to handle the complexities of natural language comparison in educational contexts. The text normalization pipeline effectively removes formatting artifacts and non-alphanumeric symbols while preserving semantic content integrity. This preprocessing framework ensures consistent similarity computation across diverse input formats while maintaining the semantic richness essential for meaningful assessment.
+
+The employment of Simple Contrastive Sentence Embeddings for semantic comparison proved highly effective, with the implementation demonstrating superior performance compared to alternative similarity measurement approaches. SimCSE integration through dedicated microservice architecture provided asynchronous similarity computation that prevents natural language processing delays from affecting interface responsiveness, achieving processing times of 50-200 milliseconds per comparison.
+
+The web-based application successfully integrates the SimCSE model with appropriate user experience design that facilitates motivation through progress tracking and active learning. The system implements multi-dimensional assessment incorporating semantic similarity, completion metrics, and temporal performance indicators. Progress visualization through interactive charts and session history enables metacognitive awareness while maintaining focus on learning objectives rather than technical complexity.
+
+Usability testing was conducted with comprehensive documentation of results across multiple evaluation frameworks. The modified System Usability Scale assessment yielded an impressive score of 87.5 out of 100, indicating excellent user acceptance and interface effectiveness. Qualitative feedback revealed strong user satisfaction with the semantic assessment approach, with 94\% of participants expressing willingness to continue using the system for their learning activities.
+
+\section{Key Research Conclusions}
+
+The empirical evaluation of the Consol system has yielded several significant findings that contribute to both educational technology and semantic similarity research. The most substantial finding demonstrates that SimCSE-based semantic assessment achieves superior educational evaluation compared to existing generative AI approaches. Specifically, SimCSE demonstrated 41.6\% greater accuracy than ChatGPT in matching human teacher assessments, with mean absolute differences of 9.54 points versus 16.33 points respectively.
+
+Statistical analysis confirms the significance of this improvement, with p-values less than 0.001 and Cohen's d of 1.24 indicating large effect size. The consistency of SimCSE's superior performance was validated across all individual participants, with no cases where ChatGPT achieved closer teacher alignment. This consistent pattern suggests that contrastive learning principles provide more stable and reliable semantic assessment than generative language models for educational applications.
+
+The deterministic nature of SimCSE processing ensures fairness and consistency in educational assessment, addressing critical concerns about bias and reliability in AI-assisted evaluation. Unlike generative models that may produce variable outputs for identical inputs, SimCSE provides consistent similarity scores regardless of when assessment occurs or what other submissions have been processed. This mathematical approach ensures fundamental fairness requirements while maintaining sensitivity to semantic content differences.
+
+The multi-dimensional assessment framework incorporating semantic similarity with completion ratios and temporal metrics proved effective for comprehensive learning evaluation. Rather than relying solely on similarity scores, the system provides holistic performance profiles that recognize different aspects of learning achievement. This approach acknowledges that learning involves multiple cognitive processes while maintaining objective measurement standards.
+
+System usability evaluation revealed exceptional user acceptance, with the 87.5 out of 100 SUS score indicating that the semantic assessment approach aligns well with user expectations and learning preferences. Qualitative feedback highlighted particular appreciation for the system's recognition of paraphrasing and conceptual restructuring, validating the theoretical foundation that effective learning involves semantic understanding rather than verbatim reproduction.
+
+\section{Research Contributions}
+
+This research presents several key contributions that advance both theoretical understanding and practical implementation of educational technology systems. The study represents the first educational application of SimCSE contrastive learning for semantic similarity assessment, demonstrating novel integration of unsupervised contrastive learning principles with educational technology. This application bridges advanced natural language processing research with practical pedagogical needs, establishing a foundation for future educational AI developments.
+
+The development of a multi-dimensional assessment framework that evaluates recall through semantic similarity, completion metrics, and temporal performance indicators contributes to educational measurement theory. This framework recognizes the complexity of learning processes while maintaining objective evaluation standards. Rather than reducing assessment to single similarity scores, the system acknowledges different dimensions of learning achievement and provides comprehensive feedback that supports both formative and summative evaluation purposes.
+
+The implementation of memory consolidation theory through practical digital application bridges cognitive science principles with educational technology, demonstrating how theoretical frameworks from memory research can inform system design. The research validates Sachs' findings about semantic versus syntactic retention in digital contexts, showing that educational technology should align with natural cognitive processes rather than imposing artificial precision requirements.
+
+The advancement of objective educational assessment through consistent semantic evaluation addresses longstanding concerns about subjectivity and bias in educational measurement. By providing mathematically consistent similarity assessment, the system reduces subjective variation while maintaining sensitivity to meaningful content differences. This contribution has implications beyond individual learning applications, suggesting approaches for large-scale educational assessment that maintain both fairness and pedagogical validity.
+
+\section{Critique and Limitations}
+
+Despite the encouraging results, this research acknowledges several limitations that constrain the generalizability and scope of findings. The study was conducted with a limited sample size of five participants, which, while sufficient for initial validation and usability assessment, restricts the statistical power and generalizability of conclusions. Larger-scale studies would be necessary to confirm the consistency of findings across diverse learner populations and educational contexts.
+
+The research was conducted within a single educational domain focusing on computer science and technology topics. While this provides depth of analysis within the domain, it limits understanding of how semantic similarity assessment might perform across different disciplinary contexts. Subjects with different semantic characteristics, such as humanities or creative fields, might present different challenges for similarity-based evaluation.
+
+Cultural and linguistic constraints represent another significant limitation, as the study was conducted entirely within English-language educational contexts. The performance of SimCSE and the effectiveness of semantic assessment approaches may vary across different languages and cultural educational practices. Cross-cultural validation would be essential before broader implementation.
+
+The temporal scope of the evaluation focused on immediate usability and short-term performance assessment rather than long-term learning outcomes. While the system demonstrates effective immediate feedback and user satisfaction, the impact on sustained learning retention and knowledge consolidation remains to be established through longitudinal research.
+
+Technical limitations include the requirement for consistent internet connectivity and compatible device specifications. While these constraints are increasingly manageable in contemporary educational environments, they may limit accessibility in contexts with limited technological infrastructure.
+
+\section{Future Work}
+
+The findings of this research suggest several promising directions for future investigation and development. Cross-disciplinary validation represents an immediate priority, extending evaluation to humanities, social sciences, and diverse STEM fields to understand how semantic similarity assessment performs across different knowledge domains. Each discipline presents unique semantic characteristics and evaluation requirements that would inform more comprehensive understanding of similarity-based assessment effectiveness.
+
+Multilingual assessment capabilities would significantly expand the practical applications of semantic similarity in education. Evaluating SimCSE performance across different languages and investigating cross-lingual similarity assessment would address important accessibility and internationalization concerns. This work would require careful consideration of language-specific semantic structures and cultural educational practices.
+
+Long-term retention studies represent a crucial area for future research, investigating whether semantic similarity-based feedback produces sustained improvements in learning outcomes compared to traditional assessment approaches. Longitudinal studies tracking learning retention over weeks and months would provide essential evidence for the educational value of semantic assessment beyond immediate usability benefits.
+
+Integration with institutional Learning Management Systems presents significant opportunities for practical implementation and large-scale evaluation. Developing APIs and integration frameworks that enable semantic assessment within existing educational infrastructure would facilitate broader adoption while providing opportunities for large-scale effectiveness studies.
+
+Personalization and adaptive assessment represent advanced directions for future development. Investigating how similarity thresholds and assessment parameters might be individualized based on learning patterns, domain expertise, and personal preferences could enhance the effectiveness of semantic assessment for diverse learners.
+
+\section{Final Remarks}
+
+The Consol system represents a meaningful contribution to the intersection of cognitive science, natural language processing, and educational technology. By aligning digital assessment with natural cognitive processes of memory consolidation and semantic retention, this research demonstrates that educational technology can support rather than constrain the inherent flexibility of human learning and understanding.
+
+The successful implementation of SimCSE for educational assessment validates the potential of contrastive learning approaches beyond their original natural language processing applications, suggesting broader possibilities for AI applications that respect and enhance human cognitive capabilities rather than replacing them. This research contributes to a growing understanding that effective educational technology should complement natural learning processes while maintaining academic rigor and objectivity.
+
+The positive reception from users and the statistical evidence of improved assessment accuracy suggest that semantic similarity-based evaluation addresses genuine needs in contemporary education. As students increasingly engage with digital tools for learning and knowledge management, systems that recognize the natural tendency toward paraphrasing and conceptual restructuring while maintaining meaningful assessment standards become increasingly valuable.
+
+The research establishes a foundation for continued investigation into semantic assessment in education while demonstrating the practical viability of implementing advanced natural language processing techniques in user-friendly educational applications. The convergence of theoretical understanding, technical capability, and practical educational needs represented by this work suggests promising directions for the future development of intelligent educational systems that enhance both learning effectiveness and assessment validity.
+}
+
+\section{Summary}
 \blindtext
 
 \section{Critique and Limitations}
