@@ -1,0 +1,106 @@
+% MULTI-PAGE GRAPHICS IN LATEX - COMPLETE GUIDE
+
+% ==================================================================
+% METHOD 1: Native LaTeX Multi-Page Solution (RECOMMENDED)
+% ==================================================================
+% This is the best approach for academic thesis work
+
+% To include the multi-page user flow in your thesis, simply uncomment this line in methodology.tex:
+% \input{multipage_userflow}
+
+% This will automatically span across multiple pages with proper page breaks and figure numbering.
+
+% ==================================================================
+% METHOD 2: PNG Images Across Multiple Figures
+% ==================================================================
+
+% If you prefer to use the PNG images, include them like this:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/userflow_page1.png}
+\caption{User Flow Phase 1: Authentication and Dashboard Setup}
+\label{fig:userflow-phase1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/userflow_page2.png}
+\caption{User Flow Phase 2: Note Management Operations}
+\label{fig:userflow-phase2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/userflow_page3.png}
+\caption{User Flow Phase 3: Practice Session Execution}
+\label{fig:userflow-phase3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{images/userflow_page4.png}
+\caption{User Flow Phase 4: Analytics and Session Management}
+\label{fig:userflow-phase4}
+\end{figure}
+
+% ==================================================================
+% METHOD 3: Single Large TikZ with Landscape Orientation
+% ==================================================================
+
+\begin{landscape}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1cm,
+    every node/.style={align=center, font=\tiny},
+    % ... your TikZ code here for a large horizontal diagram
+]
+% Large diagram that uses landscape orientation
+\end{tikzpicture}
+\caption{Complete User Flow - Landscape View}
+\label{fig:userflow-landscape}
+\end{figure}
+\end{landscape}
+
+% ==================================================================
+% METHOD 4: Continued Figures Across Pages
+% ==================================================================
+
+\begin{figure}[H]
+\centering
+% First part of the diagram
+\begin{tikzpicture}
+% ... first section
+\end{tikzpicture}
+\caption{User Flow - Part 1}
+\label{fig:userflow-part1}
+\end{figure}
+
+% Text describing the connection
+
+\begin{figure}[H]
+\centering
+% Second part of the diagram
+\begin{tikzpicture}
+% ... continuing section
+\end{tikzpicture}
+\caption{User Flow - Part 2 (continued from Figure \ref{fig:userflow-part1})}
+\label{fig:userflow-part2}
+\end{figure}
+
+% ==================================================================
+% METHOD 5: Using afterpage Package for Complex Layouts
+% ==================================================================
+
+% In preamble: \usepackage{afterpage}
+
+\afterpage{
+\clearpage
+\begin{figure}[p]
+\centering
+% Large diagram that takes full page
+\caption{Full-Page User Flow Diagram}
+\end{figure}
+\clearpage
+}

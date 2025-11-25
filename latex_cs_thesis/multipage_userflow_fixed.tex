@@ -1,0 +1,216 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONSOL SYSTEM: CORRECTED MULTI-PAGE USER FLOW DOCUMENTATION
+% Fixed TikZ syntax, smaller fonts, accurate features only
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\clearpage
+\subsection{Detailed User Flow Documentation}
+
+The complete Consol user flow documentation spans multiple phases with compact diagrams.
+
+\subsubsection{Phase 1: Authentication and Dashboard}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.0cm and 1.5cm,
+    every node/.style={font=\scriptsize},
+    start/.style={ellipse, fill=green!20, draw=green!60, minimum width=1.8cm, minimum height=0.5cm},
+    process/.style={rectangle, fill=orange!20, draw=orange!60, minimum width=1.6cm, minimum height=0.5cm},
+    decision/.style={diamond, fill=red!20, draw=red!60, minimum width=1.4cm, minimum height=0.5cm},
+    action/.style={rectangle, fill=blue!20, draw=blue!60, minimum width=1.6cm, minimum height=0.5cm},
+    end/.style={ellipse, fill=gray!20, draw=gray!60, minimum width=1.6cm, minimum height=0.5cm},
+    arrow/.style={->, >=stealth, thin}
+]
+
+\node[start] (start) {User Access};
+\node[process, below=of start] (auth) {Auth Check};
+\node[decision, below=of auth] (logged) {Logged?};
+\node[action, left=2cm of logged] (login) {Login Form};
+\node[decision, below=of login] (account) {Account?};
+\node[action, left=1.5cm of account] (register) {Register};
+\node[action, below=of account] (submit) {Submit};
+\node[action, right=2cm of logged] (profile) {Fetch Profile};
+\node[action, below=1.5cm of logged] (dashboard) {Load Dashboard};
+\node[process, below=of dashboard] (init) {Initialize};
+\node[end, below=of init] (continue) {Notes Ready};
+
+\draw[arrow] (start) -- (auth);
+\draw[arrow] (auth) -- (logged);
+\draw[arrow] (logged) -- node[left, font=\tiny] {No} (login);
+\draw[arrow] (login) -- (account);
+\draw[arrow] (account) -- node[left, font=\tiny] {No} (register);
+\draw[arrow] (account) -- node[right, font=\tiny] {Yes} (submit);
+\draw[arrow] (register) |- (submit);
+\draw[arrow] (submit) -| (dashboard);
+\draw[arrow] (logged) -- node[right, font=\tiny] {Yes} (profile);
+\draw[arrow] (profile) -- (dashboard);
+\draw[arrow] (dashboard) -- (init);
+\draw[arrow] (init) -- (continue);
+
+\end{tikzpicture}
+\caption{Phase 1: User Authentication and Dashboard Setup}
+\label{fig:phase1_auth_corrected}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Phase 2: Note Management}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.0cm and 2.5cm,
+    every node/.style={font=\scriptsize},
+    start/.style={ellipse, fill=green!20, draw=green!60, minimum width=1.8cm, minimum height=0.5cm},
+    process/.style={rectangle, fill=orange!20, draw=orange!60, minimum width=1.6cm, minimum height=0.5cm},
+    decision/.style={diamond, fill=red!20, draw=red!60, minimum width=1.4cm, minimum height=0.5cm},
+    action/.style={rectangle, fill=blue!20, draw=blue!60, minimum width=1.6cm, minimum height=0.5cm},
+    end/.style={ellipse, fill=gray!20, draw=gray!60, minimum width=1.6cm, minimum height=0.5cm},
+    arrow/.style={->, >=stealth, thin}
+]
+
+\node[start] (ready) {Dashboard};
+\node[decision, below=1.2cm of ready] (action) {Action?};
+\node[action, left=3.5cm of action] (create) {Create Note};
+\node[action, below left=1.5cm and 2.5cm of action] (edit) {Edit Note};
+\node[action, below=1.8cm of action] (select) {Select Note};
+\node[action, below right=1.5cm and 2.5cm of action] (delete) {Delete Note};
+\node[process, below=1.5cm of create] (input) {Input Content};
+\node[process, below=1.5cm of edit] (modify) {Modify};
+\node[action, below=1.5cm of input] (save) {Save};
+\node[action, below=1.5cm of modify] (update) {Update};
+\node[decision, below=1.5cm of select] (valid) {Valid?};
+\node[action, left=2.5cm of valid] (error) {Error};
+\node[process, below=1.5cm of valid] (calc) {Calculate};
+\node[end, below=1.5cm of calc] (note_ready) {Note Ready};
+
+\draw[arrow] (ready) -- (action);
+\draw[arrow] (action) -- node[left, font=\tiny] {Create} (create);
+\draw[arrow] (action) -- node[left, font=\tiny] {Edit} (edit);
+\draw[arrow] (action) -- node[right, font=\tiny] {Select} (select);
+\draw[arrow] (action) -- node[right, font=\tiny] {Delete} (delete);
+\draw[arrow] (create) -- (input);
+\draw[arrow] (edit) -- (modify);
+\draw[arrow] (input) -- (save);
+\draw[arrow] (modify) -- (update);
+\draw[arrow] (select) -- (valid);
+\draw[arrow] (valid) -- node[left, font=\tiny] {No} (error);
+\draw[arrow] (error) |- (action);
+\draw[arrow] (valid) -- node[right, font=\tiny] {Yes} (calc);
+\draw[arrow] (calc) -- (note_ready);
+\draw[arrow] (save) |- (note_ready);
+\draw[arrow] (update) |- (note_ready);
+\draw[arrow] (delete) |- (ready);
+
+\end{tikzpicture}
+\caption{Phase 2: Note Management Operations}
+\label{fig:phase2_notes_corrected}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Phase 3: Practice Session}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.0cm and 2.0cm,
+    every node/.style={font=\scriptsize},
+    start/.style={ellipse, fill=green!20, draw=green!60, minimum width=1.8cm, minimum height=0.5cm},
+    process/.style={rectangle, fill=orange!20, draw=orange!60, minimum width=1.6cm, minimum height=0.5cm},
+    decision/.style={diamond, fill=red!20, draw=red!60, minimum width=1.4cm, minimum height=0.5cm},
+    action/.style={rectangle, fill=blue!20, draw=blue!60, minimum width=1.6cm, minimum height=0.5cm},
+    end/.style={ellipse, fill=gray!20, draw=gray!60, minimum width=1.6cm, minimum height=0.5cm},
+    arrow/.style={->, >=stealth, thin}
+]
+
+\node[start] (start) {Start Session};
+\node[process, below=1.0cm of start] (load) {Load Note};
+\node[action, below=1.0cm of load] (display) {Display UI};
+\node[action, below=1.0cm of display] (timer) {Start Timer};
+\node[decision, below=1.0cm of timer] (typing) {Typing?};
+\node[action, left=2.5cm of typing] (hint) {Show Hint};
+\node[decision, below=1.2cm of typing] (time) {Time Up?};
+\node[action, below=1.0cm of time] (capture) {Capture Text};
+\node[process, below=1.0cm of capture] (simcse) {SimCSE};
+\node[process, below=1.0cm of simcse] (score) {Score};
+\node[action, below=1.0cm of score] (stars) {Stars};
+\node[action, below=1.0cm of stars] (save_session) {Save};
+\node[end, below=1.0cm of save_session] (complete) {Complete};
+
+\draw[arrow] (start) -- (load);
+\draw[arrow] (load) -- (display);
+\draw[arrow] (display) -- (timer);
+\draw[arrow] (timer) -- (typing);
+\draw[arrow] (typing) -- node[left, font=\tiny] {Hint} (hint);
+\draw[arrow] (hint) |- (typing);
+\draw[arrow] (typing) -- node[right, font=\tiny] {Continue} (time);
+\draw[arrow] (time) -- node[left, font=\tiny] {No} (typing);
+\draw[arrow] (time) -- node[right, font=\tiny] {Yes} (capture);
+\draw[arrow] (capture) -- (simcse);
+\draw[arrow] (simcse) -- (score);
+\draw[arrow] (score) -- (stars);
+\draw[arrow] (stars) -- (save_session);
+\draw[arrow] (save_session) -- (complete);
+
+\end{tikzpicture}
+\caption{Phase 3: Practice Session Execution}
+\label{fig:phase3_session_corrected}
+\end{figure}
+
+\clearpage
+
+\subsubsection{Phase 4: Results and Analytics}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=1.0cm and 2.0cm,
+    every node/.style={font=\scriptsize},
+    start/.style={ellipse, fill=green!20, draw=green!60, minimum width=1.8cm, minimum height=0.5cm},
+    process/.style={rectangle, fill=orange!20, draw=orange!60, minimum width=1.6cm, minimum height=0.5cm},
+    decision/.style={diamond, fill=red!20, draw=red!60, minimum width=1.4cm, minimum height=0.5cm},
+    action/.style={rectangle, fill=blue!20, draw=blue!60, minimum width=1.6cm, minimum height=0.5cm},
+    end/.style={ellipse, fill=gray!20, draw=gray!60, minimum width=1.6cm, minimum height=0.5cm},
+    arrow/.style={->, >=stealth, thin}
+]
+
+\node[start] (results) {Results};
+\node[action, below=1.0cm of results] (display) {Show Score};
+\node[action, below=1.0cm of display] (chart) {Show Chart};
+\node[decision, below=1.2cm of chart] (choice) {Choice?};
+\node[action, left=2.5cm of choice] (retry) {Retry};
+\node[action, below left=1.5cm and 1.8cm of choice] (new_note) {New Note};
+\node[action, below=1.5cm of choice] (history) {History};
+\node[action, below right=1.5cm and 1.8cm of choice] (dashboard) {Dashboard};
+\node[process, below=1.2cm of history] (analytics) {Analytics};
+\node[action, below=1.0cm of analytics] (trends) {Trends};
+\node[decision, below=1.2cm of trends] (continue) {Continue?};
+\node[end, below=1.0cm of continue] (end_session) {End};
+
+\draw[arrow] (results) -- (display);
+\draw[arrow] (display) -- (chart);
+\draw[arrow] (chart) -- (choice);
+\draw[arrow] (choice) -- node[left, font=\tiny] {Retry} (retry);
+\draw[arrow] (choice) -- node[left, font=\tiny] {New} (new_note);
+\draw[arrow] (choice) -- node[right, font=\tiny] {History} (history);
+\draw[arrow] (choice) -- node[right, font=\tiny] {Dashboard} (dashboard);
+\draw[arrow] (retry) |- (results);
+\draw[arrow] (new_note) |- (results);
+\draw[arrow] (history) -- (analytics);
+\draw[arrow] (analytics) -- (trends);
+\draw[arrow] (trends) -- (continue);
+\draw[arrow] (continue) -- node[right, font=\tiny] {No} (end_session);
+\draw[arrow] (continue) -- node[left, font=\tiny] {Yes} (choice);
+\draw[arrow] (dashboard) |- (end_session);
+
+\end{tikzpicture}
+\caption{Phase 4: Results Display and Session Management}
+\label{fig:phase4_results_corrected}
+\end{figure}
+
+\clearpage
+
+\paragraph{User Flow Summary}
+This phase handles session completion with performance feedback through similarity scores and star ratings. The system provides analytics visualization through charts and session history for learning progress tracking. Analytics are displayed within the application interface only.

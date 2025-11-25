@@ -77,6 +77,131 @@ Star rating assignment follows empirically determined thresholds: 3 stars for si
 
 The PostgreSQL implementation follows normalized design with three core entities (users, notes, sessions) implementing cascade deletion for referential integrity and index optimization on user identification, temporal sorting, and similarity filtering to support real-time dashboard updates. Query optimization prioritizes educational use patterns where users access recent performance data, compare progress across notes, and analyze learning trends through temporal indexing and efficient join operations.
 
+\begin{figure}[H]
+\centering
+\begin{minipage}{\textwidth}
+\centering
+\textbf{Consol Database Schema - Entity Relationship Model}
+\vspace{0.5cm}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{USERS}} & \multicolumn{1}{|c|}{\textbf{NOTES}} & \multicolumn{1}{|c|}{\textbf{SESSIONS}} \\
+\hline
+\underline{id} (PK) & \underline{id} (PK) & \underline{id} (PK) \\
+username & title & similarity \\
+created\_at & content & stars \\
+profile\_picture\_url & verbatim & duration\_secs \\
+ & created\_at & wpm \\
+ & word\_count & created\_at \\
+ & \textit{user\_id} (FK $\rightarrow$ users.id) & hints\_used \\
+ &  & word\_count \\
+ &  & session\_group\_id \\
+ &  & \textit{user\_id} (FK $\rightarrow$ users.id) \\
+ &  & \textit{note\_id} (FK $\rightarrow$ notes.id) \\
+\hline
+\end{tabular}
+
+\vspace{0.8cm}
+
+\textbf{Relationships and Constraints:}
+\begin{itemize}
+\item \textbf{Users $\rightarrow$ Notes}: One-to-Many (1:N) 
+\begin{itemize}
+\item One user can create multiple notes
+\item Foreign key: notes.user\_id references users.id
+\item Cascade deletion: Notes deleted when user is removed
+\end{itemize}
+\item \textbf{Users $\rightarrow$ Sessions}: One-to-Many (1:N)
+\begin{itemize}
+\item One user can have multiple assessment sessions
+\item Foreign key: sessions.user\_id references users.id
+\item Cascade deletion: Sessions deleted when user is removed
+\end{itemize}
+\item \textbf{Notes $\rightarrow$ Sessions}: One-to-Many (1:N)
+\begin{itemize}
+\item One note can be assessed multiple times
+\item Foreign key: sessions.note\_id references notes.id
+\item Cascade deletion: Sessions deleted when note is removed
+\end{itemize}
+\end{itemize}
+
+\end{minipage}
+\caption{Entity-Relationship Diagram of the Consol Database Schema}
+\label{fig:database-erd}
+\end{figure}
+
+The database schema implements a three-entity normalized structure supporting educational assessment workflows. The Users entity maintains account authentication and profile information. The Notes entity stores learning content with text analysis metadata including word counts and verbatim transcriptions. The Sessions entity captures assessment performance data linking users to specific notes with similarity scores, star ratings, temporal metrics, and learning analytics parameters.
+
+\subsection{User Interaction Flow and System Architecture}
+
+The Consol system implements a comprehensive educational workflow designed to optimize recall assessment through structured interaction patterns. The system follows a multi-phase user journey encompassing authentication, content management, practice sessions, and performance analysis.
+
+\subsubsection{Phase-by-Phase User Flow Analysis}
+
+\textbf{Phase 1: Authentication and Dashboard Setup}
+\begin{itemize}
+\item Initial system access and credential verification
+\item New user registration with profile creation
+\item Dashboard initialization with personalized content loading
+\item User data fetching and interface preparation
+\end{itemize}
+
+\textbf{Phase 2: Content Management}
+\begin{itemize}
+\item \textbf{Note Creation}: Text input interface with SimCSE preprocessing and database storage
+\item \textbf{Content Validation}: Automatic text validation and error handling
+\item \textbf{Note Management}: View, edit, and delete existing learning materials
+\item \textbf{Database Operations}: Secure storage and retrieval of user content
+\end{itemize}
+
+\textbf{Phase 3: Practice Session Workflow}
+\begin{itemize}
+\item \textbf{Session Initialization}: Note selection and timer activation
+\item \textbf{Recall Assessment}: User input collection with hint system support
+\item \textbf{Performance Calculation}: SimCSE similarity analysis and metric generation
+\item \textbf{Feedback Display}: Results presentation with star rating assignment
+\item \textbf{Session Continuation}: Iterative practice with different notes or repeated attempts
+\end{itemize}
+
+\textbf{Phase 4: Analytics and Progress Tracking}
+\begin{itemize}
+\item \textbf{Performance Dashboard}: Real-time visualization of learning trends
+\item \textbf{Detailed Analysis}: Comprehensive metrics including WPM, similarity scores, and improvement patterns
+\item \textbf{Export Functionality}: PDF report generation for academic record-keeping
+\item \textbf{Session Persistence}: Database storage of all performance metrics
+\end{itemize}
+
+\subsubsection{Multi-Page User Flow Visualization}
+
+For comprehensive visualization of the complete user journey, the system flow has been documented across four detailed diagrams, each focusing on a specific operational phase:
+
+\paragraph{Visual Flow Documentation}
+The complete user flow spans multiple interaction phases that require detailed documentation. Each phase represents a distinct operational context with specific user goals, system responses, and decision points. The multi-phase approach ensures comprehensive coverage while maintaining visual clarity and academic presentation standards.
+
+\begin{enumerate}
+\item \textbf{Authentication \& Dashboard Setup}: User entry, credential verification, and initial interface loading
+\item \textbf{Note Management Operations}: Content creation, editing, validation, and storage workflows  
+\item \textbf{Practice Session Execution}: Assessment initialization, user interaction, and performance calculation
+\item \textbf{Analytics \& Session Management}: Progress analysis and session continuation decisions
+\end{enumerate}
+
+% Multi-page TikZ user flow diagrams (fixed version):
+\input{multipage_userflow_fixed}
+
+\paragraph{System Flow Integration}
+The architecture ensures seamless transition between phases while maintaining educational continuity through persistent session state and comprehensive progress tracking. User actions trigger appropriate system responses with immediate feedback mechanisms supporting enhanced learning engagement. The modular phase design enables independent optimization of each workflow component while preserving overall system coherence.
+
+\textbf{Inter-phase Communication}: Each phase maintains state information that flows seamlessly to subsequent phases, ensuring continuity of user experience and data integrity throughout the complete assessment cycle.
+
+\textbf{Error Handling and Recovery}: The system implements comprehensive error handling at each phase transition, providing graceful degradation and recovery mechanisms that maintain user engagement even during technical difficulties.
+
+\textbf{Performance Optimization}: Phase-based architecture enables targeted optimization of computationally intensive operations (such as SimCSE processing) without impacting user interface responsiveness during other phases.
+
+% Include the multi-page user flow documentation
+% Uncomment the following line to include detailed flow diagrams that span multiple pages:
+% \input{multipage_userflow}
+
 \subsection{Frontend and API Implementation}
 
 The Next.js frontend leverages server-side rendering for optimal page load performance while maintaining client-side interactivity, utilizing React composition patterns for reusable interface elements and Chart.js integration for immediate visual feedback. The RESTful API separates user management, content operations, and assessment processing concerns, with SimCSE integration through dedicated microservice architecture providing asynchronous similarity computation that prevents NLP processing delays from affecting interface responsiveness.
