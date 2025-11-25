@@ -70,9 +70,212 @@ To provide a visual representation of the proposed application, these user inter
 
 During this phase, the proponent will test the system to verify its functionality, accuracy, and usability. This includes functional testing, integration testing, and user acceptance testing to ensure the system works seamlessly across all components and meets the identified requirements.
 
-\section{Post-Implementation Data Collection}
+\section{Data Collection Methodology}
 
-In this last phase, the proponent will gather data to evaluate user performance and assess the system's effectiveness in improving recall accuracy and knowledge retention. Metrics such as similarity scores, recall success rates, and user engagement will be collected and analyzed to determine the system’s impact on participants' learning outcomes.
+This section outlines the comprehensive data collection strategy employed to evaluate the system's effectiveness in educational assessment and user experience. Two distinct but complementary testing methodologies were implemented: scoring accuracy validation and usability assessment, each designed to address specific research objectives and provide empirical evidence for system performance.
+
+\subsection{Scoring Accuracy Testing}
+
+\subsubsection{Participant Selection and Demographics}
+
+Five participants were recruited for the scoring accuracy evaluation phase, representing a diverse sample of college-level students in STEM disciplines. The selection criteria included:
+
+\begin{itemize}
+    \item Current enrollment in or completion of college-level biology/science courses
+    \item Willingness to participate in a 15-day testing period (5 topics × 3 days each)
+    \item Basic computer literacy and note-taking experience
+    \item Informed consent for data collection and analysis
+\end{itemize}
+
+The participants included students from various educational backgrounds to ensure generalizability of results across different learning styles and academic preparation levels.
+
+\subsubsection{Experimental Design}
+
+A within-subjects experimental design was employed, where each participant served as their own control across multiple conditions. The design incorporated the following elements:
+
+\textbf{Topic Selection:} Five distinct biology/science topics were chosen to represent varying complexity levels and content types:
+\begin{enumerate}
+    \item Cellular Biology - Fundamental biological processes
+    \item Endocrine System - Intermediate physiological concepts  
+    \item Applied Science - Advanced interdisciplinary applications
+    \item Psoriasis - Medical-specific condition study
+    \item Earthquakes - Interdisciplinary earth science phenomena
+\end{enumerate}
+
+\textbf{Temporal Structure:} Each topic was assessed over three consecutive days to capture learning progression and retention patterns. This 3-day cycle allowed for:
+\begin{itemize}
+    \item Initial learning assessment (Day 1)
+    \item Knowledge consolidation evaluation (Day 2)
+    \item Retention and improvement measurement (Day 3)
+\end{itemize}
+
+\textbf{Assessment Protocol:} For each topic-day combination, participants completed the following standardized procedure:
+\begin{enumerate}
+    \item Review provided educational materials for the designated topic
+    \item Create comprehensive notes in their preferred format
+    \item After a specified retention interval, attempt to recall the material from memory
+    \item Submit both original notes and recalled content for comparative assessment
+\end{enumerate}
+
+\subsubsection{Multi-Scorer Evaluation Framework}
+
+To establish assessment validity and comparative analysis, three distinct scoring methodologies were employed simultaneously:
+
+\textbf{SimCSE Automated Scoring:}
+\begin{itemize}
+    \item Utilized the princeton-nlp/unsup-simcse-bert-base-uncased model
+    \item Computed cosine similarity between original notes and recalled content embeddings
+    \item Applied mathematical transformation to convert similarity scores to educational grade scale (0-100 points)
+    \item Maintained deterministic scoring through consistent preprocessing and embedding procedures
+\end{itemize}
+
+\textbf{ChatGPT Comparative Assessment:}
+\begin{itemize}
+    \item Employed standardized prompts requesting similarity assessment between note pairs
+    \item Maintained consistent prompt structure across all evaluations
+    \item Recorded scores on the same 0-100 point scale for direct comparison
+    \item Documented any observed variability in scoring patterns
+\end{itemize}
+
+\textbf{Human Teacher Baseline:}
+\begin{itemize}
+    \item Experienced educator with biology/science teaching background
+    \item Blind assessment protocol preventing influence from AI scores
+    \item Standardized rubric focusing on content accuracy, completeness, and conceptual understanding
+    \item Served as ground truth baseline for validity analysis
+\end{itemize}
+
+\subsubsection{Data Collection Procedures}
+
+Systematic data collection procedures ensured consistency and reliability across all assessment sessions:
+
+\textbf{Digital Platform Integration:} All note-taking and recall sessions were conducted through the developed Consol application, providing:
+\begin{itemize}
+    \item Standardized user interface across all participants
+    \item Automatic timestamping and session metadata collection
+    \item Consistent formatting and preprocessing of submitted content
+    \item Integrated scoring pipeline for immediate SimCSE evaluation
+\end{itemize}
+
+\textbf{Data Standardization:} To ensure comparability across scoring methods:
+\begin{itemize}
+    \item All text inputs underwent identical preprocessing procedures
+    \item Consistent formatting removal (Markdown syntax, special characters)
+    \item Normalized spacing and line break handling
+    \item UTF-8 encoding standardization for cross-platform compatibility
+\end{itemize}
+
+\textbf{Quality Assurance:} Multiple validation steps were implemented:
+\begin{itemize}
+    \item Manual verification of data integrity for each submission
+    \item Cross-validation of scoring outputs across different systems
+    \item Regular calibration checks for human teacher assessment consistency
+    \item Backup data storage and version control for all collected materials
+\end{itemize}
+
+\subsection{Usability Testing Methodology}
+
+\subsubsection{Survey Design and Implementation}
+
+A comprehensive usability evaluation was conducted using a modified System Usability Scale (SUS) framework, enhanced with domain-specific questions relevant to educational technology assessment.
+
+\textbf{Google Forms Implementation:} The survey was deployed through Google Forms to ensure:
+\begin{itemize}
+    \item Standardized response collection across all participants
+    \item Anonymous submission option to encourage honest feedback
+    \item Automatic data validation and formatting
+    \item Real-time response monitoring and analysis capabilities
+\end{itemize}
+
+\textbf{Question Categories:} The survey instrument encompassed multiple evaluation dimensions:
+\begin{enumerate}
+    \item \textbf{Demographic Information:} Age range, education level, technology proficiency
+    \item \textbf{System Usability Scale:} Standard 10-item SUS questionnaire for baseline usability measurement
+    \item \textbf{Feature-Specific Evaluation:} Targeted questions about core application functions
+    \item \textbf{Educational Context:} Questions specific to study tracking and learning support features
+    \item \textbf{Comparative Assessment:} Evaluation relative to existing study methods and tools
+    \item \textbf{Qualitative Feedback:} Open-ended questions for detailed user insights and suggestions
+\end{enumerate}
+
+\subsubsection{Participant Recruitment and Testing Protocol}
+
+\textbf{Sample Size and Demographics:} Fourteen participants were recruited for usability testing, representing a diverse cross-section of potential system users:
+\begin{itemize}
+    \item Age range: 18-33+ years, with representation across multiple age cohorts
+    \item Education level: Currently enrolled college students and recent graduates
+    \item Technology proficiency: Self-reported levels ranging from moderate to excellent
+    \item Diverse academic backgrounds within STEM and related disciplines
+\end{itemize}
+
+\textbf{Testing Procedure:} Each participant underwent a standardized evaluation process:
+\begin{enumerate}
+    \item System demonstration and feature orientation (15 minutes)
+    \item Guided hands-on exploration of core functionalities (30 minutes)
+    \item Independent task completion covering key use cases (20 minutes)
+    \item Survey completion addressing all evaluation categories (15 minutes)
+    \item Optional interview for additional qualitative feedback (10 minutes)
+\end{enumerate}
+
+\subsection{Ethical Considerations and Data Management}
+
+\subsubsection{Informed Consent and Privacy Protection}
+
+All data collection procedures adhered to ethical research standards:
+\begin{itemize}
+    \item Comprehensive informed consent process explaining study purpose, procedures, and data usage
+    \item Voluntary participation with explicit right to withdraw at any time
+    \item Data anonymization protocols protecting participant identity
+    \item Secure data storage with access limited to authorized research personnel
+\end{itemize}
+
+\subsubsection{Data Security and Management}
+
+Robust data management procedures ensured integrity and confidentiality:
+\begin{itemize}
+    \item Encrypted data storage for all collected materials
+    \item Regular backup procedures preventing data loss
+    \item Version control systems tracking all data processing steps
+    \item Audit trails documenting all access and modification events
+\end{itemize}
+
+\subsection{Statistical Analysis Framework}
+
+\subsubsection{Quantitative Analysis Plan}
+
+The collected data underwent comprehensive statistical analysis to address research objectives:
+
+\textbf{Descriptive Statistics:}
+\begin{itemize}
+    \item Central tendency measures (mean, median) for all scoring methods
+    \item Variability assessments (standard deviation, range) across participants and topics
+    \item Distribution analysis to verify normality assumptions for inferential testing
+\end{itemize}
+
+\textbf{Comparative Analysis:}
+\begin{itemize}
+    \item Paired t-tests comparing SimCSE vs ChatGPT accuracy relative to teacher baseline
+    \item ANOVA for multi-group comparisons across topics and time periods
+    \item Effect size calculations (Cohen's d) to assess practical significance
+    \item Confidence interval estimation for mean differences between scoring methods
+\end{itemize}
+
+\textbf{Correlation Analysis:}
+\begin{itemize}
+    \item Pearson correlation coefficients measuring agreement between scoring methods
+    \item Learning progression correlation analysis across the 3-day assessment periods
+    \item Reliability analysis for consistency of SimCSE scoring across identical inputs
+\end{itemize}
+
+\subsubsection{Qualitative Analysis Integration}
+
+Qualitative feedback from usability testing and participant observations provided contextual insights:
+\begin{itemize}
+    \item Thematic analysis of open-ended survey responses
+    \item Content analysis of feature preference rankings and suggestions
+    \item Integration of quantitative usability scores with qualitative user experience narratives
+\end{itemize}
+
+This comprehensive data collection methodology ensures robust empirical evaluation of both system effectiveness and user acceptance, providing multiple lines of evidence to support research conclusions and practical implementation recommendations.
 
 
 
