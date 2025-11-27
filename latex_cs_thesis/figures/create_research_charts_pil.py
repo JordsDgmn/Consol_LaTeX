@@ -4,17 +4,15 @@ import math
 def create_research_charts_pil():
     """Create research results charts using PIL"""
     
-    # Data from the charts
-    participants = ['Elleonae', 'Jeg', 'Seraniah', 'Zinoe', 'Zyrah']
+    # Data from the charts  
+    participants = ['Participant 1', 'Participant 2', 'Participant 3', 'Participant 4', 'Participant 5']
     
     # Mean scores data
     simcse_scores = [78, 76, 77, 76, 79]
-    chatgpt_scores = [53, 68, 52, 43, 61]
     teacher_scores = [71, 74, 72, 59, 67]
     
     # Deviation data (absolute difference from teacher)
     simcse_deviation = [9.5, 5.2, 8.5, 16.8, 7.6]
-    chatgpt_deviation = [18.1, 8.9, 23.2, 17.1, 14.8]
     
     # Load fonts
     try:
@@ -139,23 +137,23 @@ def create_research_charts_pil():
         img.save(filename, 'PNG', quality=95)
         return filename
     
-    # Create Chart 1: Mean Scores
+    # Create Chart 1: Mean Scores (SimCSE vs Teacher only)
     chart1_filename = draw_bar_chart(
-        data_sets=[simcse_scores, chatgpt_scores, teacher_scores],
-        labels=['SimCSE', 'ChatGPT', 'Teacher'],
-        colors_list=[colors['simcse'], colors['chatgpt'], colors['teacher']],
-        title='Mean Scores per Participant and Scorer',
+        data_sets=[simcse_scores, teacher_scores],
+        labels=['SimCSE', 'Teacher'],
+        colors_list=[colors['simcse'], colors['teacher']],
+        title='Mean Scores per Participant - SimCSE vs Teacher',
         ylabel='Mean Score Across All Topics & Days',
         filename='mean_scores_comparison.png',
         max_value=85
     )
     
-    # Create Chart 2: Deviation from Teacher
+    # Create Chart 2: SimCSE Performance Analysis
     chart2_filename = draw_bar_chart(
-        data_sets=[simcse_deviation, chatgpt_deviation],
-        labels=['|SimCSE - Teacher|', '|ChatGPT - Teacher|'],
-        colors_list=[colors['simcse'], colors['chatgpt']],
-        title='Deviation of AI Scorers from Teacher per Participant',
+        data_sets=[simcse_deviation],
+        labels=['SimCSE Deviation'],
+        colors_list=[colors['simcse']],
+        title='SimCSE Assessment Deviation from Teacher per Participant',
         ylabel='Mean Absolute Difference (Score Points)',
         filename='ai_deviation_comparison.png',
         max_value=25

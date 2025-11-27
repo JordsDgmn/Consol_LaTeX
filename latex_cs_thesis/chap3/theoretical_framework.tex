@@ -103,9 +103,11 @@ The theoretical significance extends beyond technical improvement to fundamental
 
 Gao, Yao, and Chen (2021) address the fundamental challenge that while BERT produces excellent word-level representations, direct averaging or pooling of token embeddings yields poor sentence-level similarity measurements. The anisotropic distribution problem occurs where sentence vectors cluster in narrow regions of the vector space, with high cosine similarity scores between semantically unrelated sentences reaching 0.6-0.8 regardless of actual meaning relationships.
 
-SimCSE introduces contrastive learning specifically designed for sentence embedding optimization, establishing both unsupervised and supervised variants. The unsupervised approach leverages dropout as implicit data augmentation, treating the same input sentence with different dropout masks as positive pairs. The supervised version incorporates natural language inference datasets where entailment pairs serve as positives and contradiction pairs as hard negatives.
+{\color{maroon}
+SimCSE introduces contrastive learning specifically designed for sentence embedding optimization through unsupervised learning approaches. The unsupervised method leverages dropout as implicit data augmentation, treating the same input sentence with different dropout masks as positive pairs, enabling effective learning without requiring labeled training data.
 
 The core innovation lies in the training objective that maximizes agreement between augmented views of identical sentences while minimizing agreement between different sentences. For unsupervised SimCSE, given a sentence $x_i$ and its corresponding embedding $h_i = f_\theta(x_i)$ where $f_\theta$ represents a pre-trained language model, the training loss function is:
+}
 
 \begin{equation}
 \ell_i = -\log \frac{e^{\text{sim}(h_i, h_i^+)/\tau}}{\sum_{j=1}^{N} e^{\text{sim}(h_i, h_j^+)/\tau}}
@@ -113,13 +115,9 @@ The core innovation lies in the training objective that maximizes agreement betw
 
 where $h_i^+$ represents the same sentence with different dropout applied, $\text{sim}(\cdot,\cdot)$ computes cosine similarity, $\tau$ is the temperature parameter controlling distribution sharpness, and $N$ represents batch size.
 
-For supervised SimCSE, the objective incorporates labeled pairs where $(x_i, x_i^+)$ represents entailment pairs and hard negatives $x_i^-$ from contradiction relationships:
-
-\begin{equation}
-\ell_i = -\log \frac{e^{\text{sim}(h_i, h_i^+)/\tau}}{\sum_{j=1}^{N} e^{\text{sim}(h_i, h_j^+)/\tau} + e^{\text{sim}(h_i, h_i^-)/\tau}}
-\end{equation}
-
-This supervised approach produces superior performance by explicitly teaching the model to distinguish between semantic entailment and contradiction relationships.
+{\color{maroon}
+The unsupervised approach demonstrates effectiveness through dropout-based augmentation that creates meaningful positive pairs from identical sentences. This method enables robust semantic representation learning without requiring external labeled datasets, making it particularly suitable for educational applications where domain-specific training data may be limited.
+}
 
 \subsection{Dropout-Based Positive Sampling Theory}
 
@@ -135,7 +133,9 @@ The uniform distribution property ensures that high similarity scores indicate g
 
 \subsection{Consol's Implementation of SimCSE Assessment}
 
-Consol implements supervised SimCSE models pre-trained on natural language inference datasets to ensure optimal semantic similarity measurement for educational assessment. The platform uses the 'all-mpnet-base-v2' model which achieves state-of-the-art performance on semantic textual similarity benchmarks through SimCSE training methodology.
+{\color{maroon}
+Consol implements unsupervised SimCSE models based on BERT pre-training to ensure robust semantic similarity measurement for educational assessment. The platform utilizes contrastive learning principles that align with natural memory processes, providing assessment that reflects genuine semantic understanding rather than superficial textual matching.
+}
 
 The three-tier threshold system directly applies SimCSE similarity scores: scores above 0.8 indicate comprehensive semantic alignment where student responses demonstrate mastery-level understanding equivalent to paraphrasing or detailed explanation, scores between 0.6-0.8 suggest adequate comprehension with minor conceptual gaps, and scores between 0.3-0.6 indicate partial understanding requiring additional study. This threshold calibration reflects SimCSE's demonstrated correlation with human semantic similarity judgments across educational contexts.
 

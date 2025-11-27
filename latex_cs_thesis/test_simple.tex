@@ -1,0 +1,40 @@
+% Test file to check compilation
+\documentclass[oneside]{um}
+
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{caption}
+
+\begin{document}
+
+\frontmatter
+\title{Test}
+\author{Test}
+\maketitle
+
+\mainmatter
+
+\chapter{Test}
+
+This is a test.
+
+{\color{maroon}
+This text should be maroon.
+}
+
+\begin{table}[h]
+\centering
+\caption{Test Table}
+{\color{maroon}
+\begin{tabular}{lc}
+\toprule
+Test & Value \\
+\midrule
+Item 1 & 10 \\
+Item 2 & 20 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\end{document}
