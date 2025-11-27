@@ -1,0 +1,92 @@
+flowchart TD
+    %% Entry Point
+    START([User Opens Consol]) --> LANDING[Landing Page<br/>localhost:3000]
+    LANDING --> USERS_PAGE[Users Page<br/>/users]
+    
+    %% User Management Flow
+    USERS_PAGE --> CREATE_USER{Create New User?}
+    CREATE_USER -->|Yes| USER_POST[POST /api/users<br/>Create user in PostgreSQL]
+    CREATE_USER -->|No| SELECT_USER[Select Existing User]
+    USER_POST --> USER_CONTEXT[UserContext + localStorage<br/>Store user session]
+    SELECT_USER --> USER_CONTEXT
+    
+    %% Dashboard Entry
+    USER_CONTEXT --> DASHBOARD[Dashboard Page<br/>/dashboard]
+    DASHBOARD --> FETCH_NOTES[GET /api/notes?userId=X<br/>Load user notes]
+    FETCH_NOTES --> NOTE_MANAGEMENT[Note Management Interface]
+    
+    %% Note Management Flows
+    NOTE_MANAGEMENT --> CREATE_NOTE{Create Note?}
+    NOTE_MANAGEMENT --> EDIT_NOTE{Edit Note?}
+    NOTE_MANAGEMENT --> DELETE_NOTE{Delete Note?}
+    NOTE_MANAGEMENT --> START_SESSION{Start Session?}
+    
+    CREATE_NOTE -->|Yes| NOTE_POST[POST /api/notes<br/>Create in PostgreSQL]
+    EDIT_NOTE -->|Yes| NOTE_PUT[PUT /api/notes<br/>Update title/content]
+    DELETE_NOTE -->|Yes| NOTE_DELETE[DELETE /api/notes/id<br/>Remove from DB]
+    
+    NOTE_POST --> NOTE_MANAGEMENT
+    NOTE_PUT --> NOTE_MANAGEMENT
+    NOTE_DELETE --> NOTE_MANAGEMENT
+    
+    %% Session Flow
+    START_SESSION -->|Yes| SESSION_PAGE[Session Page<br/>/session?noteId=X]
+    SESSION_PAGE --> SESSION_INIT[Initialize Session<br/>Generate session group ID<br/>Start timer, Clear localStorage]
+    
+    SESSION_INIT --> FETCH_NOTE[GET /api/notes/id?userId=X<br/>Load note content]
+    FETCH_NOTE --> SESSION_UI[Session Interface<br/>Note content hidden<br/>User input area<br/>Timer display]
+    
+    SESSION_UI --> USER_INPUT[User Types Recall<br/>Real-time word count<br/>WPM calculation<br/>Time tracking]
+    USER_INPUT --> SUBMIT_RECALL{Submit Recall?}
+    
+    SUBMIT_RECALL -->|Yes| SIMCSE_PROCESSING[SimCSE AI Processing<br/>See detailed SimCSE flowchart<br/>localhost:5000/score]
+    
+    %% Back to Session Flow
+    SIMCSE_PROCESSING --> SESSION_RESULTS[Session Results Processing<br/>Calculate WPM<br/>Duration in seconds<br/>Word count analysis]
+    
+    SESSION_RESULTS --> SAVE_SESSION[POST /api/sessions<br/>Save to PostgreSQL<br/>All session metrics]
+    
+    SAVE_SESSION --> SESSION_MODAL[Results Modal<br/>Display similarity percentage<br/>Show star rating<br/>Performance charts]
+    
+    SESSION_MODAL --> SESSION_CHOICE{Continue?}
+    SESSION_CHOICE -->|Retry| SESSION_UI
+    SESSION_CHOICE -->|New Note| DASHBOARD
+    SESSION_CHOICE -->|Exit| DASHBOARD
+    
+    %% Analytics & Profile
+    DASHBOARD --> VIEW_PROFILE{View Profile?}
+    VIEW_PROFILE -->|Yes| PROFILE_PAGE[Profile Page<br/>/profile]
+    PROFILE_PAGE --> PROFILE_DATA[Load Analytics Data<br/>GET /api/sessions?userId=X<br/>Compute radar stats<br/>Generate charts]
+    
+    PROFILE_DATA --> PROFILE_UI[Profile Interface<br/>Radar chart display<br/>Session history table<br/>Calendar view]
+    
+    %% Database Schema
+    subgraph DATABASE[PostgreSQL Database]
+        USERS_TABLE[(users table<br/>id, username<br/>profile_picture_url<br/>created_at)]
+        NOTES_TABLE[(notes table<br/>id, user_id<br/>title, content<br/>word_count)]
+        SESSIONS_TABLE[(sessions table<br/>id, user_id, note_id<br/>similarity, stars<br/>wpm, duration_secs)]
+        
+        USERS_TABLE -->|1:N| NOTES_TABLE
+        USERS_TABLE -->|1:N| SESSIONS_TABLE
+        NOTES_TABLE -->|1:N| SESSIONS_TABLE
+    end
+    
+    %% Performance Calculations
+    subgraph ANALYTICS[Analytics Processing]
+        RADAR_CALC[Radar Stats Calculation<br/>Comprehension: avg similarity * 100<br/>Speed: WPM * completeness / 15 * 100<br/>Mastery: 3-star sessions / total * 100]
+        
+        STREAKS_CALC[Streak Calculation<br/>Daily consecutive sessions<br/>Minimum 1 star required<br/>Reset on missed days]
+    end
+    
+    %% Styling
+    classDef userAction fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef apiCall fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef database fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef aiProcess fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    classDef calculation fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    class START_SESSION,USER_INPUT,SUBMIT_RECALL userAction
+    class USER_POST,FETCH_NOTES,NOTE_POST,SAVE_SESSION apiCall
+    class DATABASE,USERS_TABLE,NOTES_TABLE,SESSIONS_TABLE database
+    class SIMCSE_PROCESSING aiProcess
+    class RADAR_CALC,STREAKS_CALC,SESSION_RESULTS calculation

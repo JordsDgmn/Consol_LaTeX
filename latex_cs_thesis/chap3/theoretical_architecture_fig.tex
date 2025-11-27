@@ -1,0 +1,120 @@
+% Enhanced Theoretical architecture diagram with more specificity and sub-branches
+\begin{figure}[!htbp]
+\centering
+\begin{minipage}{\textwidth}
+\centering
+{\color{maroon}\textbf{Enhanced Theoretical Architecture Integration Diagram}}
+\vspace{0.5cm}
+
+\begin{tikzpicture}[
+    node distance=1.5cm,
+    auto,
+    thick,
+    main/.style={rectangle, draw, fill=blue!30, text width=3.5cm, text centered, minimum height=1.2cm, font=\small\bfseries},
+    theory/.style={rectangle, draw, fill=green!25, text width=2.8cm, text centered, minimum height=1cm, font=\footnotesize},
+    subtheory/.style={rectangle, draw, fill=yellow!20, text width=2.2cm, text centered, minimum height=0.7cm, font=\scriptsize},
+    feature/.style={rectangle, draw, fill=orange!25, text width=2.5cm, text centered, minimum height=0.8cm, font=\footnotesize},
+    specific/.style={rectangle, draw, fill=pink!20, text width=2cm, text centered, minimum height=0.6cm, font=\scriptsize}
+]
+
+% Central platform
+\node[main] (platform) {Consol Platform\\Core Integration};
+
+% Primary theory domains (positioned around center)
+\node[theory, above left=2cm and 4cm of platform] (memory) {Memory \& Cognitive\\Theory Domain};
+\node[theory, above right=2cm and 4cm of platform] (semantic) {Semantic Similarity\\Theory Domain};
+\node[theory, below left=2cm and 4cm of platform] (tracking) {Progress Tracking\\Theory Domain};
+\node[theory, below right=2cm and 4cm of platform] (analytics) {Learning Analytics\\Theory Domain};
+
+% Memory theory sub-branches
+\node[subtheory, above=0.8cm of memory] (working) {Working Memory\\Integration\\(Klemm 2007)};
+\node[subtheory, left=1cm of memory] (retrieval) {Retrieval Practice\\Theory\\(Karpicke 2008)};
+\node[subtheory, right=1cm of memory] (temporal) {Temporal Memory\\Dynamics\\(Sachs 1967)};
+\node[subtheory, below=0.8cm of memory] (mathematical) {Mathematical Memory\\Laws\\(Naim 2020)};
+
+% Semantic similarity sub-branches
+\node[subtheory, above=0.8cm of semantic] (bert) {BERT Architecture\\Foundations\\(Devlin 2019)};
+\node[subtheory, left=1cm of semantic] (simcse) {SimCSE Contrastive\\Learning\\(Gao 2021)};
+\node[subtheory, right=1cm of semantic] (vector) {Vector Space\\Semantics\\(Corley 2005)};
+\node[subtheory, below=0.8cm of semantic] (threshold) {Similarity Threshold\\Calibration};
+
+% Progress tracking sub-branches
+\node[subtheory, above=0.8cm of tracking] (gamification) {Gamification Theory\\(Deterding 2011)};
+\node[subtheory, left=1cm of tracking] (stars) {Three-Star Rating\\Systems\\(Gaston 2017)};
+\node[subtheory, right=1cm of tracking] (habits) {App-based Habit\\Formation\\(Stojanovic 2020)};
+\node[subtheory, below=0.8cm of tracking] (motivation) {Motivational Design\\(Viscu 2024)};
+
+% Learning analytics sub-branches
+\node[subtheory, above=0.8cm of analytics] (mobile) {Mobile Learning\\Self-Regulation\\(Baars 2022)};
+\node[subtheory, left=1cm of analytics] (visualization) {Data Visualization\\Theory};
+\node[subtheory, right=1cm of analytics] (feedback) {Immediate Feedback\\Systems};
+\node[subtheory, below=0.8cm of analytics] (dashboard) {Dashboard Design\\Principles};
+
+% Specific Consol features
+\node[feature, above left=1cm and 2cm of platform] (notes) {Note Creation\\Management};
+\node[feature, above right=1cm and 2cm of platform] (similarity) {SimCSE Assessment\\Engine};
+\node[feature, below left=1cm and 2cm of platform] (progress) {Star Rating\\System};
+\node[feature, below right=1cm and 2cm of platform] (analytics_dash) {Analytics\\Dashboard};
+
+% Specific implementations
+\node[specific, above=0.5cm of notes] (editor) {Note Editor\\Interface};
+\node[specific, above=0.5cm of similarity] (scoring) {Similarity\\Scoring};
+\node[specific, above=0.5cm of progress] (streaks) {Daily Streak\\Calendar};
+\node[specific, above=0.5cm of analytics_dash] (radar) {Radar Chart\\Visualization};
+
+% Additional specific features
+\node[specific, left=0.5cm of editor] (upload) {File Upload\\System};
+\node[specific, right=0.5cm of scoring] (thresholds) {0.3/0.6/0.8\\Thresholds};
+\node[specific, left=0.5cm of streaks] (calendar) {Progress\\Calendar};
+\node[specific, right=0.5cm of radar] (metadata) {Session\\Metadata};
+
+% Connections from theories to platform
+\draw[->] (memory) -- (platform);
+\draw[->] (semantic) -- (platform);
+\draw[->] (tracking) -- (platform);
+\draw[->] (analytics) -- (platform);
+
+% Connections from sub-theories to theories
+\draw[->] (working) -- (memory);
+\draw[->] (retrieval) -- (memory);
+\draw[->] (temporal) -- (memory);
+\draw[->] (mathematical) -- (memory);
+
+\draw[->] (bert) -- (semantic);
+\draw[->] (simcse) -- (semantic);
+\draw[->] (vector) -- (semantic);
+\draw[->] (threshold) -- (semantic);
+
+\draw[->] (gamification) -- (tracking);
+\draw[->] (stars) -- (tracking);
+\draw[->] (habits) -- (tracking);
+\draw[->] (motivation) -- (tracking);
+
+\draw[->] (mobile) -- (analytics);
+\draw[->] (visualization) -- (analytics);
+\draw[->] (feedback) -- (analytics);
+\draw[->] (dashboard) -- (analytics);
+
+% Connections to specific features
+\draw[->] (memory) -- (notes);
+\draw[->] (semantic) -- (similarity);
+\draw[->] (tracking) -- (progress);
+\draw[->] (analytics) -- (analytics_dash);
+
+% Connections to implementations
+\draw[->] (notes) -- (editor);
+\draw[->] (similarity) -- (scoring);
+\draw[->] (progress) -- (streaks);
+\draw[->] (analytics_dash) -- (radar);
+
+\draw[->] (notes) -- (upload);
+\draw[->] (similarity) -- (thresholds);
+\draw[->] (progress) -- (calendar);
+\draw[->] (analytics_dash) -- (metadata);
+
+\end{tikzpicture}
+
+\end{minipage}
+\caption[Enhanced Theoretical Architecture Integration]{Enhanced Theoretical Architecture Integration showing detailed connections between research domains, theories, and specific Consol platform features with sub-branches and implementations}
+\label{fig:theoretical_architecture}
+\end{figure}

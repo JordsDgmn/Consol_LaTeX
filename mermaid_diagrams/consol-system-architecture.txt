@@ -1,0 +1,74 @@
+flowchart TB
+    %% === FRONTEND LAYER ===
+    subgraph FRONTEND[Frontend - Next.js 15]
+        BROWSER[Web Browser<br/>React 19 Components<br/>localhost:3000]
+        
+        PAGES[Page Components<br/>dashboard/page.js<br/>profile/page.js<br/>session/page.js<br/>users/page.js]
+        
+        COMPONENTS[React Components<br/>Navbar.js<br/>Calendar.js<br/>LineChart.js<br/>RadarChart.js<br/>HistoryTable.js]
+        
+        USER_CONTEXT[UserContext Provider<br/>lib/UserContext.js<br/>Global State Management<br/>localStorage Integration]
+    end
+    
+    %% === API LAYER ===
+    subgraph API_LAYER[API Layer - Next.js App Router]
+        USER_API[/api/users<br/>GET POST PUT DELETE<br/>User CRUD Operations]
+        
+        NOTES_API[/api/notes<br/>GET POST PUT DELETE<br/>Note Management<br/>Content and Metadata]
+        
+        SESSIONS_API[/api/sessions<br/>GET POST<br/>Session Recording<br/>Performance Data]
+    end
+    
+    %% === AI PROCESSING LAYER ===
+    subgraph AI_LAYER[SimCSE AI Layer]
+        FLASK_SERVER[Python Flask Server<br/>server.py<br/>localhost:5000<br/>/score endpoint]
+        
+        SIMCSE_MODEL[SimCSE Model<br/>princeton-nlp/unsup-simcse-bert-base-uncased<br/>Pre-loaded BERT Model<br/>Sentence Embeddings]
+        
+        SIMILARITY_ENGINE[Similarity Calculator<br/>Cosine Similarity<br/>Embedding Comparison<br/>Star Rating Logic]
+    end
+    
+    %% === DATABASE LAYER ===
+    subgraph DATABASE[PostgreSQL Database]
+        USERS_TABLE[users Table<br/>id, username<br/>profile_picture_url<br/>created_at]
+        NOTES_TABLE[notes Table<br/>id, user_id<br/>title, content<br/>word_count, created_at]
+        SESSIONS_TABLE[sessions Table<br/>id, user_id, note_id<br/>similarity, stars, wpm<br/>duration_secs, created_at]
+    end
+    
+    %% === ANALYTICS LAYER ===
+    subgraph ANALYTICS[Analytics & Charts]
+        RADAR_STATS[Radar Chart Logic<br/>utils/computeRadarStats.js<br/>Comprehension, Speed, Mastery<br/>Performance Calculations]
+        
+        CHART_COMPONENTS[Chart.js Integration<br/>LineChart.js component<br/>RadarChart.js component<br/>Performance Visualization]
+        
+        SESSION_UTILS[Session Utilities<br/>utils/sessionUtils.js<br/>WPM Calculation<br/>Time Tracking]
+    end
+    
+    %% === EXTERNAL SERVICES ===
+    subgraph EXTERNAL[External Services]
+        CLOUDINARY[Cloudinary CDN<br/>lib/cloudinary.js<br/>Profile Picture Storage<br/>Image Management]
+    end
+    
+    %% === DATA FLOW CONNECTIONS ===
+    FRONTEND --> API_LAYER
+    API_LAYER --> DATABASE
+    API_LAYER --> AI_LAYER
+    FRONTEND --> ANALYTICS
+    ANALYTICS --> DATABASE
+    FRONTEND --> EXTERNAL
+    
+    %% === TECHNOLOGY STYLING ===
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef api fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef ai fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef analytics fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef external fill:#ffeb3b,stroke:#f57f17,stroke-width:2px
+    
+    %% Apply Styling
+    class FRONTEND,BROWSER,PAGES,COMPONENTS,USER_CONTEXT frontend
+    class API_LAYER,USER_API,NOTES_API,SESSIONS_API api
+    class AI_LAYER,FLASK_SERVER,SIMCSE_MODEL,SIMILARITY_ENGINE ai
+    class DATABASE,USERS_TABLE,NOTES_TABLE,SESSIONS_TABLE database
+    class ANALYTICS,RADAR_STATS,CHART_COMPONENTS,SESSION_UTILS analytics
+    class EXTERNAL,CLOUDINARY external

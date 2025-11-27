@@ -1,0 +1,101 @@
+flowchart TD
+    %% === INPUT PROCESSING LAYER ===
+    INPUT[/"Input Sentence Text"/] --> TOKENIZE[Tokenization<br/>Split text to token sequence<br/>T = t1, t2, ..., tn]
+    
+    TOKENIZE --> VOCAB_MAP[Vocabulary Mapping<br/>Token to Integer IDs<br/>ti to vocab_id in range 1 to V]
+    
+    VOCAB_MAP --> INPUT_EMBED[Input Embeddings<br/>E matrix VxD lookup<br/>token_ids to x matrix NxD]
+    
+    %% === BERT ENCODER ARCHITECTURE ===
+    INPUT_EMBED --> POSITIONAL[Positional Encoding<br/>Add position info<br/>x + PE equals x_pos matrix NxD]
+    
+    POSITIONAL --> DROPOUT1[Dropout Layer 1<br/>Stochastic mask z1<br/>p = 0.1 default]
+    POSITIONAL --> DROPOUT2[Dropout Layer 2<br/>Different mask z2<br/>Same p = 0.1]
+    
+    %% === TRANSFORMER LAYERS ===
+    subgraph BERT_ENCODER[BERT Encoder - L=12 Layers]
+        LAYER_STACK[/"For l = 1 to L layers:"/]
+        
+        subgraph ATTENTION_BLOCK[Multi-Head Attention Block]
+            MHA[Multi-Head Attention<br/>h_heads = 12<br/>Q,K,V matrices NxD<br/>Attention QKV = softmax QKT/sqrt d * V]
+            ATT_DROPOUT[Attention Dropout<br/>Applied to attention weights]
+            ADD_NORM1[Add & Norm<br/>LayerNorm x plus MHA x]
+        end
+        
+        subgraph FFN_BLOCK[Feed Forward Network]
+            FFN[Position-wise FFN<br/>FFN x = W2 * ReLU W1*x + b1 + b2<br/>d_ff = 4 * d_model = 3072]
+            FFN_DROPOUT[FFN Dropout<br/>Applied to intermediate layer]
+            ADD_NORM2[Add & Norm<br/>LayerNorm x plus FFN x]
+        end
+        
+        LAYER_STACK --> ATTENTION_BLOCK
+        ATTENTION_BLOCK --> FFN_BLOCK
+    end
+    
+    DROPOUT1 --> BERT_ENCODER
+    DROPOUT2 --> BERT_ENCODER
+    
+    %% === SENTENCE REPRESENTATION ===
+    BERT_ENCODER --> CLS_EXTRACT1[Extract CLS Token<br/>h1 = BERT x with z1 CLS vector D-dim]
+    BERT_ENCODER --> CLS_EXTRACT2[Extract CLS Token<br/>h2 = BERT x with z2 CLS vector D-dim]
+    
+    CLS_EXTRACT1 --> NORMALIZE1[L2 Normalization<br/>h1_norm = h1 / L2norm h1]
+    CLS_EXTRACT2 --> NORMALIZE2[L2 Normalization<br/>h2_norm = h2 / L2norm h2]
+    
+    %% === CONTRASTIVE LEARNING FRAMEWORK ===
+    subgraph CONTRASTIVE[Contrastive Learning Objective]
+        POSITIVE_PAIR[Positive Pair Formation<br/>h1_norm, h2_norm<br/>Same sentence, different dropout]
+        
+        COSINE_SIM[Cosine Similarity<br/>sim h1,h2 = h1T * h2 in range -1 to 1<br/>Since normalized: dot product]
+        
+        BATCH_NEGATIVES[In-Batch Negatives<br/>All other sentences in batch<br/>N-1 negative examples]
+        
+        INFONCE_LOSS[InfoNCE Loss Function<br/>Loss = -log exp sim h1,h2 / tau over sum exp sim h1,hj / tau<br/>tau = temperature parameter]
+    end
+    
+    NORMALIZE1 --> CONTRASTIVE
+    NORMALIZE2 --> CONTRASTIVE
+    
+    %% === OPTIMIZATION ===
+    CONTRASTIVE --> BACKPROP[Backpropagation<br/>Update BERT parameters theta<br/>gradient theta Loss via gradient descent]
+    
+    BACKPROP --> CONVERGED{Converged?}
+    CONVERGED -->|No| DROPOUT1
+    CONVERGED -->|Yes| FINAL_MODEL[Final SimCSE Model<br/>Sentence Encoder<br/>Text to h vector D-dimensional]
+    
+    %% === THEORETICAL FOUNDATION ===
+    subgraph THEORY[Theoretical Understanding]
+        ALIGNMENT[Alignment Metric<br/>Expected L2 distance squared for positive pairs<br/>Positive pairs should be close]
+        
+        UNIFORMITY[Uniformity Metric<br/>Log expected exp -2 * L2 distance squared<br/>Embeddings should spread uniformly]
+        
+        ANISOTROPY[Anisotropy Mitigation<br/>Flatten singular value spectrum<br/>Prevent representation collapse]
+    end
+    
+    FINAL_MODEL --> THEORY
+    
+    %% === COLOR CODING BY TECHNOLOGY LINEAGE ===
+    classDef word2vec fill:#ffeb3b,stroke:#f57f17,stroke-width:2px,color:#000
+    classDef transformer fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef bert fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px
+    classDef contrastive fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef simcse fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+    classDef theory fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    
+    %% Word2Vec Era (Embeddings)
+    class INPUT_EMBED,VOCAB_MAP word2vec
+    
+    %% Transformer Architecture  
+    class POSITIONAL,ATTENTION_BLOCK,MHA,FFN_BLOCK,ADD_NORM1,ADD_NORM2 transformer
+    
+    %% BERT Contributions
+    class BERT_ENCODER,CLS_EXTRACT1,CLS_EXTRACT2,LAYER_STACK,ATT_DROPOUT,FFN_DROPOUT bert
+    
+    %% Contrastive Learning Framework
+    class CONTRASTIVE,POSITIVE_PAIR,COSINE_SIM,BATCH_NEGATIVES,INFONCE_LOSS contrastive
+    
+    %% SimCSE Innovation
+    class DROPOUT1,DROPOUT2,NORMALIZE1,NORMALIZE2,FINAL_MODEL simcse
+    
+    %% Theoretical Analysis
+    class THEORY,ALIGNMENT,UNIFORMITY,ANISOTROPY theory
