@@ -1,0 +1,121 @@
+% SAVED USER FLOW TIKZ AS MERMAID CODE
+% Original files: multipage_userflow_fixed.tex, multipage_userflow_corrected.tex, multipage_userflow.tex
+% Saved before replacement with image figures
+
+% PHASE 1: AUTHENTICATION AND DASHBOARD
+flowchart TD
+    Start([User Access]) --> Auth[Auth Check]
+    Auth --> Logged{Logged?}
+    Logged -->|No| Login[Login Form]
+    Login --> Account{Account?}
+    Account -->|No| CreateAccount[Create Account]
+    Account -->|Yes| SelectExisting[Select Existing User]
+    CreateAccount --> Dashboard[Dashboard Page]
+    SelectExisting --> Dashboard
+    Logged -->|Yes| Dashboard
+    Dashboard --> ViewProfile{View Profile?}
+    ViewProfile -->|Yes| ProfilePage[Profile Page]
+    ViewProfile -->|No| Continue[Continue]
+
+% PHASE 2: NOTE MANAGEMENT
+flowchart TD
+    NoteManagement[Note Management] --> CreateNote{Create Note?}
+    CreateNote -->|Yes| NewNote[New Note Form]
+    CreateNote -->|No| EditNote{Edit Note?}
+    EditNote -->|Yes| EditForm[Edit Note Form]
+    EditNote -->|No| DeleteNote{Delete Note?}
+    DeleteNote -->|Yes| ConfirmDelete[Confirm Deletion]
+    DeleteNote -->|No| StartSession{Start Session?}
+    NewNote --> SaveNote[Save Note]
+    EditForm --> UpdateNote[Update Note]
+    ConfirmDelete --> RemoveNote[Remove Note]
+    SaveNote --> NoteSaved[Note Saved]
+    UpdateNote --> NoteUpdated[Note Updated]
+    RemoveNote --> NoteDeleted[Note Deleted]
+
+% PHASE 3: SESSION MANAGEMENT
+flowchart TD
+    SessionStart[Start Session] --> InitSession[Initialize Session]
+    InitSession --> GenerateID[Generate Session Group ID]
+    GenerateID --> ClearContent[Clear Content]
+    ClearContent --> StartTimer[Start Timer]
+    StartTimer --> UserInput[User Input Area]
+    UserInput --> SubmitRecall{Submit Recall?}
+    SubmitRecall -->|Yes| ProcessInput[Process Input]
+    SubmitRecall -->|No| ContinueTyping[Continue Typing]
+    ContinueTyping --> UserInput
+    ProcessInput --> SimCSEProcessing[SimCSE AI Processing]
+    SimCSEProcessing --> CalculateWPM[Calculate WPM]
+    CalculateWPM --> CalculateSimilarity[Calculate Similarity]
+    CalculateSimilarity --> SaveSession[Save Session]
+    SaveSession --> DisplayResults[Display Results]
+
+% PHASE 4: RESULTS AND ANALYTICS
+flowchart TD
+    Results[Session Results] --> DisplaySimilarity[Display Similarity %]
+    DisplaySimilarity --> ShowStarRating[Show Star Rating]
+    ShowStarRating --> ShowWPM[Show WPM]
+    ShowWPM --> ShowDuration[Show Duration]
+    ShowDuration --> ViewAnalytics{View Analytics?}
+    ViewAnalytics -->|Yes| AnalyticsDash[Analytics Dashboard]
+    ViewAnalytics -->|No| RetrySession{Retry Session?}
+    AnalyticsDash --> RadarChart[Radar Chart]
+    RadarChart --> SessionHistory[Session History]
+    SessionHistory --> PerformanceTrends[Performance Trends]
+    RetrySession -->|Yes| NewSession[New Session]
+    RetrySession -->|No| ExitResults[Exit to Dashboard]
+
+% COMPLETE SYSTEM FLOW
+flowchart TB
+    UserOpens([User Opens App]) --> LandingPage[Landing Page localhost:3000]
+    LandingPage --> UsersPage[Users Page]
+    UsersPage --> CreateNewUser{Create New User?}
+    CreateNewUser -->|Yes| CreateForm[POST /api/users Create User Form]
+    CreateNewUser -->|No| SelectExisting[Select Existing User]
+    CreateForm --> UserContext[UserContext + localStorage]
+    SelectExisting --> UserContext
+    UserContext --> Dashboard[Dashboard Page]
+    Dashboard --> ViewProfile{View Profile?}
+    ViewProfile -->|Yes| ProfilePage[Profile Page]
+    ViewProfile -->|No| ManageNotes[Note Management]
+    
+    ManageNotes --> CreateNote{Create Note?}
+    CreateNote -->|Yes| PostNote[POST /api/notes Create Note]
+    CreateNote -->|No| EditNote{Edit Note?}
+    EditNote -->|Yes| PutNote[PUT /api/notes Update Note]
+    EditNote -->|No| DeleteNote{Delete Note?}
+    DeleteNote -->|Yes| DelNote[DELETE /api/notes/id]
+    DeleteNote -->|No| StartSession{Start Session?}
+    
+    StartSession -->|Yes| SessionPage[Session Page /session]
+    SessionPage --> InitSession[Initialize Session Generate Session Group ID Start Timer Clear Content]
+    InitSession --> GetNotes[GET /api/notes/id? userid=X]
+    GetNotes --> SessionInterface[Session Interface Note Content Hidden User Input Area]
+    SessionInterface --> UserTypes[User Types Recall Real-time Word Count WPM Calculation]
+    UserTypes --> SubmitRecall{Submit Recall?}
+    SubmitRecall -->|Yes| SimCSEAI[SimCSE AI Processing See Detailed SimCSE Flowchart]
+    SubmitRecall -->|No| ContinueInput[Continue Typing]
+    ContinueInput --> UserTypes
+    
+    SimCSEAI --> SessionResults[Session Results Processing Calculate WPM Duration in Seconds]
+    SessionResults --> PostSession[POST /api/sessions Save to Database]
+    PostSession --> ResultsModal[Results Modal Display Similarity Percentage Show Star Rating Show WPM]
+    ResultsModal --> ViewAnalytics{View Analytics?}
+    ViewAnalytics -->|Yes| LoadAnalytics[Load Analytics Data GET /api/sessions? userid=X Compute Radar Stats]
+    ViewAnalytics -->|No| RetrySession{Retry Session?}
+    LoadAnalytics --> ProfileInterface[Profile Interface Radar Chart Display Session History]
+    RetrySession -->|Yes| NewSession[New Session]
+    RetrySession -->|No| ExitToDashboard[Exit to Dashboard]
+
+    % Styling
+    classDef startEnd fill:#90EE90,stroke:#006400,stroke-width:2px
+    classDef process fill:#FFE4B5,stroke:#FF8C00,stroke-width:2px
+    classDef decision fill:#FFB6C1,stroke:#DC143C,stroke-width:2px
+    classDef action fill:#ADD8E6,stroke:#4169E1,stroke-width:2px
+    classDef special fill:#DDA0DD,stroke:#8B008B,stroke-width:2px
+    
+    class UserOpens,CreateForm,ExitToDashboard startEnd
+    class LandingPage,UsersPage,Dashboard,ProfilePage,SessionPage,ManageNotes process
+    class CreateNewUser,ViewProfile,CreateNote,EditNote,DeleteNote,StartSession,SubmitRecall,ViewAnalytics,RetrySession decision
+    class PostNote,PutNote,DelNote,InitSession,UserTypes,SimCSEAI,SessionResults,PostSession,LoadAnalytics action
+    class UserContext,SessionInterface,ResultsModal,ProfileInterface special

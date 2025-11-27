@@ -1,0 +1,111 @@
+%% DETAILED TECH STACK ARCHITECTURE - MERMAID CODE
+%% More comprehensive than system_overview.png
+%% Shows complete technology integration with specific versions and protocols
+
+graph TB
+    subgraph "Frontend Layer - Client-Side"
+        BROWSER[Web Browser<br/>Chrome, Firefox, Safari, Edge]
+        NEXTJS[Next.js 15<br/>React Framework<br/>SSR + SSG + ISR]
+        REACT[React 19<br/>Component Library<br/>Virtual DOM + Hooks]
+        TAILWIND[Tailwind CSS<br/>Utility-First Styling<br/>Responsive Design]
+        COMPONENTS[Component Architecture<br/>• Navbar.js<br/>• Calendar.js<br/>• LineChart.js<br/>• RadarChart.js<br/>• HistoryTable.js]
+    end
+    
+    subgraph "API Layer - Server-Side"
+        NODEJS[Node.js Runtime<br/>JavaScript Engine<br/>Event-Driven I/O]
+        NEXTAPI[Next.js API Routes<br/>• /api/users<br/>• /api/notes<br/>• /api/sessions<br/>RESTful Endpoints]
+        MIDDLEWARE[Middleware Stack<br/>• Authentication<br/>• CORS Handling<br/>• Request Validation<br/>• Error Handling]
+        PGCLIENT[PostgreSQL Client<br/>Direct Database Connection<br/>Raw SQL Queries<br/>Connection Pooling]
+    end
+    
+    subgraph "Database Layer - Data Persistence"
+        POSTGRES[PostgreSQL Database<br/>ACID Compliance<br/>Relational Data Model]
+        USERSTBL[(users table<br/>id, username, profile_picture_url<br/>created_at)]
+        NOTESTBL[(notes table<br/>id, user_id, title, content<br/>verbatim, word_count)]
+        SESSIONSTBL[(sessions table<br/>id, user_id, note_id, similarity<br/>stars, duration_secs, wpm)]
+    end
+    
+    subgraph "AI Processing Layer - Semantic Analysis"
+        FLASK[Python Flask Server<br/>localhost:5000<br/>AI Model Serving]
+        SIMCSE[SimCSE Model<br/>princeton-nlp/unsup-simcse-bert-base-uncased<br/>Sentence Embeddings]
+        BERT[BERT Base Uncased<br/>768-dimensional vectors<br/>Transformer Architecture]
+        PYTORCH[PyTorch Framework<br/>Deep Learning Backend<br/>GPU/CPU Optimization]
+    end
+    
+    subgraph "Model Source - External Reference"
+        HUGGINGFACE[Hugging Face Hub<br/>Model Repository<br/>SimCSE Source Location<br/>Not in Processing Pipeline]
+    end
+    
+    subgraph "External Services - Third-Party Integration"
+        CLOUDINARY[Cloudinary CDN<br/>Profile Picture Storage<br/>Image Optimization]
+        ANALYTICS[Analytics Services<br/>User Behavior Tracking<br/>Performance Monitoring]
+        DEPLOYMENT[Deployment Platform<br/>Vercel/Netlify<br/>CI/CD Pipeline]
+    end
+    
+    subgraph "Development Tools - DevOps"
+        TYPESCRIPT[TypeScript<br/>Static Type Checking<br/>Enhanced IDE Support]
+        ESLINT[ESLint<br/>Code Quality<br/>Style Enforcement]
+        PRETTIER[Prettier<br/>Code Formatting<br/>Consistent Style]
+        GIT[Git Version Control<br/>GitHub Repository<br/>Collaborative Development]
+    end
+    
+    %% Frontend Flow
+    BROWSER --> NEXTJS
+    NEXTJS --> REACT
+    REACT --> TAILWIND
+    REACT --> COMPONENTS
+    
+    %% API Communication
+    NEXTJS -.->|HTTP Requests<br/>GET/POST/PUT/DELETE| NEXTAPI
+    NEXTAPI --> MIDDLEWARE
+    MIDDLEWARE --> NODEJS
+    NODEJS --> PGCLIENT
+    
+    %% Database Operations
+    PGCLIENT -.->|SQL Queries<br/>Connection Pooling| POSTGRES
+    POSTGRES --> USERSTBL
+    POSTGRES --> NOTESTBL
+    POSTGRES --> SESSIONSTBL
+    
+    %% AI Processing Flow
+    NEXTAPI -.->|HTTP POST<br/>Text Similarity Request| FLASK
+    FLASK --> SIMCSE
+    SIMCSE --> BERT
+    BERT --> PYTORCH
+    FLASK -.->|JSON Response<br/>Similarity Score| NEXTAPI
+    
+    %% Model Source Reference (Not Direct Processing)
+    HUGGINGFACE -.->|Model Download<br/>Initial Setup Only| SIMCSE
+    
+    %% External Integrations
+    NEXTJS -.->|Image Upload<br/>CDN Integration| CLOUDINARY
+    BROWSER -.->|User Analytics<br/>Performance Metrics| ANALYTICS
+    GIT -.->|Automated Deployment<br/>Build & Deploy| DEPLOYMENT
+    
+    %% Development Workflow
+    TYPESCRIPT --> NEXTJS
+    ESLINT --> NODEJS
+    PRETTIER --> REACT
+    GIT --> DEPLOYMENT
+    
+    %% Data Flow Annotations
+    COMPONENTS -.->|User Actions<br/>Form Submissions| NEXTAPI
+    SESSIONSTBL -.->|Performance Data<br/>Learning Analytics| COMPONENTS
+    BERT -.->|768D Embeddings<br/>Semantic Vectors| SIMCSE
+    
+    %% Styling
+    classDef frontend fill:#e1f5fe,stroke:#0277bd,stroke-width:2px,color:#000
+    classDef api fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000
+    classDef database fill:#e8f5e8,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef ai fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef external fill:#fce4ec,stroke:#c2185b,stroke-width:2px,color:#000
+    classDef devtools fill:#f1f8e9,stroke:#689f38,stroke-width:2px,color:#000
+    classDef modelsource fill:#fffde7,stroke:#f57f17,stroke-width:1px,color:#000
+    
+    class BROWSER,NEXTJS,REACT,TAILWIND,COMPONENTS frontend
+    class NODEJS,NEXTAPI,MIDDLEWARE,PGCLIENT api
+    class POSTGRES,USERSTBL,NOTESTBL,SESSIONSTBL database
+    class FLASK,SIMCSE,BERT,PYTORCH ai
+    class CLOUDINARY,ANALYTICS,DEPLOYMENT external
+    class TYPESCRIPT,ESLINT,PRETTIER,GIT devtools
+    class HUGGINGFACE modelsource

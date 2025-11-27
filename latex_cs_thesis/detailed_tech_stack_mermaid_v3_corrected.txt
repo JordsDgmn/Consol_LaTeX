@@ -1,0 +1,99 @@
+%% CORRECTED TECH STACK ARCHITECTURE v3 - ACCURATE BASED ON ACTUAL CODE ANALYSIS
+%% Based on thorough examination of actual my-app codebase
+%% Shows real data flow including separate Python Flask AI server
+
+graph TB
+    subgraph "Frontend - Next.js App (localhost:3000)"
+        BROWSER[Web Browser]
+        NEXTJS[Next.js 15<br/>React Framework]
+        REACT[React 19<br/>Components]
+        TAILWIND[Tailwind CSS]
+        COMPONENTS[UI Components<br/>• Navbar<br/>• Calendar<br/>• RadarChart<br/>• HistoryTable<br/>• LineChart]
+    end
+    
+    subgraph "Backend - Next.js API Routes"
+        NEXTAPI[Next.js API Routes<br/>• /api/users<br/>• /api/notes<br/>• /api/sessions<br/>• /api/users/upload-profile]
+        NODEJS[Node.js Runtime<br/>localhost:3000]
+        FORMDATA[FormData Processing<br/>Built-in Next.js<br/>File Upload Handling]
+        PGPOOL[PostgreSQL Pool<br/>pg library<br/>Direct SQL Queries]
+    end
+    
+    subgraph "Database - Local PostgreSQL"
+        POSTGRES[(PostgreSQL Database<br/>localhost:5432<br/>Database: 'Consol')]
+        USERS[(users table)]
+        NOTES[(notes table)]
+        SESSIONS[(sessions table)]
+    end
+    
+    subgraph "File Storage - Cloud CDN"
+        CLOUDINARY[Cloudinary CDN<br/>Profile Picture Storage<br/>Image Optimization]
+    end
+    
+    subgraph "AI Processing - Separate Python Server"
+        FLASK[Flask Server<br/>localhost:5000<br/>POST /score endpoint]
+        SIMCSE[SimCSE Model<br/>Semantic Similarity<br/>Text Comparison Engine]
+        PYTORCH[PyTorch Framework<br/>Deep Learning Runtime]
+        PREPROCESSING[Text Preprocessing<br/>Markdown Cleaning<br/>Content Preparation]
+        HUGGINGFACE[Hugging Face<br/>Model Download<br/>Initial Setup Only]
+    end
+    
+    %% Frontend Flow
+    BROWSER --> NEXTJS
+    NEXTJS --> REACT
+    REACT --> COMPONENTS
+    REACT --> TAILWIND
+    
+    %% API Communication
+    COMPONENTS -.->|HTTP Requests| NEXTAPI
+    NEXTAPI --> NODEJS
+    NODEJS --> PGPOOL
+    
+    %% Database Connection
+    PGPOOL -.->|Raw SQL Queries| POSTGRES
+    POSTGRES --> USERS
+    POSTGRES --> NOTES
+    POSTGRES --> SESSIONS
+    
+    %% File Upload Flow
+    NEXTAPI --> FORMDATA
+    FORMDATA -.->|Direct Upload| CLOUDINARY
+    
+    %% AI Processing Flow (Key Missing Connection!)
+    NEXTAPI -.->|POST localhost:5000/score<br/>originalText + userText| FLASK
+    FLASK --> PREPROCESSING
+    PREPROCESSING --> SIMCSE
+    SIMCSE --> PYTORCH
+    FLASK -.->|similarity score<br/>0.0 to 1.0| NEXTAPI
+    
+    %% Model Setup (One-time)
+    HUGGINGFACE -.->|Model Download<br/>Initial Setup| SIMCSE
+    
+    %% Data Flows
+    POSTGRES -.->|Session History<br/>Note Content| COMPONENTS
+    CLOUDINARY -.->|Profile Images| COMPONENTS
+    
+    %% Session Scoring Flow
+    COMPONENTS -.->|User Input Text| NEXTAPI
+    NEXTAPI -.->|Compare with Original| FLASK
+    
+    %% Styling
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef database fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef storage fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    class BROWSER,NEXTJS,REACT,TAILWIND,COMPONENTS frontend
+    class NEXTAPI,NODEJS,FORMDATA,PGPOOL backend
+    class POSTGRES,USERS,NOTES,SESSIONS database
+    class CLOUDINARY storage
+    class FLASK,SIMCSE,PYTORCH,PREPROCESSING,HUGGINGFACE ai
+
+%% NOTES FOR THESIS:
+%% 1. Two separate servers: Next.js (localhost:3000) and Flask (localhost:5000)
+%% 2. AI processing is CONNECTED via HTTP API calls, not isolated
+%% 3. Text preprocessing happens in Python Flask server, not Next.js
+%% 4. Multer is installed but unused - actual uploads use Next.js FormData
+%% 5. Direct PostgreSQL connection via pg pool, not ORM
+%% 6. Cloudinary handles image optimization and CDN serving
+%% 7. SimCSE model processes cleaned text for semantic similarity scoring

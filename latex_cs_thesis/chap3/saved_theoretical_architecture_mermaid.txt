@@ -1,0 +1,111 @@
+% SAVED THEORETICAL ARCHITECTURE TIKZ AS MERMAID CODE
+% Original file: theoretical_architecture_fig.tex
+% Saved before replacement with image figures
+
+graph TD
+    %% Central Platform
+    CONSOL[Consol Platform<br/>Core Integration]
+    
+    %% Primary Theory Domains
+    MEMORY[Memory & Cognitive<br/>Theory Domain]
+    SEMANTIC[Semantic Similarity<br/>Theory Domain]
+    TRACKING[Progress Tracking<br/>Theory Domain]
+    ANALYTICS[Learning Analytics<br/>Theory Domain]
+    
+    %% Memory Theory Sub-branches
+    WORKING[Working Memory<br/>Integration<br/>Klemm 2007]
+    RETRIEVAL[Retrieval Practice<br/>Theory<br/>Karpicke 2008]
+    TEMPORAL[Temporal Memory<br/>Dynamics<br/>Sachs 1967]
+    MATHEMATICAL[Mathematical Memory<br/>Laws<br/>Naim 2020]
+    
+    %% Semantic Theory Sub-branches
+    BERT[BERT Architecture<br/>Foundations<br/>Devlin 2019]
+    SIMCSE[SimCSE Contrastive<br/>Learning<br/>Gao 2021]
+    VECTOR[Vector Space<br/>Semantics<br/>Corley 2005]
+    THRESHOLD[Similarity Threshold<br/>Calibration]
+    
+    %% Progress Theory Sub-branches
+    GAMIFICATION[Gamification Theory<br/>Deterding 2011]
+    STARS[Three-Star Rating<br/>Systems<br/>Gaston 2017]
+    HABITS[App-based Habit<br/>Formation<br/>Stojanovic 2020]
+    MOTIVATION[Motivational Design<br/>Viscu 2024]
+    
+    %% Analytics Theory Sub-branches
+    MOBILE[Mobile Learning<br/>Self-Regulation<br/>Baars 2022]
+    VISUALIZATION[Data Visualization<br/>Theory]
+    FEEDBACK[Immediate Feedback<br/>Systems]
+    DASHBOARD[Dashboard Design<br/>Principles]
+    
+    %% Consol Features
+    NOTES[Note Creation<br/>Management]
+    SIMILARITY[SimCSE Assessment<br/>Engine]
+    PROGRESS[Star Rating<br/>System]
+    ANALYTICS_DASH[Analytics<br/>Dashboard]
+    
+    %% Specific Implementations
+    EDITOR[Note Editor<br/>Interface]
+    SCORING[Similarity<br/>Scoring]
+    STREAKS[Daily Streak<br/>Calendar]
+    RADAR[Radar Chart<br/>Visualization]
+    
+    %% Additional Features
+    UPLOAD[File Upload<br/>System]
+    THRESHOLDS[0.3/0.6/0.8<br/>Thresholds]
+    CALENDAR[Progress<br/>Calendar]
+    METADATA[Session<br/>Metadata]
+    
+    %% Theory Domain to Platform Connections
+    MEMORY --> CONSOL
+    SEMANTIC --> CONSOL
+    TRACKING --> CONSOL
+    ANALYTICS --> CONSOL
+    
+    %% Sub-theory to Theory Connections
+    WORKING --> MEMORY
+    RETRIEVAL --> MEMORY
+    TEMPORAL --> MEMORY
+    MATHEMATICAL --> MEMORY
+    
+    BERT --> SEMANTIC
+    SIMCSE --> SEMANTIC
+    VECTOR --> SEMANTIC
+    THRESHOLD --> SEMANTIC
+    
+    GAMIFICATION --> TRACKING
+    STARS --> TRACKING
+    HABITS --> TRACKING
+    MOTIVATION --> TRACKING
+    
+    MOBILE --> ANALYTICS
+    VISUALIZATION --> ANALYTICS
+    FEEDBACK --> ANALYTICS
+    DASHBOARD --> ANALYTICS
+    
+    %% Theory to Feature Connections
+    MEMORY --> NOTES
+    SEMANTIC --> SIMILARITY
+    TRACKING --> PROGRESS
+    ANALYTICS --> ANALYTICS_DASH
+    
+    %% Feature to Implementation Connections
+    NOTES --> EDITOR
+    NOTES --> UPLOAD
+    SIMILARITY --> SCORING
+    SIMILARITY --> THRESHOLDS
+    PROGRESS --> STREAKS
+    PROGRESS --> CALENDAR
+    ANALYTICS_DASH --> RADAR
+    ANALYTICS_DASH --> METADATA
+    
+    %% Styling
+    classDef platform fill:#4a90e2,stroke:#2c5aa0,stroke-width:3px,color:#fff
+    classDef theory fill:#7ed321,stroke:#5cb85c,stroke-width:2px,color:#000
+    classDef subtheory fill:#f5a623,stroke:#d68910,stroke-width:1px,color:#000
+    classDef feature fill:#bd10e0,stroke:#9013fe,stroke-width:2px,color:#fff
+    classDef implementation fill:#50e3c2,stroke:#4ecdc4,stroke-width:1px,color:#000
+    
+    class CONSOL platform
+    class MEMORY,SEMANTIC,TRACKING,ANALYTICS theory
+    class WORKING,RETRIEVAL,TEMPORAL,MATHEMATICAL,BERT,SIMCSE,VECTOR,THRESHOLD,GAMIFICATION,STARS,HABITS,MOTIVATION,MOBILE,VISUALIZATION,FEEDBACK,DASHBOARD subtheory
+    class NOTES,SIMILARITY,PROGRESS,ANALYTICS_DASH feature
+    class EDITOR,SCORING,STREAKS,RADAR,UPLOAD,THRESHOLDS,CALENDAR,METADATA implementation

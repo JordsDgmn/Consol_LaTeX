@@ -1,0 +1,78 @@
+%% DETAILED TECH STACK ARCHITECTURE v2 - SIMPLIFIED AND ACCURATE
+%% Based on actual my-app folder structure
+%% Simple, professor-friendly overview of main components
+
+graph TB
+    subgraph "Frontend - Client Side"
+        BROWSER[Web Browser]
+        NEXTJS[Next.js 15<br/>React Framework]
+        REACT[React 19<br/>Component Library]
+        TAILWIND[Tailwind CSS<br/>Styling]
+        COMPONENTS[UI Components<br/>• Navbar<br/>• Calendar<br/>• RadarChart<br/>• HistoryTable]
+    end
+    
+    subgraph "Backend - Server Side (Local)"
+        NEXTAPI[Next.js API Routes<br/>• /api/users<br/>• /api/notes<br/>• /api/sessions]
+        NODEJS[Node.js Runtime<br/>localhost:3000]
+        PGPOOL[PostgreSQL Pool<br/>Direct Connection<br/>Raw SQL Queries]
+    end
+    
+    subgraph "Database - Local PostgreSQL"
+        POSTGRES[(PostgreSQL Database<br/>localhost:5432<br/>Database: 'Consol')]
+        USERS[(users table)]
+        NOTES[(notes table)]
+        SESSIONS[(sessions table)]
+    end
+    
+    subgraph "File Processing"
+        MULTER[Multer<br/>File Upload Middleware<br/>Profile Pictures]
+        CLOUDINARY[Cloudinary CDN<br/>Image Storage & Optimization<br/>Profile Picture Hosting]
+    end
+    
+    subgraph "AI Processing - External"
+        SIMCSE[SimCSE Model<br/>Semantic Similarity<br/>Text Comparison]
+        PYTORCH[PyTorch<br/>Deep Learning Framework<br/>Model Runtime]
+        HUGGINGFACE[Hugging Face<br/>Model Source<br/>Download Location Only]
+    end
+    
+    %% Main Flow
+    BROWSER --> NEXTJS
+    NEXTJS --> REACT
+    REACT --> COMPONENTS
+    REACT --> TAILWIND
+    
+    %% API Communication
+    NEXTJS -.->|HTTP Requests| NEXTAPI
+    NEXTAPI --> NODEJS
+    NODEJS --> PGPOOL
+    
+    %% Database Connection
+    PGPOOL -.->|SQL Queries| POSTGRES
+    POSTGRES --> USERS
+    POSTGRES --> NOTES
+    POSTGRES --> SESSIONS
+    
+    %% File Upload Flow
+    NEXTAPI --> MULTER
+    MULTER -.->|Image Upload| CLOUDINARY
+    
+    %% AI Processing (External/Separate)
+    SIMCSE --> PYTORCH
+    HUGGINGFACE -.->|Model Download<br/>Initial Setup| SIMCSE
+    
+    %% Data Flow
+    COMPONENTS -.->|User Actions| NEXTAPI
+    POSTGRES -.->|Session Data| COMPONENTS
+    
+    %% Styling
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef backend fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef database fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef files fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef ai fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    class BROWSER,NEXTJS,REACT,TAILWIND,COMPONENTS frontend
+    class NEXTAPI,NODEJS,PGPOOL backend
+    class POSTGRES,USERS,NOTES,SESSIONS database
+    class MULTER,CLOUDINARY files
+    class SIMCSE,PYTORCH,HUGGINGFACE ai

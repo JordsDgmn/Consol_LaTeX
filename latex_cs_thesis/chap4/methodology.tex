@@ -16,6 +16,20 @@
 
 The Consol system architecture integrates semantic similarity evaluation with user-centered interface design to create an effective recall assessment platform. Following established patterns in educational technology development, the architecture emphasizes modularity, scalability, and pedagogical effectiveness while ensuring seamless integration between natural language processing capabilities and user interaction requirements.
 
+% Full page detailed tech stack architecture diagram
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.95\textwidth]{images/tech_stack_architecture.png}
+\caption[Detailed Technology Stack Architecture]{Comprehensive technology stack architecture diagram showing the complete integration from frontend React components through API layers to database and AI processing services. The architecture details specific technologies: Next.js 15 frontend with React 19 components, Node.js API layer with PostgreSQL database, Python Flask server for SimCSE processing, and external integrations for file storage and analytics. Each layer shows specific components, data flow patterns, and integration protocols essential for educational platform scalability and reliability.}
+\label{fig:tech_stack_architecture}
+\end{figure}
+
+\subsection{Detailed Technology Stack Integration}
+
+Beyond the core system architecture, the detailed technology stack provides granular insight into component interactions and data flow patterns essential for educational platform deployment. Figure \ref{fig:tech_stack_architecture} presents the comprehensive technology integration, highlighting specific frameworks, libraries, and services that enable Consol's educational effectiveness.
+
+The multi-layered architecture ensures educational platform requirements including data security, user privacy, scalable assessment processing, and institutional integration capabilities. Each technology choice directly supports pedagogical objectives while maintaining technical excellence throughout the system.
+
 \subsection{Architectural Overview}
 
 The system architecture follows a client-server model where the frontend handles user interactions and immediate feedback presentation, while the backend manages semantic similarity computation, data persistence, and learning analytics. This separation enables independent scaling of user interface responsiveness and computational processing, crucial for educational applications that must maintain low-latency feedback while performing complex NLP operations.
@@ -45,6 +59,20 @@ where $h_i$ represents the hidden representation of input sentence $i$, $h_i^+$ 
 The 768-dimensional embedding space exhibits structured semantic organization with dimensions 1-100 capturing basic semantic concepts, dimensions 101-300 encoding grammatical features, dimensions 301-500 representing domain knowledge, and dimensions 501-768 modeling complex relationships including causality and contextual associations.
 
 \textbf{CLS Token Extraction}: The system extracts sentence representations from position 0 of the transformer output, corresponding to the [CLS] token that aggregates information from all sequence tokens. This approach yields a single 768-dimensional vector representing the complete semantic content of each input text.
+
+\subsection{SimCSE Architecture Implementation}
+
+The SimCSE architecture forms the core of Consol's semantic similarity assessment, implementing sophisticated contrastive learning mechanisms optimized for educational content evaluation. Figure \ref{fig:simcse_architecture} illustrates the complete SimCSE processing pipeline from input tokenization through embedding generation to similarity computation.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/simcse_architecture.png}
+\caption[SimCSE Architecture Implementation]{Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}
+\label{fig:simcse_architecture}
+\end{figure}
+\FloatBarrier
+
+The architecture implementation emphasizes educational robustness, ensuring consistent similarity assessment across diverse note-taking styles and content domains. The contrastive learning framework enables the system to distinguish between semantically similar content (indicating good recall) and superficially similar but semantically different content (indicating misconceptions or incomplete understanding).
 }
 
 {\color{maroon}
@@ -186,8 +214,8 @@ The complete user flow spans multiple interaction phases that require detailed d
 \item \textbf{Analytics \& Session Management}: Progress analysis and session continuation decisions
 \end{enumerate}
 
-% Multi-page TikZ user flow diagrams (fixed version):
-\input{multipage_userflow_fixed}
+% Multi-page user flow diagrams with image placeholders:
+\input{multipage_userflow_image_placeholders}
 
 \paragraph{System Flow Integration}
 The architecture ensures seamless transition between phases while maintaining educational continuity through persistent session state and comprehensive progress tracking. User actions trigger appropriate system responses with immediate feedback mechanisms supporting enhanced learning engagement. The modular phase design enables independent optimization of each workflow component while preserving overall system coherence.

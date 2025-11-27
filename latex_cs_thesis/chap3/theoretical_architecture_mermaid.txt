@@ -1,0 +1,288 @@
+---
+config:
+  layout: elk
+---
+flowchart LR
+    %% Expanded Theoretical Foundation
+    MEMORY["Memory & Cognitive<br>Theory Domain"]
+    SEMANTIC["Semantic Similarity<br>Theory Domain"]
+    TRACKING["Progress Tracking<br>Theory Domain"]
+    ANALYTICS["Learning Analytics<br>Theory Domain"]
+    
+    %% Memory Theory Sub-branches
+    WORKING["Working Memory<br>Integration<br>Klemm 2007"]
+    RETRIEVAL["Retrieval Practice<br>Theory<br>Karpicke 2008"]
+    TEMPORAL["Temporal Memory<br>Dynamics<br>Sachs 1967"]
+    MATHEMATICAL["Mathematical Memory<br>Laws<br>Naim 2020"]
+    SPACING["Spaced Repetition<br>Effects<br>Ebbinghaus 1885"]
+    TESTING["Testing Effect<br>Research<br>Roediger 2006"]
+    
+    %% Expanded Semantic Theory Foundation
+    DISTRIBUTIONAL["Distributional<br>Semantics<br>Harris 1954"]
+    WORDEMBEDDING["Word Embedding<br>Foundations<br>Mikolov 2013"]
+    CONTEXTUAL["Contextual<br>Representations<br>Peters 2018"]
+    TRANSFORMER["Transformer<br>Architecture<br>Vaswani 2017"]
+    BERT["BERT Architecture<br>Foundations<br>Devlin 2019"]
+    CONTRASTIVE["Contrastive Learning<br>Principles<br>Chen 2020"]
+    SIMCSE["SimCSE Framework<br>Sentence Embeddings<br>Gao 2021"]
+    VECTOR["Vector Space<br>Semantics<br>Corley 2005"]
+    THRESHOLD["Similarity Threshold<br>Calibration"]
+    
+    %% Progress Theory Sub-branches
+    GAMIFICATION["Gamification Theory<br>Deterding 2011"]
+    STARS["Three-Star Rating<br>Systems<br>Gaston 2017"]
+    HABITS["App-based Habit<br>Formation<br>Stojanovic 2020"]
+    MOTIVATION["Motivational Design<br>Viscu 2024"]
+    FEEDBACK_LOOPS["Feedback Loop<br>Theory<br>Hattie 2007"]
+    
+    %% Analytics Theory Sub-branches
+    MOBILE["Mobile Learning<br>Self-Regulation<br>Baars 2022"]
+    VISUALIZATION["Data Visualization<br>Theory<br>Tufte 2001"]
+    FEEDBACK["Immediate Feedback<br>Systems"]
+    DASHBOARD["Dashboard Design<br>Principles<br>Few 2006"]
+    LEARNING_ANALYTICS["Educational Data<br>Mining<br>Baker 2009"]
+    
+    %% Consol Core Features - Middle Layer
+    NOTES["Note Creation<br>Management"]
+    SIMILARITY["SimCSE Assessment<br>Engine"]
+    PROGRESS["Star Rating<br>System"]
+    ANALYTICS_DASH["Analytics<br>Dashboard"]
+    
+    %% Implementation Components
+    EDITOR["Note Editor<br>Interface"]
+    UPLOAD["File Upload<br>System"]
+    SCORING["Similarity<br>Scoring"]
+    THRESHOLDS["0.2/0.5/0.7<br>Thresholds"]
+    STREAKS["Daily Streak<br>Tracking"]
+    RADAR["Radar Chart<br>Visualization"]
+    METADATA["Session<br>Metadata"]
+    
+    %% Central Platform - Final Integration Point
+    CONSOL["Consol Platform<br>Unified Integration<br>& Orchestration"]
+    
+    %% Sub-theory to Theory Connections
+    WORKING --> MEMORY
+    RETRIEVAL --> MEMORY
+    TEMPORAL --> MEMORY
+    MATHEMATICAL --> MEMORY
+    SPACING --> MEMORY
+    TESTING --> MEMORY
+    
+    DISTRIBUTIONAL --> SEMANTIC
+    WORDEMBEDDING --> SEMANTIC
+    CONTEXTUAL --> SEMANTIC
+    TRANSFORMER --> SEMANTIC
+    BERT --> SEMANTIC
+    CONTRASTIVE --> SEMANTIC
+    SIMCSE --> SEMANTIC
+    VECTOR --> SEMANTIC
+    THRESHOLD --> SEMANTIC
+    
+    GAMIFICATION --> TRACKING
+    STARS --> TRACKING
+    HABITS --> TRACKING
+    MOTIVATION --> TRACKING
+    FEEDBACK_LOOPS --> TRACKING
+    
+    MOBILE --> ANALYTICS
+    VISUALIZATION --> ANALYTICS
+    FEEDBACK --> ANALYTICS
+    DASHBOARD --> ANALYTICS
+    LEARNING_ANALYTICS --> ANALYTICS
+    
+    %% Theories flow into Core Features
+    MEMORY --> NOTES
+    SEMANTIC --> SIMILARITY
+    TRACKING --> PROGRESS
+    ANALYTICS --> ANALYTICS_DASH
+    
+    %% Features generate implementations
+    NOTES --> EDITOR
+    NOTES --> UPLOAD
+    SIMILARITY --> SCORING
+    SIMILARITY --> THRESHOLDS
+    PROGRESS --> STREAKS
+    ANALYTICS_DASH --> RADAR
+    ANALYTICS_DASH --> METADATA
+    
+    %% All Features and Implementations flow to CONSOL
+    NOTES --> CONSOL
+    SIMILARITY --> CONSOL
+    PROGRESS --> CONSOL
+    ANALYTICS_DASH --> CONSOL
+    EDITOR --> CONSOL
+    UPLOAD --> CONSOL
+    SCORING --> CONSOL
+    THRESHOLDS --> CONSOL
+    STREAKS --> CONSOL
+    RADAR --> CONSOL
+    METADATA --> CONSOL
+    
+    %% Styling with classes
+    MEMORY:::theory
+    SEMANTIC:::theory
+    TRACKING:::theory
+    ANALYTICS:::theory
+    NOTES:::feature
+    SIMILARITY:::feature
+    PROGRESS:::feature
+    ANALYTICS_DASH:::feature
+    CONSOL:::platform
+    WORKING:::subtheory
+    RETRIEVAL:::subtheory
+    TEMPORAL:::subtheory
+    MATHEMATICAL:::subtheory
+    SPACING:::subtheory
+    TESTING:::subtheory
+    DISTRIBUTIONAL:::subtheory
+    WORDEMBEDDING:::subtheory
+    CONTEXTUAL:::subtheory
+    TRANSFORMER:::subtheory
+    BERT:::subtheory
+    CONTRASTIVE:::subtheory
+    SIMCSE:::subtheory
+    VECTOR:::subtheory
+    THRESHOLD:::subtheory
+    GAMIFICATION:::subtheory
+    STARS:::subtheory
+    HABITS:::subtheory
+    MOTIVATION:::subtheory
+    FEEDBACK_LOOPS:::subtheory
+    MOBILE:::subtheory
+    VISUALIZATION:::subtheory
+    FEEDBACK:::subtheory
+    DASHBOARD:::subtheory
+    LEARNING_ANALYTICS:::subtheory
+    EDITOR:::implementation
+    UPLOAD:::implementation
+    SCORING:::implementation
+    THRESHOLDS:::implementation
+    STREAKS:::implementation
+    RADAR:::implementation
+    METADATA:::implementation
+    
+    classDef platform fill:#4a90e2,stroke:#2c5aa0,stroke-width:3px,color:#fff
+    classDef theory fill:#7ed321,stroke:#5cb85c,stroke-width:2px,color:#000
+    classDef subtheory fill:#f5a623,stroke:#d68910,stroke-width:1px,color:#000
+    classDef feature fill:#bd10e0,stroke:#9013fe,stroke-width:2px,color:#fff
+    classDef implementation fill:#50e3c2,stroke:#4ecdc4,stroke-width:1px,color:#000
+
+===============================================
+Alternative Simplified Version - Expanded Foundation to Consol
+===============================================
+
+---
+config:
+  layout: elk
+---
+flowchart TB
+    subgraph "Expanded Theoretical Foundation"
+        A[Memory & Cognitive Science<br/>• Working Memory Integration<br/>• Retrieval Practice Theory<br/>• Spaced Repetition Effects<br/>• Testing Effect Research]
+        B[Semantic Similarity Evolution<br/>• Distributional Semantics (Harris 1954)<br/>• Word Embeddings (Mikolov 2013)<br/>• Transformer Architecture (Vaswani 2017)<br/>• BERT Foundations (Devlin 2019)<br/>• Contrastive Learning (Chen 2020)<br/>• SimCSE Framework (Gao 2021)]
+        C[Progress Tracking Theory<br/>• Gamification Principles<br/>• Three-Star Rating Systems<br/>• Feedback Loop Theory<br/>• App-based Habit Formation]
+        D[Learning Analytics<br/>• Mobile Learning Research<br/>• Data Visualization Theory<br/>• Educational Data Mining<br/>• Dashboard Design Principles]
+    end
+    
+    subgraph "Consol Feature Modules"
+        F[Note Management System]
+        G[SimCSE Assessment Engine]
+        H[Star Rating System]
+        I[Analytics Dashboard]
+    end
+    
+    subgraph "Implementation Layer"
+        J[Note Editor Interface]
+        K[Similarity Feedback Display]
+        L[Daily Streak Tracking]
+        M[Radar Chart Visualization]
+        N[Session Metadata View]
+        O[File Upload System]
+        P[Threshold Display (0.2/0.5/0.7)]
+    end
+    
+    subgraph "Consol Platform Integration"
+        E[Consol Core System<br/>Unified Integration<br/>& Orchestration]
+    end
+    
+    A --> F
+    B --> G
+    C --> H
+    D --> I
+    
+    F --> J
+    F --> O
+    G --> K
+    G --> P
+    H --> L
+    I --> M
+    I --> N
+    
+    J --> E
+    K --> E
+    L --> E
+    M --> E
+    N --> E
+    O --> E
+    P --> E
+    
+    style A fill:#ffb3ba
+    style B fill:#bae1ff
+    style C fill:#baffc9
+    style D fill:#ffffba
+    style F fill:#e6ccff
+    style G fill:#ffccf2
+    style H fill:#ccffe6
+    style I fill:#ffebcc
+    style E fill:#ff9999,stroke:#cc0000,stroke-width:4px
+
+===============================================
+Hierarchical Version - Complete Theory Evolution to Consol
+===============================================
+
+---
+config:
+  layout: elk
+---
+graph LR
+    subgraph "Research Foundation Evolution"
+        direction TB
+        MEM[Memory Theory Evolution<br/>• Ebbinghaus 1885 (Spacing)<br/>• Roediger 2006 (Testing)<br/>• Karpicke 2008 (Retrieval)<br/>• Sachs 1967 (Temporal)<br/>• Naim 2020 (Mathematical)]
+        SEM[Semantic Theory Evolution<br/>• Harris 1954 (Distributional)<br/>• Mikolov 2013 (Word2Vec)<br/>• Vaswani 2017 (Transformers)<br/>• Devlin 2019 (BERT)<br/>• Chen 2020 (Contrastive)<br/>• Gao 2021 (SimCSE)]
+        PROG[Progress Theory Integration<br/>• Hattie 2007 (Feedback)<br/>• Deterding 2011 (Gamification)<br/>• Gaston 2017 (Rating Systems)<br/>• Stojanovic 2020 (Habits)]
+        LEARN[Learning Analytics Evolution<br/>• Baker 2009 (Data Mining)<br/>• Tufte 2001 (Visualization)<br/>• Few 2006 (Dashboards)<br/>• Baars 2022 (Mobile Learning)]
+    end
+    
+    subgraph "Consol Feature Implementation"
+        direction TB
+        NOTE[Note Management<br/>• Create/Edit Interface<br/>• File Upload System<br/>• Content Storage]
+        ASSESS[Assessment Engine<br/>• SimCSE Scoring<br/>• 0.2/0.5/0.7 Thresholds<br/>• Real-time Feedback]
+        TRACK[Progress System<br/>• Star Ratings<br/>• Daily Streak Tracking<br/>• Consistency Metrics]
+        VIZ[Analytics Dashboard<br/>• Radar Charts<br/>• Performance Trends<br/>• Session Metadata]
+    end
+    
+    subgraph "Consol Integration Hub"
+        direction TB
+        CORE[Consol Platform<br/>• Central Processing<br/>• Theory Integration<br/>• Feature Orchestration<br/>• Unified Experience]
+    end
+    
+    MEM ==> NOTE
+    SEM ==> ASSESS
+    PROG ==> TRACK
+    LEARN ==> VIZ
+    
+    NOTE ==> CORE
+    ASSESS ==> CORE
+    TRACK ==> CORE
+    VIZ ==> CORE
+    
+    NOTE -.-> ASSESS
+    ASSESS -.-> TRACK
+    TRACK -.-> VIZ
+    
+    classDef research fill:#e1f5fe,stroke:#0277bd,stroke-width:2px
+    classDef platform fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef consol fill:#ffebee,stroke:#d32f2f,stroke-width:4px
+    
+    class MEM,SEM,PROG,LEARN research
+    class NOTE,ASSESS,TRACK,VIZ platform
+    class CORE consol
