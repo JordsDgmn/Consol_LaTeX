@@ -40,15 +40,15 @@ The architectural design prioritizes educational outcomes over technical complex
 
 The technology selection process prioritized three key criteria: educational effectiveness, technical reliability, and development efficiency. Each technology choice was evaluated based on its ability to support the core research objectives of semantic similarity assessment and user engagement optimization.
 
-\textbf{Frontend Architecture}: Next.js was selected as the primary frontend framework due to its hybrid rendering capabilities that enable both static content delivery for consistent educational resources and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness.
+Frontend Architecture - Next.js was selected as the primary frontend framework due to its hybrid rendering capabilities that enable both static content delivery for consistent educational resources and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness.
 
 React's component-based architecture facilitates the development of reusable educational interface elements, enabling consistent user experience across different assessment contexts. The virtual DOM implementation provides efficient updates to progress indicators and similarity feedback displays, essential for maintaining engagement during recall sessions.
 
-\textbf{Backend Architecture}: The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and enabling shared utility functions between frontend and backend components. This consistency supports rapid iteration and debugging, critical factors in educational software development where user experience requires frequent refinement.
+Backend Architecture - The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and enabling shared utility functions between frontend and backend components. This consistency supports rapid iteration and debugging, critical factors in educational software development where user experience requires frequent refinement.
 
 PostgreSQL serves as the primary database system, chosen for its robust ACID compliance essential for maintaining accurate learning progress records and its support for complex queries required for learning analytics. The database's reliability ensures that student performance data remains consistent and recoverable, addressing institutional requirements for educational data integrity.
 
-\textbf{Semantic Processing Pipeline}: The SimCSE implementation utilizes BERT-base-uncased as the foundational encoder, selected for its demonstrated performance in sentence similarity tasks and its compatibility with educational content processing. The encoder integration occurs through RESTful API endpoints that enable asynchronous processing, preventing similarity computation from blocking user interface responsiveness.
+Semantic Processing Pipeline - The SimCSE implementation utilizes BERT-base-uncased as the foundational encoder, selected for its demonstrated performance in sentence similarity tasks and its compatibility with educational content processing. The encoder integration occurs through RESTful API endpoints that enable asynchronous processing, preventing similarity computation from blocking user interface responsiveness.
 
 \textbf{Mathematical Foundation}: SimCSE implements unsupervised contrastive learning through the following loss function:
 \begin{equation}
@@ -165,6 +165,26 @@ The database schema implements a three-entity normalized structure supporting ed
 
 The Consol system implements a comprehensive educational workflow designed to optimize recall assessment through structured interaction patterns. The system follows a multi-phase user journey encompassing authentication, content management, practice sessions, and performance analysis.
 
+{\color{maroon}
+\subsubsection{Comprehensive User Interaction Flow}
+
+The complete user interaction flow provides a holistic view of the Consol system's educational workflow, illustrating the interconnected processes that support effective learning assessment and progress tracking. Figure \ref{fig:user_flow_comprehensive} presents the comprehensive user journey from initial system access through advanced analytics and session management.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{user_flow}
+    \caption[Comprehensive User Interaction Flow Diagram]{Complete user interaction flow diagram showing the integrated workflow of the Consol system, including authentication processes, note management operations, session execution cycles, and analytics visualization. The diagram illustrates decision points, data flow paths, and system responses that optimize the educational assessment experience.}
+    \label{fig:user_flow_comprehensive}
+\end{figure}
+\FloatBarrier
+
+The comprehensive workflow demonstrates how the Consol system integrates multiple educational functions into a cohesive user experience. The flow begins with user authentication and dashboard initialization, progressing through content creation and management phases before entering the core assessment cycles. The diagram highlights critical decision points where users can choose different interaction paths based on their learning objectives and session preferences.
+
+The workflow emphasizes the cyclical nature of educational assessment, with multiple feedback loops enabling iterative improvement and sustained engagement. Session results feed back into performance analytics, while user content creation supports expanding knowledge bases for future assessments. This integrated approach ensures that each system component contributes to overall learning effectiveness while maintaining user autonomy in navigation and session management.
+
+The flow architecture supports both structured learning progressions and flexible exploration patterns, accommodating diverse learning preferences while maintaining consistent assessment quality. Real-time performance feedback integrates seamlessly with long-term progress tracking, enabling users to understand both immediate session outcomes and broader learning trends.
+}
+
 \subsubsection{Phase-by-Phase User Flow Analysis}
 
 \textbf{Phase 1: Authentication and Dashboard Setup}
@@ -177,9 +197,9 @@ The Consol system implements a comprehensive educational workflow designed to op
 
 \textbf{Phase 2: Content Management}
 \begin{itemize}
-\item \textbf{Note Creation}: Text input interface with SimCSE preprocessing and database storage
-\item \textbf{Content Validation}: Automatic text validation and error handling
-\item \textbf{Note Management}: View, edit, and delete existing learning materials
+\item Note Creation - Text input interface with SimCSE preprocessing and database storage
+\item Content Validation - Automatic text validation and error handling
+\item Note Management - View, edit, and delete existing learning materials
 \item \textbf{Database Operations}: Secure storage and retrieval of user content
 \end{itemize}
 
@@ -513,15 +533,15 @@ A comprehensive usability evaluation was conducted using a modified System Usabi
 \textbf{Sample Size and Demographics:} Seven participants were recruited for usability testing, representing a diverse cross-section of potential system users across various educational institutions. The usability testing was conducted independently from scoring accuracy validation to maintain methodological separation between technical performance assessment and user experience evaluation.
 }
 \begin{itemize}
-    \item Age range: 18-33+ years, with representation across multiple age cohorts
-    \item Education level: Currently enrolled college students and recent graduates
+    \item Age range: 16-33+ years, with representation across multiple age cohorts
+    \item Education level: High School Students, College Undergraduate, and Teacher with Master's Degree
     \item Technology proficiency: Self-reported levels ranging from moderate to excellent
     \item Diverse academic backgrounds within STEM and related disciplines
 \end{itemize}
 
 \textbf{Testing Procedure:} Each participant underwent a standardized evaluation process:
 \begin{enumerate}
-    \item System demonstration and feature orientation (15 minutes)
+    \item Concept debriefing about Consol system purpose and recollection methodology (15 minutes)
     \item Guided hands-on exploration of core functionalities (30 minutes)
     \item Independent task completion covering key use cases (20 minutes)
     \item Survey completion addressing all evaluation categories (15 minutes)
@@ -570,7 +590,7 @@ Qualitative feedback from usability testing and participant observations provide
 This comprehensive data collection methodology ensures robust empirical evaluation of both system effectiveness and user acceptance, providing multiple lines of evidence to support research conclusions and practical implementation recommendations.
 }
 
-\section{Testing and Validation Approach}
+% \section{Testing and Validation Approach}
 % This section will describe:
 % - Technical testing methodology
 % - User acceptance testing protocol
