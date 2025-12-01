@@ -5,6 +5,11 @@
 \label{chap:methodology}
 
 % NEWADDITION: Section structure based on ClassiFish reference and research best practices
+\section{Research Methodology}
+% This section will describe:
+% - Research approach (applied research/development)
+% - Mixed methods approach (technical development + user testing)
+% - Research questions and objectives
 
 {\color{maroon}
 \section{System Architecture Design}
@@ -69,8 +74,14 @@ The SimCSE architecture forms the core of Consol's semantic similarity assessmen
 \FloatBarrier
 
 The architecture implementation emphasizes educational robustness, ensuring consistent similarity assessment across diverse note-taking styles and content domains. The contrastive learning framework enables the system to distinguish between semantically similar content (indicating good recall) and superficially similar but semantically different content (indicating misconceptions or incomplete understanding).
+}
 
+{\color{maroon}
 \subsection{System Design Methodology}
+% This section will describe:
+% - Software development lifecycle approach
+% - Technology stack selection criteria
+% - Architecture design principles
 
 The system design methodology prioritizes educational effectiveness while maintaining technical robustness, following established patterns in educational technology development. The methodology emphasizes iterative refinement based on user feedback and empirical performance data, ensuring that technical decisions support pedagogical objectives.
 
@@ -85,16 +96,6 @@ Performance optimization focused on educational context requirements, prioritizi
 \subsubsection{Scalability and Maintenance Considerations}
 
 The architecture design accommodates institutional deployment requirements, including user authentication integration, data privacy compliance, and administrative oversight capabilities. Maintenance considerations prioritize educational continuity, ensuring that system updates and improvements can be deployed without interrupting ongoing learning activities.
-
-\subsection{Encoder Architecture Design}
-
-The Consol system implements a sentence embedding architecture based on SimCSE principles, utilizing BERT as the foundational encoder with specific adaptations for educational assessment contexts. The encoder architecture employs BERT-base-uncased with [CLS] token pooling for sentence representation, differing from mean pooling strategies by utilizing BERT's special classification token trained to capture sentence-level information during pre-training.
-
-The architectural choice of [CLS] pooling over mean pooling is motivated by concentrated representation where the [CLS] token is specifically designed to encode sentence-level information, computational efficiency where single token extraction requires less processing than mean aggregation, and empirical performance where previous studies demonstrate superior results for similarity tasks.
-
-\subsection{Temperature Parameter Configuration}
-
-The temperature parameter $\tau$ in the contrastive learning formula requires careful calibration to achieve optimal similarity discrimination. The parameter controls the sharpness of the similarity distribution, with implications for both precision and recall in educational assessment. The Consol system implements $\tau = 0.05$ based on empirical validation across diverse educational content domains, balancing discriminative power with generalization ability while preventing over-confident predictions that could lead to poor assessment reliability.
 }
 
 {\color{maroon}
@@ -181,9 +182,7 @@ The systematic testing revealed both strengths and areas for improvement in SimC
 \end{itemize}
 
 These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
-}
 
-{\color{maroon}
 \section{Prototype Development}
 \label{sec:prototype_development}
 
@@ -211,9 +210,10 @@ The assessment framework integrates semantic similarity with complementary perfo
 
 Star rating assignment follows empirically determined thresholds: 3 stars for similarity $\geq$ 0.8 indicating mastery-level comprehension, 2 stars for similarity $\geq$ 0.6 representing proficient understanding, 1 star for similarity $\geq$ 0.4 showing developing knowledge, and 0 stars for similarity $<$ 0.4 indicating novice-level recall requiring additional study.
 
+{\color{maroon}
 \subsection{System Implementation Details}
 
-\subsubsection{Database Architecture and Optimization}
+\subsection{Database Architecture and Optimization}
 
 The PostgreSQL implementation follows normalized design with three core entities (users, notes, sessions) implementing cascade deletion for referential integrity and index optimization on user identification, temporal sorting, and similarity filtering to support real-time dashboard updates. Query optimization prioritizes educational use patterns where users access recent performance data, compare progress across notes, and analyze learning trends through temporal indexing and efficient join operations.
 
@@ -273,54 +273,99 @@ profile\_picture\_url & verbatim & duration\_secs \\
 
 The database schema implements a three-entity normalized structure supporting educational assessment workflows. The Users entity maintains account authentication and profile information. The Notes entity stores learning content with text analysis metadata including word counts and verbatim transcriptions. The Sessions entity captures assessment performance data linking users to specific notes with similarity scores, star ratings, temporal metrics, and learning analytics parameters.
 
-\subsubsection{User Interaction Flow and System Architecture}
+\subsection{User Interaction Flow and System Architecture}
 
 The Consol system implements a comprehensive educational workflow designed to optimize recall assessment through structured interaction patterns. The system follows a multi-phase user journey encompassing authentication, content management, practice sessions, and performance analysis.
 
-The comprehensive workflow demonstrates how the Consol system integrates multiple educational functions into a cohesive user experience. The flow begins with user authentication and dashboard initialization, progressing through content creation and management phases before entering the core assessment cycles. The workflow emphasizes the cyclical nature of educational assessment, with multiple feedback loops enabling iterative improvement and sustained engagement.
+{\color{maroon}
+\subsubsection{Comprehensive User Interaction Flow}
+
+The complete user interaction flow provides a holistic view of the Consol system's educational workflow, illustrating the interconnected processes that support effective learning assessment and progress tracking. Figure \ref{fig:user_flow_comprehensive} presents the comprehensive user journey from initial system access through advanced analytics and session management.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{user_flow}
+    \caption[Comprehensive User Interaction Flow Diagram]{Complete user interaction flow diagram showing the integrated workflow of the Consol system, including authentication processes, note management operations, session execution cycles, and analytics visualization. The diagram illustrates decision points, data flow paths, and system responses that optimize the educational assessment experience.}
+    \label{fig:user_flow_comprehensive}
+\end{figure}
+\FloatBarrier
+
+The comprehensive workflow demonstrates how the Consol system integrates multiple educational functions into a cohesive user experience. The flow begins with user authentication and dashboard initialization, progressing through content creation and management phases before entering the core assessment cycles. The diagram highlights critical decision points where users can choose different interaction paths based on their learning objectives and session preferences.
+
+The workflow emphasizes the cyclical nature of educational assessment, with multiple feedback loops enabling iterative improvement and sustained engagement. Session results feed back into performance analytics, while user content creation supports expanding knowledge bases for future assessments. This integrated approach ensures that each system component contributes to overall learning effectiveness while maintaining user autonomy in navigation and session management.
+
+The flow architecture supports both structured learning progressions and flexible exploration patterns, accommodating diverse learning preferences while maintaining consistent assessment quality. Real-time performance feedback integrates seamlessly with long-term progress tracking, enabling users to understand both immediate session outcomes and broader learning trends.
+}
+
+\subsubsection{Phase-by-Phase User Flow Analysis}
+
+\textbf{Phase 1: Authentication and Dashboard Setup}
+\begin{itemize}
+\item Initial system access and credential verification
+\item New user registration with profile creation
+\item Dashboard initialization with personalized content loading
+\item User data fetching and interface preparation
+\end{itemize}
+
+\textbf{Phase 2: Content Management}
+\begin{itemize}
+\item Note Creation - Text input interface with SimCSE preprocessing and database storage
+\item Content Validation - Automatic text validation and error handling
+\item Note Management - View, edit, and delete existing learning materials
+\item \textbf{Database Operations}: Secure storage and retrieval of user content
+\end{itemize}
+
+\textbf{Phase 3: Practice Session Workflow}
+\begin{itemize}
+\item \textbf{Session Initialization}: Note selection and timer activation
+\item \textbf{Recall Assessment}: User input collection with hint system support
+\item \textbf{Performance Calculation}: SimCSE similarity analysis and metric generation
+\item \textbf{Feedback Display}: Results presentation with star rating assignment
+\item \textbf{Session Continuation}: Iterative practice with different notes or repeated attempts
+\end{itemize}
+
+\textbf{Phase 4: Analytics and Progress Tracking}
+\begin{itemize}
+\item \textbf{Performance Dashboard}: Real-time visualization of learning trends
+\item \textbf{Detailed Analysis}: Comprehensive metrics including WPM, similarity scores, and improvement patterns
+\item \textbf{Export Functionality}: PDF report generation for academic record-keeping
+\item \textbf{Session Persistence}: Database storage of all performance metrics
+\end{itemize}
+
+\subsubsection{Multi-Page User Flow Visualization}
+
+For comprehensive visualization of the complete user journey, the system flow has been documented across four detailed diagrams, each focusing on a specific operational phase:
+
+\paragraph{Visual Flow Documentation}
+The complete user flow spans multiple interaction phases that require detailed documentation. Each phase represents a distinct operational context with specific user goals, system responses, and decision points. The multi-phase approach ensures comprehensive coverage while maintaining visual clarity and academic presentation standards.
+
+\begin{enumerate}
+\item \textbf{Authentication \& Dashboard Setup}: User entry, credential verification, and initial interface loading
+\item \textbf{Note Management Operations}: Content creation, editing, validation, and storage workflows  
+\item \textbf{Practice Session Execution}: Assessment initialization, user interaction, and performance calculation
+\item \textbf{Analytics \& Session Management}: Progress analysis and session continuation decisions
+\end{enumerate}
+
+% Multi-page user flow diagrams with image placeholders:
+\input{multipage_userflow_image_placeholders}
+
+\paragraph{System Flow Integration}
+The architecture ensures seamless transition between phases while maintaining educational continuity through persistent session state and comprehensive progress tracking. User actions trigger appropriate system responses with immediate feedback mechanisms supporting enhanced learning engagement. The modular phase design enables independent optimization of each workflow component while preserving overall system coherence.
+
+\textbf{Inter-phase Communication}: Each phase maintains state information that flows seamlessly to subsequent phases, ensuring continuity of user experience and data integrity throughout the complete assessment cycle.
+
+\textbf{Error Handling and Recovery}: The system implements comprehensive error handling at each phase transition, providing graceful degradation and recovery mechanisms that maintain user engagement even during technical difficulties.
+
+\textbf{Performance Optimization}: Phase-based architecture enables targeted optimization of computationally intensive operations (such as SimCSE processing) without impacting user interface responsiveness during other phases.
+
+% Include the multi-page user flow documentation
+% Uncomment the following line to include detailed flow diagrams that span multiple pages:
+% \input{multipage_userflow}
 
 \subsection{Frontend and API Implementation}
 
 The Next.js frontend leverages server-side rendering for optimal page load performance while maintaining client-side interactivity, utilizing React composition patterns for reusable interface elements and Chart.js integration for immediate visual feedback. The RESTful API separates user management, content operations, and assessment processing concerns, with SimCSE integration through dedicated microservice architecture providing asynchronous similarity computation that prevents NLP processing delays from affecting interface responsiveness.
 
-\subsection{Deployment and Performance Considerations}
-
-\subsubsection{Computational Performance Analysis}
-
-SimCSE inference processing dominates system performance, requiring 50-200 milliseconds per comparison depending on text length, which proves acceptable for educational applications requiring sub-second feedback. Memory requirements include 110MB for SimCSE model, 500MB for Node.js runtime, and variable PostgreSQL storage, with offline deployment ensuring consistent performance independent of internet connectivity while supporting horizontal scaling through distributed similarity computation for higher throughput requirements.
-
-\subsubsection{Educational Effectiveness Validation}
-
-The assessment framework implements construct validity through SimCSE-human expert correlation analysis and content validity through correspondence with educational literature objectives. Reliability measurement focuses on consistency across identical inputs and stability under varying conditions, while the deterministic nature ensures perfect test-retest reliability, with multi-dimensional assessment providing comprehensive performance profiles through measurement triangulation and usability evaluation emphasizing technological accessibility and motivational impact.
-
-\subsection{Data Visualization Integration}
-
-Chart.js integration provides interactive progress visualization that supports learning analytics and student self-assessment capabilities. The library's responsive design ensures that progress indicators remain comprehensible across different device sizes, addressing the diverse technology access patterns common in educational environments.
-
-The visualization components focus on educational relevance rather than technical complexity, presenting similarity scores, progress tracking, and performance trends in formats that support metacognitive awareness and learning motivation. Interactive elements enable students to explore their performance patterns while maintaining focus on learning objectives rather than technical details.
-
-\subsection{Cloud Infrastructure and Media Management}
-
-Cloudinary integration handles educational multimedia content optimization and responsive delivery, ensuring that visual educational resources adapt to varying network conditions and device capabilities. The platform's automatic optimization reduces loading times that could otherwise interrupt learning flow, while responsive delivery maintains content quality across diverse access scenarios.
-
-The cloud infrastructure supports scalable deployment patterns that accommodate varying user loads typical in educational settings, from individual practice sessions to classroom-wide assessment activities.
-
-\subsection{Development Process}
-
-The development process followed an iterative approach prioritizing core semantic similarity functionality before expanding to advanced educational features. Initial development focused on establishing robust SimCSE integration and database architecture to ensure reliable assessment capability as the foundational system component.
-
-Project evolution progressed through three distinct phases beginning with proof-of-concept implementation validating SimCSE integration with basic note comparison functionality. The second phase introduced user interface development with authentication systems, dashboard design, and session management capabilities. The final phase incorporated advanced analytics features, performance optimization, and comprehensive testing protocols.
-
-Feature development prioritization emphasized educational effectiveness over technical complexity, ensuring that each component directly supported learning objectives. User feedback integration occurred throughout development cycles, with rapid prototyping enabling continuous refinement based on pedagogical requirements and usability observations.
-
-\subsection{Implementation Tools and Technologies}
-
-The technology stack implementation emphasized educational effectiveness and development efficiency. Next.js 15 with React 19 provided the frontend framework, PostgreSQL served as the database system, and Python Flask handled SimCSE processing. Cloud deployment utilized Vercel for frontend hosting, Supabase for database management, and Cloudinary for media optimization.
-
-Development tools included TypeScript for type safety, Tailwind CSS for interface design, Chart.js for data visualization, and Prisma for database operations. The technology selection prioritized educational platform requirements including scalability, reliability, and ease of maintenance while ensuring optimal user experience across diverse educational technology environments.
-}
-
-{\color{maroon}
 \section{Usability Testing}
 \label{sec:usability_testing}
 
@@ -340,49 +385,346 @@ SimCSE scoring computed cosine similarity between original notes and recalled co
 
 Maintained deterministic scoring through consistent pre-processing and similarity computation, ensuring reproducible results essential for educational assessment validity. The validation process confirmed alignment between SimCSE assessments and expert teacher evaluations, establishing system credibility for educational deployment.
 
+\subsection{Deployment and Performance Considerations}
+
+\subsection{Computational Performance Analysis}
+
+SimCSE inference processing dominates system performance, requiring 50-200 milliseconds per comparison depending on text length, which proves acceptable for educational applications requiring sub-second feedback. Memory requirements include 110MB for SimCSE model, 500MB for Node.js runtime, and variable PostgreSQL storage, with offline deployment ensuring consistent performance independent of internet connectivity while supporting horizontal scaling through distributed similarity computation for higher throughput requirements.
+
+\subsection{Educational Effectiveness Validation}
+
+The assessment framework implements construct validity through SimCSE-human expert correlation analysis and content validity through correspondence with educational literature objectives. Reliability measurement focuses on consistency across identical inputs and stability under varying conditions, while the deterministic nature ensures perfect test-retest reliability, with multi-dimensional assessment providing comprehensive performance profiles through measurement triangulation and usability evaluation emphasizing technological accessibility and motivational impact.
+}
+
+\subsection{Data Visualization Integration}
+
+Chart.js integration provides interactive progress visualization that supports learning analytics and student self-assessment capabilities. The library's responsive design ensures that progress indicators remain comprehensible across different device sizes, addressing the diverse technology access patterns common in educational environments.
+
+The visualization components focus on educational relevance rather than technical complexity, presenting similarity scores, progress tracking, and performance trends in formats that support metacognitive awareness and learning motivation. Interactive elements enable students to explore their performance patterns while maintaining focus on learning objectives rather than technical details.
+
+\subsection{Cloud Infrastructure and Media Management}
+
+Cloudinary integration handles educational multimedia content optimization and responsive delivery, ensuring that visual educational resources adapt to varying network conditions and device capabilities. The platform's automatic optimization reduces loading times that could otherwise interrupt learning flow, while responsive delivery maintains content quality across diverse access scenarios.
+
+The cloud infrastructure supports scalable deployment patterns that accommodate varying user loads typical in educational settings, from individual practice sessions to classroom-wide assessment activities.
+}
+
+\subsection{System Design Methodology}
+% This section will describe:
+% - Software development lifecycle approach
+% - Technology stack selection criteria
+% - Architecture design principles
+
+{\color{maroon}
+The system design methodology prioritizes educational effectiveness while maintaining technical robustness, following established patterns in educational technology development. The methodology emphasizes iterative refinement based on user feedback and empirical performance data, ensuring that technical decisions support pedagogical objectives.
+
+\subsection{User-Centered Design Principles}
+
+The design process began with analysis of educational user requirements, focusing on cognitive load reduction and learning motivation enhancement. Interface design decisions were evaluated based on their impact on learning outcomes rather than purely aesthetic considerations, ensuring that visual elements support rather than distract from educational objectives.
+
+\subsection{Performance Optimization Strategy}
+
+Performance optimization focused on educational context requirements, prioritizing response time for similarity feedback and progress updates over complex visual effects. The optimization strategy ensures that technical performance supports rather than hinders learning flow, maintaining user engagement through responsive interactions.
+
+\subsection{Scalability and Maintenance Considerations}
+
+The architecture design accommodates institutional deployment requirements, including user authentication integration, data privacy compliance, and administrative oversight capabilities. Maintenance considerations prioritize educational continuity, ensuring that system updates and improvements can be deployed without interrupting ongoing learning activities.
+}
+
+{\color{maroon}
+\subsection{Encoder Architecture Design}
+
+The Consol system implements a sentence embedding architecture based on SimCSE principles, utilizing BERT as the foundational encoder with specific adaptations for educational assessment contexts. The encoder architecture employs BERT-base-uncased with [CLS] token pooling for sentence representation, differing from mean pooling strategies by utilizing BERT's special classification token trained to capture sentence-level information during pre-training.
+
+The architectural choice of [CLS] pooling over mean pooling is motivated by concentrated representation where the [CLS] token is specifically designed to encode sentence-level information, computational efficiency where single token extraction requires less processing than mean aggregation, and empirical performance where previous studies demonstrate superior results for similarity tasks.
+
+\subsection{Temperature Parameter Configuration}
+
+The temperature parameter $\tau$ in the contrastive learning formula requires careful calibration to achieve optimal similarity discrimination. The parameter controls the sharpness of the similarity distribution, with implications for both precision and recall in educational assessment. The Consol system implements $\tau = 0.05$ based on empirical validation across diverse educational content domains, balancing discriminative power with generalization ability while preventing over-confident predictions that could lead to poor assessment reliability.
+}
+
+\subsection{Development Process}
+
+{\color{maroon}
+The development process followed an iterative approach prioritizing core semantic similarity functionality before expanding to advanced educational features. Initial development focused on establishing robust SimCSE integration and database architecture to ensure reliable assessment capability as the foundational system component.
+
+Project evolution progressed through three distinct phases beginning with proof-of-concept implementation validating SimCSE integration with basic note comparison functionality. The second phase introduced user interface development with authentication systems, dashboard design, and session management capabilities. The final phase incorporated advanced analytics features, performance optimization, and comprehensive testing protocols.
+
+Feature development prioritization emphasized educational effectiveness over technical complexity, ensuring that each component directly supported learning objectives. User feedback integration occurred throughout development cycles, with rapid prototyping enabling continuous refinement based on pedagogical requirements and usability observations.
+}
+
+\subsection{Data Collection Methods}
+
+{\color{maroon}
+Data collection methodology integrated automated system logging with structured user interaction recording to capture comprehensive performance metrics and behavioral patterns. User interaction data collection occurred transparently during normal system usage, recording session timing, similarity scores, navigation patterns, and feature utilization frequencies without interrupting the educational workflow.
+
+Performance metrics gathering emphasized educationally meaningful indicators including similarity score trends, improvement rates, session completion times, and learning consistency patterns. Database logging captured detailed metadata for each assessment session, enabling longitudinal analysis of learning progression and system effectiveness measurement.
+
+Session analytics methodology incorporated both quantitative performance measurement and qualitative feedback collection through integrated survey tools and optional interview protocols. Data standardization procedures ensured consistency across different user devices and interaction contexts, maintaining research validity while supporting diverse educational technology environments.
+}
+
+\subsection{Evaluation Framework}
+
+\subsection{SimCSE Similarity Threshold Calibration}
+
+{\color{maroon}
+One of the critical aspects of developing Consol was establishing appropriate similarity thresholds for the star rating system that would provide meaningful and fair assessment of student recall performance. This required systematic validation of SimCSE's behavior across various linguistic scenarios commonly encountered in educational contexts.
+
+The initial threshold hypothesis was established based on educational assessment principles:
+\begin{itemize}
+    \item 3 stars (Excellent): Similarity $\geq$ 0.81 - Demonstrates comprehensive understanding
+    \item 2 stars (Good): Similarity $\geq$ 0.60 - Shows adequate recall with minor gaps
+    \item 1 star (Basic): Similarity $\geq$ 0.30 - Indicates partial understanding
+    \item 0 stars (Poor): Similarity $<$ 0.30 - Requires significant improvement
+\end{itemize}
+
+To validate these thresholds, we designed a comprehensive test suite encompassing various linguistic transformations that students might employ during recall sessions. The test cases were selected to represent common scenarios in educational recall, including paraphrasing, summarization, expansion, and potential edge cases that could lead to misleading similarity scores.
+}
+
+\subsection{Test Case Design and Implementation}
+
+{\color{maroon}
+Seven representative test cases were developed and evaluated to assess SimCSE performance across different linguistic scenarios. Each test case consisted of an original sentence (S1) and a student response variant (S2), with expected similarity ranges based on semantic preservation and educational value.
+
+Figure \ref{fig:simcse_test_cases} presents the complete set of test cases used for threshold validation, while Table \ref{table:threshold_validation} summarizes the quantitative results and analysis.
+
+The test cases were specifically designed to address:
+\begin{enumerate}
+    \item \textbf{Semantic Opposition}: Testing SimCSE's ability to detect contradictory meanings
+    \item \textbf{Paraphrasing Detection}: Evaluating performance on synonym-based rewording
+    \item \textbf{Content Expansion}: Assessing similarity when students provide additional detail
+    \item \textbf{Content Summarization}: Testing condensed versions of original content
+    \item \textbf{False Similarity Traps}: Identifying cases where word overlap doesn't indicate understanding
+    \item \textbf{Structural Variations}: Examining different sentence constructions with preserved meaning
+    \item \textbf{Formatting Robustness}: Testing resilience to punctuation and formatting changes
+\end{enumerate}
+
+This systematic approach ensured that the final threshold settings would be both educationally meaningful and technically robust, providing students with fair and consistent assessment of their recall performance.
+}
+
+% Include the test cases figure
+\input{figures/simcse_test_cases}
+
+% Include the validation results table  
+\input{tables/threshold_validation}
+
+\subsection{Validation Results and Threshold Refinement}
+
+{\color{maroon}
+The systematic testing revealed both strengths and areas for improvement in SimCSE's performance for educational assessment. Analysis of the seven test cases provided crucial insights into the model's behavior across different linguistic scenarios.
+
+\textbf{Key Findings:}
+\begin{itemize}
+    \item \textbf{False Similarity Detection}: SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments.
+    
+    \item \textbf{Structural Robustness}: The model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding.
+    
+    \item \textbf{Formatting Resilience}: Punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style.
+    
+    \item \textbf{Paraphrasing Sensitivity}: Synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording.
+    
+    \item \textbf{Opposite Meaning Handling}: Contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.
+\end{itemize}
+
+These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
+}
+
+\subsection{Implementation Tools and Technologies}
+% This section will describe:
+% - Next.js 15 + React 19 framework selection
+% - PostgreSQL database design
+% - SimCSE integration methodology
+% - Cloud deployment strategy
+
+{\color{maroon}
 \subsection{Data Collection Methodology}
 
 This section outlines the comprehensive data collection strategy employed to evaluate the system's effectiveness in educational assessment and user experience. Two distinct but complementary testing methodologies were implemented: scoring accuracy validation and usability assessment, each designed to address specific research objectives and provide empirical evidence for system performance.
 
-\subsubsection{Scoring Accuracy Testing}
+{\color{maroon}
+\subsection{Scoring Accuracy Testing}
 
 The scoring accuracy testing phase focused exclusively on evaluating the precision and reliability of SimCSE-based assessment compared to alternative methods, conducted independently from system usability evaluation to ensure methodological rigor.
 
-Five participants were recruited for the scoring accuracy evaluation phase, representing a diverse sample of junior to senior high school students in STEM disciplines. The selection criteria emphasized academic preparation rather than technology proficiency, as this phase evaluated content assessment accuracy rather than interface usability.
+\subsubsection{Participant Selection and Demographics}
 
+{\color{maroon}
+Five participants were recruited for the scoring accuracy evaluation phase, representing a diverse sample of junior to senior high school students in STEM disciplines. The selection criteria emphasized academic preparation rather than technology proficiency, as this phase evaluated content assessment accuracy rather than interface usability.
+}
+}
+
+{\color{maroon}
+{\color{maroon}
 Selection criteria emphasized current enrollment in junior to senior high school with strong performance in biology/science courses, ensuring participants possessed adequate subject matter knowledge for meaningful assessment. Participants demonstrated willingness to engage in the 3-day testing protocol involving 5 topics assessed daily, maintained basic computer literacy sufficient for Google Docs interaction, and provided informed consent for comprehensive data collection and analysis procedures.
 
-\paragraph{Experimental Design}
+Participant demographics included students from various educational institutions to ensure generalizability of results across different learning styles and academic preparation levels, while maintaining focus on content assessment rather than technology adoption patterns.
+}
+}
 
-A within-subjects experimental design was employed, where each participant served as their own control across multiple conditions. Five distinct biology/science topics were chosen to represent varying complexity levels and content types: Cellular Biology, Endocrine System, Applied Science, Psoriasis, and Earthquakes.
+\subsubsection{Experimental Design}
 
-Each topic was assessed over three consecutive days to capture learning progression and retention patterns. This 3-day cycle allowed for initial learning assessment (Day 1), knowledge consolidation evaluation (Day 2), and retention and improvement measurement (Day 3). All five topics were assessed simultaneously within this 3-day period, with participants completing 5-minute recall sessions per topic per day.
+A within-subjects experimental design was employed, where each participant served as their own control across multiple conditions. The design incorporated the following elements:
 
-For each topic-day combination, participants completed a standardized individual assessment procedure on Google Docs rather than through the main application interface. The scoring testing was conducted separately from app usability testing to ensure methodological isolation. Days 1 and 2 were conducted simultaneously under supervised conditions with strict 5-minute time limits per topic recollection.
+\textbf{Topic Selection:} Five distinct biology/science topics were chosen to represent varying complexity levels and content types:
+\begin{enumerate}
+    \item Cellular Biology - Fundamental biological processes
+    \item Endocrine System - Intermediate physiological concepts  
+    \item Applied Science - Advanced interdisciplinary applications
+    \item Psoriasis - Medical-specific condition study
+    \item Earthquakes - Interdisciplinary earth science phenomena
+\end{enumerate}
 
-\paragraph{Multi-Scorer Evaluation Framework}
+{\color{maroon}
+\textbf{Temporal Structure:} Each topic was assessed over three consecutive days to capture learning progression and retention patterns. This 3-day cycle allowed for initial learning assessment (Day 1), knowledge consolidation evaluation (Day 2), and retention and improvement measurement (Day 3). All five topics were assessed simultaneously within this 3-day period, with participants completing 5-minute recall sessions per topic per day, totaling 25 assessment instances per participant across the complete evaluation period.
+}
 
-To establish assessment validity and comparative analysis, three distinct scoring methodologies were employed simultaneously: SimCSE automated scoring utilizing the princeton-nlp/unsup-simcse-bert-base-uncased model, human teacher baseline providing experienced educator assessment with biology/science teaching background, and standardized data collection procedures ensuring consistency across all assessment sessions.
+{\color{maroon}
+{\color{maroon}
+\textbf{Assessment Protocol:} For each topic-day combination, participants completed a standardized individual assessment procedure on Google Docs rather than through the main application interface. The scoring testing was conducted separately from app usability testing to ensure methodological isolation. Days 1 and 2 were conducted simultaneously under supervised conditions with strict 5-minute time limits per topic recollection. Day 3 assessments were completed asynchronously at participants' convenience while maintaining the same 5-minute time constraint per topic. Participants submitted both original study materials and recalled content for dual-assessment comparison (SimCSE and teacher evaluation).
+}
+}
 
-\subsubsection{Usability Testing Methodology}
+\subsubsection{Multi-Scorer Evaluation Framework}
 
-A comprehensive usability evaluation was conducted using a modified System Usability Scale (SUS) framework, enhanced with domain-specific questions relevant to educational technology assessment. The survey was deployed through Google Forms with standardized response collection, anonymous submission options, automatic data validation, and real-time response monitoring capabilities.
+To establish assessment validity and comparative analysis, three distinct scoring methodologies were employed simultaneously:
 
-Seven participants were recruited for usability testing, representing a diverse cross-section of potential system users across various educational institutions. The usability testing was conducted independently from scoring accuracy validation to maintain methodological separation between technical performance assessment and user experience evaluation.
+\textbf{SimCSE Automated Scoring:}
+\begin{itemize}
+    \item Utilized the princeton-nlp/unsup-simcse-bert-base-uncased model
+    \item Computed cosine similarity between original notes and recalled content embeddings
+    \item Applied mathematical transformation to convert similarity scores to educational grade scale (0-100 points)
+    \item Maintained deterministic scoring through consistent preprocessing and embedding procedures
+\end{itemize}
 
-Each participant underwent a standardized evaluation process including concept debriefing about Consol system purpose and recollection methodology, guided hands-on exploration of core functionalities, independent task completion covering key use cases, survey completion addressing all evaluation categories, and optional interview for additional qualitative feedback.
+{\color{maroon}
+\textbf{Human Teacher Baseline:}
+\begin{itemize}
+    \item Experienced educator with biology/science teaching background
+    \item Blind assessment protocol preventing influence from AI scores
+    \item Standardized rubric focusing on content accuracy, completeness, and conceptual understanding
+    \item Served as ground truth baseline for validity analysis
+\end{itemize}
+}
+
+\subsubsection{Data Collection Procedures}
+
+Systematic data collection procedures ensured consistency and reliability across all assessment sessions:
+
+\textbf{Digital Platform Integration:} All note-taking and recall sessions were conducted through the developed Consol application, providing:
+\begin{itemize}
+    \item Standardized user interface across all participants
+    \item Automatic timestamping and session metadata collection
+    \item Consistent formatting and preprocessing of submitted content
+    \item Integrated scoring pipeline for immediate SimCSE evaluation
+\end{itemize}
+
+\textbf{Data Standardization:} To ensure comparability across scoring methods:
+\begin{itemize}
+    \item All text inputs underwent identical preprocessing procedures
+    \item Consistent formatting removal (Markdown syntax, special characters)
+    \item Normalized spacing and line break handling
+    \item UTF-8 encoding standardization for cross-platform compatibility
+\end{itemize}
+
+\textbf{Quality Assurance:} Multiple validation steps were implemented:
+\begin{itemize}
+    \item Manual verification of data integrity for each submission
+    \item Cross-validation of scoring outputs across different systems
+    \item Regular calibration checks for human teacher assessment consistency
+    \item Backup data storage and version control for all collected materials
+\end{itemize}
+
+\subsection{Usability Testing Methodology}
+
+\subsubsection{Survey Design and Implementation}
+
+A comprehensive usability evaluation was conducted using a modified System Usability Scale (SUS) framework, enhanced with domain-specific questions relevant to educational technology assessment.
+
+\textbf{Google Forms Implementation:} The survey was deployed through Google Forms to ensure:
+\begin{itemize}
+    \item Standardized response collection across all participants
+    \item Anonymous submission option to encourage honest feedback
+    \item Automatic data validation and formatting
+    \item Real-time response monitoring and analysis capabilities
+\end{itemize}
+
+\textbf{Question Categories:} The survey instrument encompassed multiple evaluation dimensions:
+\begin{enumerate}
+    \item \textbf{Demographic Information:} Age range, education level, technology proficiency
+    \item \textbf{System Usability Scale:} Standard 10-item SUS questionnaire for baseline usability measurement
+    \item \textbf{Feature-Specific Evaluation:} Targeted questions about core application functions
+    \item \textbf{Educational Context:} Questions specific to study tracking and learning support features
+    \item \textbf{Comparative Assessment:} Evaluation relative to existing study methods and tools
+    \item \textbf{Qualitative Feedback:} Open-ended questions for detailed user insights and suggestions
+\end{enumerate}
+
+\subsubsection{Participant Recruitment and Testing Protocol}
+
+{\color{maroon}
+\textbf{Sample Size and Demographics:} Seven participants were recruited for usability testing, representing a diverse cross-section of potential system users across various educational institutions. The usability testing was conducted independently from scoring accuracy validation to maintain methodological separation between technical performance assessment and user experience evaluation.
+}
+\begin{itemize}
+    \item Age range: 16-33+ years, with representation across multiple age cohorts
+    \item Education level: High School Students, College Undergraduate, and Teacher with Master's Degree
+    \item Technology proficiency: Self-reported levels ranging from moderate to excellent
+    \item Diverse academic backgrounds within STEM and related disciplines
+\end{itemize}
+
+\textbf{Testing Procedure:} Each participant underwent a standardized evaluation process:
+\begin{enumerate}
+    \item Concept debriefing about Consol system purpose and recollection methodology (15 minutes)
+    \item Guided hands-on exploration of core functionalities (30 minutes)
+    \item Independent task completion covering key use cases (20 minutes)
+    \item Survey completion addressing all evaluation categories (15 minutes)
+    \item Optional interview for additional qualitative feedback (10 minutes)
+\end{enumerate}
 
 \subsection{Statistical Analysis Framework}
 
 \subsubsection{Quantitative Analysis Plan}
 
-The collected data underwent comprehensive statistical analysis including descriptive statistics with central tendency measures and variability assessments, comparative analysis with statistical validation of SimCSE accuracy relative to teacher baseline, correlation analysis measuring agreement between scoring methods, and learning progression correlation analysis across the 3-day assessment periods.
+The collected data underwent comprehensive statistical analysis to address research objectives:
+
+\textbf{Descriptive Statistics:}
+\begin{itemize}
+    \item Central tendency measures (mean, median) for all scoring methods
+    \item Variability assessments (standard deviation, range) across participants and topics
+    \item Distribution analysis to verify normality assumptions for inferential testing
+\end{itemize}
+
+\textbf{Comparative Analysis:}
+{\color{maroon}
+\begin{itemize}
+    \item Statistical validation of SimCSE accuracy relative to teacher baseline
+    \item ANOVA for multi-group comparisons across topics and time periods
+    \item Effect size calculations (Cohen's d) to assess practical significance
+    \item Confidence interval estimation for mean differences between scoring methods
+\end{itemize}
+}
+
+\textbf{Correlation Analysis:}
+\begin{itemize}
+    \item Pearson correlation coefficients measuring agreement between scoring methods
+    \item Learning progression correlation analysis across the 3-day assessment periods
+    \item Reliability analysis for consistency of SimCSE scoring across identical inputs
+\end{itemize}
 
 \subsubsection{Qualitative Analysis Integration}
 
-Qualitative feedback from usability testing and participant observations provided contextual insights through thematic analysis of open-ended survey responses, content analysis of feature preference rankings and suggestions, and integration of quantitative usability scores with qualitative user experience narratives.
+Qualitative feedback from usability testing and participant observations provided contextual insights:
+\begin{itemize}
+    \item Thematic analysis of open-ended survey responses
+    \item Content analysis of feature preference rankings and suggestions
+    \item Integration of quantitative usability scores with qualitative user experience narratives
+\end{itemize}
 
 This comprehensive data collection methodology ensures robust empirical evaluation of both system effectiveness and user acceptance, providing multiple lines of evidence to support research conclusions and practical implementation recommendations.
 }
+
+% \section{Testing and Validation Approach}
+% This section will describe:
+% - Technical testing methodology
+% - User acceptance testing protocol
+% - Performance benchmarking approach
 
 % NEWADDITION: Chapter content to be developed with detailed methodology descriptions
