@@ -28,72 +28,129 @@ The fundamental architecture of the Consol system follows a layered approach tha
 
 As illustrated in Figure \ref{fig:basic_system_architecture}, the Consol system implements a five-layer architecture that ensures clear separation of concerns while maintaining optimal data flow for educational assessment. The architecture follows a top-down design where each layer transforms data into increasingly refined states, culminating in meaningful educational feedback for students.
 
-The User Interface Layer serves as the primary interaction point where students input their original study notes and recalled content. This layer captures raw textual data in its most natural form, preserving the authentic student expression essential for accurate recall assessment. The interface design prioritizes simplicity and cognitive load reduction, ensuring that technical complexity does not interfere with the learning process.
+The user interface layer serves as the primary interaction point where students input their original study notes and recalled content. This layer captures raw textual data in its most natural form, preserving the authentic student expression essential for accurate recall assessment. The interface design prioritizes simplicity and cognitive load reduction, ensuring that technical complexity does not interfere with the learning process.
 
-The Frontend Web Application Layer transforms raw user input into structured data formats suitable for backend processing. This layer implements the user experience design principles, providing immediate visual feedback and maintaining responsive interaction patterns. The frontend handles data validation, session management, and preliminary formatting while preparing content for semantic analysis through JSON payload structuring.
+The frontend component transforms raw user input into structured data formats suitable for backend processing. This layer implements the user experience design principles, providing immediate visual feedback and maintaining responsive interaction patterns. The frontend handles data validation, session management, and preliminary formatting while preparing content for semantic analysis through JSON payload structuring.
 
-The API Gateway Layer serves as the central orchestration point for all system operations, managing request routing, business logic execution, and data transformation coordination. This layer preprocesses textual content to remove formatting artifacts while preserving semantic meaning, ensuring consistent input quality for AI processing. The API gateway also handles performance metric calculation and coordinates data flow between the AI engine and database systems.
+The API gateway component serves as the central orchestration point for all system operations, managing request routing, business logic execution, and data transformation coordination. This layer preprocesses textual content to remove formatting artifacts while preserving semantic meaning, ensuring consistent input quality for AI processing. The API gateway also handles performance metric calculation and coordinates data flow between the AI engine and database systems.
 
-The AI Engine Layer represents the core technological innovation of the Consol system, implementing SimCSE-based semantic similarity computation. This layer processes text pairs through transformer-based encoding, generating 768-dimensional embeddings and computing cosine similarity scores that range from 0.0 to 1.0. The AI engine operates independently from other system components, enabling scalable processing and potential future model upgrades without affecting overall system functionality.
+The AI engine component represents the core technological innovation of the Consol system, implementing SimCSE-based semantic similarity computation. This layer processes text pairs through transformer-based encoding, generating 768-dimensional embeddings and computing cosine similarity scores that range from 0.0 to 1.0. The AI engine operates independently from other system components, enabling scalable processing and potential future model upgrades without affecting overall system functionality.
 
-The Database Storage Layer provides persistent data management for user profiles, learning content, and session performance records. This layer stores similarity scores, performance metrics, and historical data that enable longitudinal learning analytics. The database design prioritizes educational data integrity through ACID compliance while supporting complex queries for progress tracking and performance visualization.
+The database component provides persistent data management for user profiles, learning content, and session performance records. This layer stores similarity scores, performance metrics, and historical data that enable longitudinal learning analytics. The database design prioritizes educational data integrity through ACID compliance while supporting complex queries for progress tracking and performance visualization.
 
-Data Flow Characteristics - The circular data flow design ensures that every user input ultimately generates meaningful educational feedback. Data transformation occurs at each layer boundary, with specific attention to maintaining semantic fidelity while adapting to technical processing requirements. The return path from database through API to frontend enables rich analytics presentation, supporting student metacognition and learning strategy development.
-
-
-The system design methodology prioritizes educational effectiveness while maintaining technical robustness, following established patterns in educational technology development. The methodology emphasizes iterative refinement based on user feedback and empirical performance data, ensuring that technical decisions support pedagogical objectives.
+The data flow design ensures that every user input ultimately becomes substantial to the user's experience, by only establishing essential paths like semantic analysis and data storage, being facilitated seamlessly by the API gateway. Data transformation occurs at each component boundary, with specific attention to maintaining semantic fidelity while adapting to technical processing requirements. The return path from database through API to frontend enables instantaneous analytics presentation, supporting the user's self-learning progression.
 
 \subsubsection{User-Centered Design Principles}
 
-The design process began with analysis of educational user requirements, focusing on cognitive load reduction and learning motivation enhancement. Interface design decisions were evaluated based on their impact on learning outcomes rather than purely aesthetic considerations, ensuring that visual elements support rather than distract from educational objectives.
-
-\subsubsection{Performance Optimization Strategy}
-
-Performance optimization focused on educational context requirements, prioritizing response time for similarity feedback and progress updates over complex visual effects. The optimization strategy ensures that technical performance supports rather than hinders learning flow, maintaining user engagement through responsive interactions.
-
-\subsubsection{Scalability and Maintenance Considerations}
-
-The architecture design accommodates institutional deployment requirements, including user authentication integration, data privacy compliance, and administrative oversight capabilities. Maintenance considerations prioritize educational continuity, ensuring that system updates and improvements can be deployed without interrupting ongoing learning activities.
+The design process began with analysis of user requirements, focusing on cognitive load reduction and learning motivation enhancement. Interface design decisions were evaluated based on their impact on learning outcomes rather than purely aesthetic considerations, ensuring that visual elements support rather than distract from objectives.
 }
 
 {\color{maroon}
 \section{Data Preparation}
 \label{sec:data_preparation}
 
-Pre-processing procedures were devised and implemented to handle the complexities of natural language comparison in educational contexts. The text normalization pipeline ensures consistent similarity computation across diverse input formats while preserving semantic meaning essential for educational assessment. Consol implements a sophisticated multi-stage preprocessing methodology that addresses the challenges of handling diverse document formats including PDF, Microsoft Word documents, and plain text files commonly encountered in educational environments.
+Pre-processing procedures were devised and implemented to handle the complexities of natural language comparison. The text normalization pipeline ensures consistent similarity computation across diverse input formats while preserving semantic meaning essential for assessment. Consol implements a sophisticated multi-stage preprocessing methodology that addresses the challenges of handling diverse document formats including PDF, Microsoft Word documents, and plain text files commonly encountered in environments.
 
 \subsection{Text Preprocessing Pipeline}
 
-The preprocessing methodology prioritized semantic preservation over syntactic standardization, recognizing that educational content assessment requires maintaining conceptual meaning while removing formatting artifacts that could interfere with similarity computation. The pipeline addresses common challenges in educational text processing including inconsistent capitalization, punctuation variations, and formatting inconsistencies typical in student-generated content.
+The preprocessing methodology prioritized semantic preservation over syntactic standardization, recognizing that content assessment requires maintaining conceptual meaning while removing formatting artifacts that could interfere with similarity computation. The pipeline addresses common challenges in text processing including inconsistent capitalization, punctuation variations, and formatting inconsistencies typical in student-generated content.
 
-Consol's preprocessing implementation utilizes a comprehensive cleaning algorithm integrated within the SimCSE API service that systematically removes academic document artifacts while preserving educational content integrity. The preprocessing workflow operates through multiple sequential stages that 1.) eliminate non-textual elements including URLs, DOI identifiers, and hyperlinks that provide no semantic value for similarity assessment, 2.) remove academic metadata such as volume numbers, page headers, copyright notices, and publication information that represents formatting rather than content, 3.) filter email addresses and contact information that appear in academic documents but do not contribute to educational assessment, 4.) extract and remove figure captions, table references, and bibliographic citations that represent structural elements rather than core content, and 5.) normalize whitespace, eliminate form feeds, and consolidate multiple newlines to create consistent text formatting suitable for tokenization and similarity analysis.
+Consol's preprocessing implementation utilizes a comprehensive cleaning algorithm integrated within the SimCSE API service that systematically removes document artifacts while preserving content integrity. The preprocessing workflow operates through multiple sequential stages that eliminate non-textual elements including URLs, DOI identifiers, and hyperlinks that provide no semantic value for similarity assessment.
+
+The system removes metadata such as volume numbers, page headers, copyright notices, and publication information that represents formatting rather than content. Additionally, it filters email addresses and contact information that appear in documents but do not contribute to assessment, extracts and removes figure captions, table references, and bibliographic citations that represent structural elements rather than core content, and normalizes whitespace, eliminates form feeds, and consolidates multiple newlines to create consistent text formatting suitable for tokenization and similarity analysis.
 
 The cleaning algorithm employs regular expression patterns specifically designed for educational document processing, including pattern matching for common academic formatting conventions such as journal volume notation (Vol\.|Page|©|Copyright), seasonal publication identifiers (Fall|Spring|Summer|Winter), and standard figure referencing formats (Figure|Table followed by numerical identifiers). Text normalization procedures ensure that identical content expressed with different formatting conventions receives consistent preprocessing treatment, maintaining assessment fairness across diverse input sources.
 
-\subsection{Document Format Integration}
+\subsubsection{Document Format Processing Architecture}
 
-Consol's file upload system supports multiple document formats through specialized loaders that handle format-specific extraction challenges while maintaining semantic content integrity. The system implements distinct processing pathways for 1.) PDF documents using PyPDFLoader from the langchain\_community library that extracts text while preserving paragraph structure and handling embedded metadata, 2.) Microsoft Word documents through Docx2txtLoader that processes formatted text, tables, and headers while eliminating proprietary formatting codes, and 3.) plain text files using TextLoader with UTF-8 encoding that ensures proper character handling across diverse linguistic contexts.
+Consol's document preprocessing architecture implements three distinct processing pipelines, each optimized for specific file formats and their inherent structural characteristics. The system supports PDF, DOCX, and TXT formats through specialized loaders that address format-specific extraction challenges while maintaining semantic content integrity for similarity assessment.
 
-The preprocessing integration occurs at the API level through the upload-file endpoint, where documents undergo immediate cleaning upon upload, ensuring that all text content entering the similarity assessment pipeline maintains consistent formatting and quality standards. This preprocessing approach enables seamless integration between file upload functionality and semantic similarity computation while maintaining the educational assessment system's reliability and consistency requirements.
+Each preprocessing pipeline follows a structured approach: format detection and validation, specialized parsing mechanisms, text extraction and cleaning, and standardized output preparation for SimCSE processing. The following subsections detail the technical implementation of each pipeline, demonstrating how format-specific processing strategies converge into a unified text preparation workflow suitable for semantic similarity computation.
+
+
+\subsubsection{PDF Processing Pipeline}
+\label{subsubsec:pdf_pipeline}
+
+The PDF preprocessing pipeline utilizes the \texttt{PyPDFLoader} from the \texttt{langchain\_community} library to extract textual content from Portable Document Format files. This pipeline addresses the complexities of PDF structure, including embedded fonts, encoding variations, and page-based content organization. Figure \ref{fig:pdf_pipeline} illustrates the systematic processing workflow from binary stream parsing through text reconstruction, demonstrating the technical stages required to transform PDF documents into clean text suitable for semantic similarity analysis.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{images/pdf_processing_pipeline}
+\caption[PDF Processing Pipeline]{PDF document processing pipeline showing binary parsing, page object extraction, and text reconstruction for semantic similarity preparation.}
+\label{fig:pdf_pipeline}
+\end{figure}
+\FloatBarrier
+
+The PDF processing pipeline operates through a systematic approach that begins with binary stream parsing using the \texttt{pypdf} library's PDF reader functionality. The system treats PDF files as structured binary documents containing page objects, content streams, and metadata dictionaries that require specialized parsing to extract meaningful textual content.
+
+Initial processing involves PDF structure validation and page object enumeration, where the system identifies and catalogs all page objects within the document structure. Each page object contains content streams that encode text positioning, font references, and character encodings using PDF's internal representation format.
+
+Text extraction occurs through content stream decompression and parsing, where the system processes PDF operators and operands to reconstruct readable text from encoded content streams. The pipeline handles various text encoding schemes including ASCII, UTF-8, and proprietary font encodings, ensuring accurate character representation across diverse PDF creation sources.
+
+Post-extraction processing includes metadata removal and text normalization, where system-generated content such as page numbers, headers, and footers are filtered to maintain focus on document body content. The pipeline outputs clean, structured text that preserves paragraph organization while eliminating PDF-specific formatting artifacts that could interfere with semantic similarity computation.
+
+\subsubsection{DOCX Processing Pipeline}
+\label{subsubsec:docx_pipeline}
+
+The Microsoft Word document processing pipeline employs the \texttt{Docx2txtLoader} to handle complex DOCX file structures through specialized ZIP archive processing and XML parsing methodologies. This pipeline addresses the multi-layered architecture of Microsoft Word documents while preserving semantic content integrity. Figure \ref{fig:docx_pipeline} presents the complete processing sequence from ZIP archive handling through structured text assembly, highlighting the technical complexity involved in extracting meaningful content from Microsoft Word's proprietary document format.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{images/docx_processing_pipeline}
+\caption[DOCX Processing Pipeline]{DOCX document processing pipeline illustrating ZIP extraction, XML parsing, and structured text assembly for semantic analysis preparation.}
+\label{fig:docx_pipeline}
+\end{figure}
+\FloatBarrier
+
+The DOCX processing pipeline begins with ZIP archive handling, treating the DOCX file as a compressed container that includes XML documents, media files, and relationship mappings. The system utilizes Python's \texttt{zipfile.ZipFile} functionality to access the internal structure and locate primary content within the \texttt{word/document.xml} file.
+
+XML parsing employs \texttt{xml.etree.ElementTree} to navigate Microsoft Word's XML schema, processing the hierarchical document structure through systematic traversal of paragraph elements (\texttt{w:p}), run elements (\texttt{w:r}), and text nodes (\texttt{w:t}). The system handles formatting markers including tabs (\texttt{w:tab}) and line breaks (\texttt{w:br}) while maintaining document structure.
+
+Content assembly processes additional document elements including headers and footers from \texttt{word/header*.xml} and \texttt{word/footer*.xml} files, hyperlink resolution through relationship mappings in \texttt{word/\_rels/document.xml.rels}, and structured content extraction that preserves paragraph organization.
+
+Final text assembly combines all extracted elements into a unified Unicode string, eliminating proprietary formatting codes while preserving semantic structure essential for similarity assessment. The pipeline outputs clean, standardized text suitable for SimCSE processing while maintaining the original document's logical organization.
+
+\subsubsection{TXT Processing Pipeline}
+\label{subsubsec:txt_pipeline}
+
+The plain text processing pipeline utilizes the \texttt{TextLoader} to handle UTF-8 encoded text files through character encoding detection and normalization procedures. This pipeline ensures consistent text handling across diverse linguistic contexts and encoding variations. Figure \ref{fig:txt_pipeline} depicts the streamlined processing workflow from encoding detection through content validation, demonstrating the systematic approach to standardizing plain text input for reliable semantic similarity processing.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{images/txt_processing_pipeline}
+\caption[TXT Processing Pipeline]{Plain text processing pipeline demonstrating encoding detection, UTF-8 normalization, and content validation for semantic similarity preparation.}
+\label{fig:txt_pipeline}
+\end{figure}
+\FloatBarrier
+
+The TXT processing pipeline initiates with character encoding detection using the \texttt{chardet} library to identify file encoding schemes and ensure proper character interpretation. The system supports various encoding formats including UTF-8, ASCII, ISO-8859-1, and Windows-1252, automatically detecting and converting to standardized UTF-8 representation.
+
+Content validation processes include line ending normalization, where the system converts various line ending formats into consistent Unix-style line endings, ensuring uniform text structure across different operating system origins.
+
+Unicode validation examines the text content for character validity and replaces invalid byte sequences with appropriate Unicode replacement characters, maintaining text integrity while preventing processing errors in downstream components.
+
+Final processing includes whitespace normalization and content cleaning, where excessive whitespace is reduced and any remaining encoding artifacts are removed. The pipeline outputs clean, standardized UTF-8 text ready for SimCSE semantic similarity processing, ensuring consistent input quality regardless of the original text file's encoding or formatting characteristics.
 }
 
 {\color{maroon}
 \section{Semantic Comparison}
 \label{sec:semantic_comparison}
 
-The employment of Simple Contrastive Sentence Embeddings (SimCSE) for semantic comparison of two given texts forms the core technological foundation of the assessment system. This section details the implementation approach, scoring mechanisms, and validation procedures for semantic similarity computation in educational contexts.
+The employment of Simple Contrastive Sentence Embeddings (SimCSE) for semantic comparison of two given texts forms the core technological foundation of the assessment system. This section details the implementation approach, scoring mechanisms, and validation procedures for semantic similarity computation.
 
 \subsection{SimCSE Mathematical Foundation}
 
 The SimCSE methodology employs contrastive learning for sentence representation, implementing dropout as a data augmentation strategy to create positive pairs from identical sentences while treating all other sentences in the batch as negative examples. The contrastive loss function is formulated as:
 
-$$\ell_i = -\log \frac{e^{\text{sim}(h_i, h_i^+)/\tau}}{\sum_{j=1}^{N} e^{\text{sim}(h_i, h_j^+)/\tau}}$$
+\begin{equation}
+\ell_i = -\log \frac{e^{\text{sim}(h_i, h_i^+)/\tau}}{\sum_{j=1}^{N} e^{\text{sim}(h_i, h_j^+)/\tau}}
+\end{equation}
 
 where $h_i$ represents the hidden representation of input sentence $i$, $h_i^+$ denotes the positive sample (same sentence with different dropout), $\text{sim}(\cdot,\cdot)$ computes cosine similarity, $\tau$ is the temperature parameter controlling distribution sharpness, and $N$ represents the batch size.
 
 The 768-dimensional embedding space exhibits structured semantic organization with dimensions 1-100 capturing basic semantic concepts, dimensions 101-300 encoding grammatical features, dimensions 301-500 representing domain knowledge, and dimensions 501-768 modeling complex relationships including causality and contextual associations.
 
-CLS Token Extraction: The system extracts sentence representations from position 0 of the transformer output, corresponding to the [CLS] token that aggregates information from all sequence tokens. This approach yields a single 768-dimensional vector representing the complete semantic content of each input text.
+The system extracts sentence representations from position 0 of the transformer output, corresponding to the [CLS] token that aggregates information from all sequence tokens. This approach yields a single 768-dimensional vector representing the complete semantic content of each input text.
 
 \subsection{SimCSE Architecture Implementation}
 

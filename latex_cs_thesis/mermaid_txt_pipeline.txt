@@ -1,0 +1,16 @@
+flowchart TD
+    A[TXT File Input] --> B[Encoding Detection]
+    B --> C[Character Set Validation]
+    C --> D[UTF-8 Conversion]
+    D --> E[Line Ending Normalization]
+    E --> F[Unicode Validation]
+    F --> G[Whitespace Processing]
+    G --> H[Content Cleaning]
+    H --> I[Clean Text Output]
+    
+    %% Technical annotations
+    B -.-> B1["chardet library<br/>Encoding analysis"]
+    C -.-> C1["UTF-8, ASCII, ISO-8859-1,<br/>Windows-1252 support"]
+    E -.-> E1["Convert \\r\\n, \\r to \\n<br/>Unix line endings"]
+    F -.-> F1["Replace invalid bytes<br/>Unicode replacement chars"]
+    G -.-> G1["Normalize whitespace<br/>Remove artifacts"]

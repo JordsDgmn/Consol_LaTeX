@@ -5,14 +5,14 @@
 \label{chap:theoretical_framework}
 
 % NEWADDITION: Section structure based on ClassiFish reference
-\section{Introduction}
+
 
 {\color{maroon}
 The theoretical framework for the Consol system draws from multiple interconnected domains of research that provide the scientific foundation for semantic similarity-based learning assessment. This framework integrates memory and cognitive science research with natural language processing theory and progress tracking methodologies to establish a cohesive foundation for the Consol platform.
 
 The framework encompasses four primary theoretical domains: cognitive memory processes that explain how students naturally encode and retrieve information (Sachs, 1967; Karpicke \& Roediger, 2008; Naim et al., 2020), semantic similarity measurement principles that enable computational assessment of meaning relationships (Gao et al., 2021; Devlin et al., 2019), progress tracking and motivation theories that support sustained learning engagement (Deterding et al., 2011; Gaston \& Cooper, 2017), and learning analytics frameworks that provide educational insight through data visualization (Baars et al., 2022; Stojanovic et al., 2020).
 
-These theoretical foundations are systematically mapped in Figure \ref{fig:theoretical_matrix} which demonstrates how each research domain supports specific aspects of the Consol platform, ensuring that system design decisions align with established educational and computational theory. The theoretical architecture diagram (Figure \ref{fig:theoretical_architecture}) provides a comprehensive visualization of how these theories integrate to support Consol's functionality.
+These theoretical foundations are laid out in a matrix in Figure \ref{fig:theoretical_matrix} which demonstrates how each research domain supports specific aspects of the Consol platform, along with its variables and methods used, and again depicted as a diagram in Figure \ref{fig:theoretical_architecture}, ensuring that system design decisions align with established educational and computational theory. The theoretical architecture diagram (Figure \ref{fig:theoretical_architecture}) provides a visualization of how these theories integrate to support Consol's functionality by also tying each researched aspect into a tangible feature that ends up in Consol's web-based platform.
 }
 
 {\color{maroon}
@@ -81,11 +81,11 @@ Naim et al. (2020) establish that human memory recall follows universal mathemat
 The mathematical foundation demonstrates that retrieval occurs through associative chains where subsequent items are accessed based on similarity to currently active items. This theoretical framework supports Consol's implementation of semantic similarity measurement as an assessment mechanism, providing students with quantitative feedback that reflects the mathematical principles underlying their own memory retrieval processes.
 }
 
-\section{Semantic Similarity Theoretical Framework}
-% This section will cover:
-% - Natural language processing foundations
-% - Semantic similarity measurement principles
-% - SimCSE theoretical basis (Gao et al., 2021)
+% \section{Semantic Similarity Theoretical Framework}
+% % This section will cover:
+% % - Natural language processing foundations
+% % - Semantic similarity measurement principles
+% % - SimCSE theoretical basis (Gao et al., 2021)
 
 {\color{maroon}
 \section{Semantic Similarity and Natural Language Processing Theory}
@@ -153,16 +153,6 @@ During recall sessions, the platform compares student-generated responses agains
 }
 
 {\color{maroon}
-\subsection{Analytics Dashboard and Three-Dimensional Performance Measurement}
-
-Consol's analytics dashboard implements multi-dimensional performance assessment through radar chart visualization that displays three primary learning metrics: Comprehension (semantic similarity performance), Speed (session completion efficiency), and Mastery (consistency of high-performance recall). This three-axis system directly applies Baars et al.'s (2022) findings about mobile learning requiring holistic assessment approaches that capture learning complexity beyond single metrics.
-
-The radar chart visualization provides immediate insight into student learning patterns, enabling identification of balanced development versus specialized strengths. Students achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while high speed with adequate comprehension suggests developing fluency that benefits from continued practice. The mastery dimension reflects consistency across multiple sessions, indicating knowledge consolidation over time.
-
-Session metadata panels provide detailed performance breakdowns including word count analysis, attempt tracking, and temporal performance measurement. This granular data supports the mathematical memory principles established by Naim et al. (2020), enabling students to observe how their recall performance follows predictable patterns based on material complexity and practice frequency.
-}
-
-{\color{maroon}
 \subsection{Three-Star Rating System Implementation}
 
 Consol implements the three-star rating system directly based on Gaston and Cooper's (2017) research demonstrating that three-tier performance indicators optimize motivation while maintaining meaningful differentiation. The star allocation follows graduated similarity thresholds: three stars for scores above 0.8 (comprehensive semantic alignment), two stars for scores between 0.6-0.8 (adequate comprehension), one star for scores between 0.3-0.6 (partial understanding), and zero stars for scores below 0.3 (insufficient recall).
@@ -173,10 +163,30 @@ The daily streak calendar visualizes consistency performance by tracking consecu
 }
 }
 
+
+
+
+
 \section{Progress Tracking and Motivation Theory}
 
 {\color{maroon}
 The sustained engagement required for effective learning necessitates systematic progress tracking and motivational design that supports long-term educational commitment. The theoretical foundation draws from gamification research, habit formation studies, and motivational psychology to create environments that encourage consistent learning behaviors.
+
+
+
+
+\subsection{Mobile Learning and Self-Regulation Theory}
+
+Baars et al. (2022) establish that effective mobile learning environments must integrate multiple assessment dimensions to provide comprehensive evaluation of student performance. Their exploration of students' use of mobile technology for self-regulated learning reveals that single-metric assessment fails to capture the complexity of learning processes, necessitating holistic approaches that consider various performance indicators including engagement patterns, consistency measures, and improvement trends.
+
+The theoretical framework emphasizes that learning platforms (not necessarily just mobile) achieve maximum effectiveness when integrated seamlessly into daily routines while providing meaningful learning experiences. This integration enables frequent, brief sessions that accumulate into substantial educational progress while supporting spaced learning principles that optimize memory retention through distributed practice. This materializes as Consol's daily streak feature, where consistency is visually tracked to encourage habitual engagement without imposing rigid usage requirements that could undermine intrinsic motivation. The minimum requirement of one session per day is enough stimulate the learning process, and the self-regulated goal to improve one's own performance is what drives continued usage, and therefore steady progress in memory consolidation.
+}
+
+% say something about how it is not the "mobile" aspect only that is the key, but also the self-regulated learning aspect and the learning analytics that is important
+
+
+
+
 
 \subsection{Gamification Theory in Educational Contexts}
 
@@ -191,25 +201,68 @@ The theoretical framework recognizes that educational gamification must maintain
 Stojanovic, Grund, and Fries (2020) establish that app-based habit building systems effectively reduce motivational impairments during studying through structured progress feedback and consistency tracking. Their research identifies key theoretical factors: specific goal setting that provides clear learning targets, immediate feedback that confirms progress toward objectives, progress visualization that makes improvement visible over time, and consistency rewards that recognize sustained engagement patterns.
 
 These factors work synergistically to support long-term engagement beyond initial motivation phases, enabling learners to maintain educational practices even when immediate enthusiasm wanes. Consol accommodates these principles by providing an environment where students can observe their own study consistency patterns and improvement trends without external pressure to maintain artificial performance standards.
-}
 
-\section{Learning Analytics and Performance Measurement Theory}
+
+
 
 {\color{maroon}
-The systematic collection and analysis of learning data provides opportunities for enhanced educational understanding through quantitative insights into learning processes. The theoretical foundation encompasses data visualization principles, self-regulated learning theory, and educational measurement approaches that support rather than replace human judgment in learning assessment.
+\subsection{Immediate Feedback Implementation in Consol}
 
-\subsection{Mobile Learning and Self-Regulation Theory}
+Karpicke and Roediger (2008) establish that feedback timing significantly impacts learning effectiveness, with immediate feedback promoting better knowledge consolidation than delayed feedback. The Consol system provides immediate similarity feedback that enables students to assess their recall accuracy in real-time during the note recollection process.
 
-Baars et al. (2022) establish that effective mobile learning environments must integrate multiple assessment dimensions to provide comprehensive evaluation of student performance. Their exploration of students' use of mobile technology for self-regulated learning reveals that single-metric assessment fails to capture the complexity of learning processes, necessitating holistic approaches that consider various performance indicators including engagement patterns, consistency measures, and improvement trends.
-
-The theoretical framework emphasizes that mobile learning platforms achieve maximum effectiveness when integrated seamlessly into daily routines while providing meaningful learning experiences. This integration enables frequent, brief sessions that accumulate into substantial educational progress while supporting spaced learning principles that optimize memory retention through distributed practice.
-
-\subsection{Educational Data Visualization Theory}
-
-Vișcu (2024) provides comprehensive analysis of optimizing educational environments for active learning methodologies, establishing that effective educational technology must balance challenge and support while addressing three key motivational factors: autonomy (student control over learning processes), competence (achievable yet challenging goals), and relatedness (meaningful outcomes connected to personal objectives).
-
-The research emphasizes that immediate feedback systems prove most effective when providing actionable information that students can use to improve their performance rather than merely documenting their current achievement level. This distinction emphasizes the importance of formative rather than summative feedback approaches in educational technology design, enabling students to make informed decisions about their learning strategies based on objective performance data.
+The immediate feedback mechanism displays similarity scores as students complete their recall attempts, enabling them to understand the quality of their memory retrieval while the cognitive processes remain active. This real-time assessment supports metacognitive awareness by helping students identify conceptual gaps and adjust their understanding during the learning session rather than waiting for delayed evaluation.
 }
+
+{\color{maroon}
+\section{Automated Assessment Validity Theory}
+
+
+A valid automated assessment requires consistency in measurement across equivalent inputs, sensitivity to meaningful differences in understanding quality, objectivity through elimination of human scorer bias, and educational relevance through alignment with learning objectives. SimCSE-based assessment satisfies these criteria by providing deterministic similarity scores that reflect semantic relationships while maintaining objectivity across diverse response styles.
+
+In this study, this implies that Consol having a consistent and deterministic scoring agent prevents situations such as arbitrary scoring, which is undeniably prevalent in human interventions. It is unrealistic for human-like logic to constantly affirm similarity by arriving at a certain number without injecting a degree of subjectivity or personal bias. Automated assessment, especially from the likes of SimCSE, would not be susceptible to fluctuations in scoring. In return, this would provide students with a more reliable and consistent feedback mechanism that they can trust to accurately reflect their learning progress.
+
+Confidence in the assessment is foundational for the rest of the progress tracking and motivation theories, as well as its implementations. 
+} 
+
+\subsection{Data Visualization and Learning Analytics}
+
+{\color{maroon}
+Building upon the foundation of reliable automated assessment, effective educational data visualization requires systematic collection and analysis of learning data to provide enhanced educational understanding through quantitative insights into learning processes. Baars et al. (2022) establish that effective learning analytics require multi-dimensional assessment approaches that capture learning complexity beyond single metrics, emphasizing the importance of comprehensive performance indicators including engagement patterns, consistency measures, and improvement trends.
+
+Vișcu (2024) provides comprehensive analysis of optimizing educational environments for active learning methodologies, establishing that effective educational technology must balance challenge and support while addressing three key motivational factors: autonomy (student control over learning processes), competence (achievable yet challenging goals), and relatedness (meaningful outcomes connected to personal objectives). The research emphasizes that immediate feedback systems prove most effective when providing actionable information that students can use to improve their performance rather than merely documenting their current achievement level.
+
+This integrated foundation encompasses data visualization principles supported by educational technology research (Vișcu, 2024), self-regulated learning theory that emphasizes student autonomy in monitoring their own progress (Baars et al., 2022), and educational measurement approaches that support rather than replace human judgment in learning assessment. Stojanovic et al. (2020) demonstrate that systematic progress tracking through app-based systems effectively reduces motivational impairments during studying by providing structured feedback and consistency visualization that enables learners to maintain educational practices beyond initial motivation phases.
+
+The distinction between formative and summative feedback approaches proves critical in educational technology design, enabling students to make informed decisions about their learning strategies based on objective performance data derived from the reliable assessment foundation established through automated scoring consistency.
+}
+
+\subsection{Multi-Dimensional Performance Assessment}
+
+Effective educational assessment requires multiple performance indicators that capture different aspects of learning achievement. Consol implements multi-dimensional measurement through the radar chart visualization that displays three primary metrics: comprehension (average semantic similarity across sessions), speed (words per minute during recall), and mastery (percentage of sessions achieving three-star performance).
+
+This three-dimensional assessment recognizes that learning involves multiple cognitive processes that cannot be captured through single metrics. Students achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while balanced performance across all three dimensions indicates comprehensive learning development. The session metadata provides additional granular analysis including word count tracking and attempt frequency measurement.
+
+% \subsection{Formative Assessment Through Similarity Scoring}
+
+% The distinction between formative and summative assessment establishes that educational technologies should primarily support learning rather than merely measuring achievement. Consol functions as formative assessment by providing ongoing similarity feedback that students can use to improve their recall performance during the learning session.
+
+% The similarity-based feedback satisfies formative assessment requirements by providing actionable guidance (specific similarity scores indicating recall quality), timely delivery (immediate feedback during recall sessions), and criterion-referenced comparison (performance measured against students' own original notes rather than peer comparison). This approach enables students to make immediate adjustments to their recall strategies while maintaining focus on learning improvement.
+
+
+
+{\color{maroon}
+\subsection{Analytics Dashboard and Three-Dimensional Performance Measurement}
+
+Consol's analytics dashboard implements multi-dimensional performance assessment through radar chart visualization that displays three primary learning metrics: Comprehension (semantic similarity performance), Speed (session completion efficiency), and Mastery (consistency of high-performance recall). This three-axis system directly applies Baars et al.'s (2022) findings about mobile learning requiring holistic assessment approaches that capture learning complexity beyond single metrics.
+
+The radar chart visualization provides immediate insight into student learning patterns, enabling identification of balanced development versus specialized strengths. Students achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while high speed with adequate comprehension suggests developing fluency that benefits from continued practice. The mastery dimension reflects consistency across multiple sessions, indicating knowledge consolidation over time.
+
+Session metadata panels provide detailed performance breakdowns including word count analysis, attempt tracking, and temporal performance measurement. This granular data supports the mathematical memory principles established by Naim et al. (2020), enabling students to observe how their recall performance follows predictable patterns based on material complexity and practice frequency.
+}
+
+
+
+
 
 \section{Integrative Framework}
 
@@ -223,47 +276,14 @@ The integration of cognitive science, computational linguistics, gamification, a
 
 Memory consolidation theory (Karpicke \& Roediger, 2008) directly supports Consol's note recall session structure where students recreate their notes from memory, engaging in retrieval practice that strengthens long-term retention. The platform's immediate similarity feedback provides students with objective assessment of their recall accuracy, supporting the metacognitive awareness that Karpicke and Roediger identify as crucial for effective learning.
 
-SimCSE semantic similarity theory (Gao et al., 2021) enables the computational assessment engine that evaluates student recall against original notes. The three-tier threshold system (0.8, 0.6, 0.3) translates SimCSE similarity scores into meaningful educational feedback through the star rating display, providing students with immediate understanding of their performance level.
+SimCSE semantic similarity theory (Gao et al., 2021) enables the computational assessment engine that evaluates student recall against original notes. The arbitrarily-adjusted three-tier threshold system translates SimCSE similarity scores into meaningful educational feedback through the star rating display, providing students with immediate understanding of their performance level.
 
-Gamification theory (Deterding et al., 2011) supports the daily streak calendar that tracks consecutive study days, encouraging habit formation without creating dependency on external rewards. The calendar visualization enables students to observe their consistency patterns while maintaining focus on learning rather than competition.
+Progress tracking theory (Deterding et al., 2011) supports the daily streak calendar that tracks consecutive study days, encouraging habit formation without creating dependency on external rewards. The calendar visualization enables students to observe their consistency patterns while maintaining focus on learning rather than competition.
 
 Learning analytics theory (Baars et al., 2022) supports the multi-dimensional radar chart that displays comprehension, speed, and mastery metrics. This visualization provides students with comprehensive performance insight that captures learning complexity beyond single similarity scores, enabling identification of balanced development versus specialized strengths.
 }
 
 
-\section{Assessment and Feedback Theory}
-% This section will cover:
-% - Automated assessment principles
-% - Feedback mechanisms in learning
-% - Performance measurement in educational contexts
-
-{\color{maroon}
-\subsection{Automated Assessment Validity Theory}
-
-Automated assessment systems must demonstrate both construct validity (measuring intended learning outcomes) and consequential validity (producing beneficial educational effects). The Consol system's semantic similarity approach addresses construct validity by evaluating conceptual understanding rather than superficial reproduction, aligning assessment with cognitive science findings about natural memory processes.
-
-The theoretical framework establishes that valid automated assessment requires consistency in measurement across equivalent inputs, sensitivity to meaningful differences in understanding quality, objectivity through elimination of human scorer bias, and educational relevance through alignment with learning objectives. SimCSE-based assessment satisfies these criteria by providing deterministic similarity scores that reflect semantic relationships while maintaining objectivity across diverse response styles.
-
-{\color{maroon}
-\subsection{Immediate Feedback Implementation in Consol}
-
-Karpicke and Roediger (2008) establish that feedback timing significantly impacts learning effectiveness, with immediate feedback promoting better knowledge consolidation than delayed feedback. The Consol system provides immediate similarity feedback that enables students to assess their recall accuracy in real-time during the note recollection process.
-
-The immediate feedback mechanism displays similarity scores as students complete their recall attempts, enabling them to understand the quality of their memory retrieval while the cognitive processes remain active. This real-time assessment supports metacognitive awareness by helping students identify conceptual gaps and adjust their understanding during the learning session rather than waiting for delayed evaluation.
-
-\subsection{Multi-Dimensional Performance Assessment}
-
-Effective educational assessment requires multiple performance indicators that capture different aspects of learning achievement. Consol implements multi-dimensional measurement through the radar chart visualization that displays three primary metrics: comprehension (average semantic similarity across sessions), speed (words per minute during recall), and mastery (percentage of sessions achieving three-star performance).
-
-This three-dimensional assessment recognizes that learning involves multiple cognitive processes that cannot be captured through single metrics. Students achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while balanced performance across all three dimensions indicates comprehensive learning development. The session metadata provides additional granular analysis including word count tracking and attempt frequency measurement.
-
-\subsection{Formative Assessment Through Similarity Scoring}
-
-The distinction between formative and summative assessment establishes that educational technologies should primarily support learning rather than merely measuring achievement. Consol functions as formative assessment by providing ongoing similarity feedback that students can use to improve their recall performance during the learning session.
-
-The similarity-based feedback satisfies formative assessment requirements by providing actionable guidance (specific similarity scores indicating recall quality), timely delivery (immediate feedback during recall sessions), and criterion-referenced comparison (performance measured against students' own original notes rather than peer comparison). This approach enables students to make immediate adjustments to their recall strategies while maintaining focus on learning improvement.
-}
-}
 
 
 
@@ -277,9 +297,9 @@ The theoretical framework establishes a comprehensive foundation for the Consol 
 
 Memory consolidation theory provides the conceptual foundation, establishing that learning involves progressive abstraction where students naturally compress and restructure information while preserving essential meaning. This principle directly supports assessment approaches that recognize semantic equivalence rather than demanding exact reproduction, positioning the Consol system as educationally sound rather than technologically convenient.
 
-SimCSE contrastive learning theory offers the computational foundation, providing mathematically rigorous methods for measuring semantic similarity that align with human cognitive processes. The framework's ability to capture semantic relationships through vector space geometry enables objective assessment that reflects genuine understanding while maintaining consistency across diverse response styles.
+SimCSE contrastive learning theory offers the computational foundation, providing mathematically rigorous methods for measuring semantic similarity that aligns just enough with human cognitive processes, but not entirely that it becomes subjective and flimsy in providing similarity scores. The framework's ability to capture semantic relationships through vector space geometry enables objective assessment that reflects genuine understanding while maintaining consistency across diverse response styles.
 
-Educational technology theory provides the implementation framework, establishing principles for system architecture, user interface design, and feedback mechanisms that support learning effectiveness. The integration of progress tracking with immediate feedback creates an environment that promotes consistent practice while providing meaningful performance measurement.
+Progress tracking and motivation theory, accompanied by the learning analytics theory provide the developmental principles for user interface design and feedback mechanisms that support learning effectiveness. The integration of progress tracking with immediate feedback creates an environment that promotes consistent practice while providing meaningful performance measurement.
 
-Together, these theoretical foundations justify the Consol system as a principled approach to educational technology that bridges cognitive science insights with practical assessment needs. The system represents not merely a technical implementation but a theoretically grounded intervention that addresses fundamental challenges in learning assessment while supporting effective educational practices.
+Together, these theoretical foundations justify the Consol system as a principled approach to self-learning technology that bridges cognitive science insights with practical assessment needs. The system represents not merely a technical implementation as a proof-of-concept, but a theoretically grounded intervention that addresses fundamental challenges in learning assessment based on key pillars of memory research, and educational psychology.
 }

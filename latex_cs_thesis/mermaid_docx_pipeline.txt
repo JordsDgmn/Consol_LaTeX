@@ -1,0 +1,17 @@
+flowchart TD
+    A[DOCX File Input] --> B[ZIP Archive Handler]
+    B --> C[Internal Structure Access]
+    C --> D[XML Document Location]
+    D --> E[DOM Tree Parsing]
+    E --> F[Element Traversal]
+    F --> G[Text Node Extraction]
+    G --> H[Content Assembly]
+    H --> I[Structure Preservation]
+    I --> J[Clean Text Output]
+    
+    %% Technical annotations
+    B -.-> B1["zipfile.ZipFile<br/>Archive processing"]
+    D -.-> D1["word/document.xml<br/>Primary content"]
+    E -.-> E1["xml.etree.ElementTree<br/>XML parsing"]
+    F -.-> F1["w:p → w:r → w:t<br/>Hierarchy navigation"]
+    H -.-> H1["Headers, footers,<br/>hyperlinks integration"]

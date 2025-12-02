@@ -1,0 +1,16 @@
+flowchart TD
+    A[PDF File Input] --> B[Binary Stream Reader]
+    B --> C[PDF Structure Validation]
+    C --> D[Page Object Enumeration]
+    D --> E[Content Stream Extraction]
+    E --> F[Text Operator Processing]
+    F --> G[Encoding Scheme Handling]
+    G --> H[Metadata Filtering]
+    H --> I[Text Normalization]
+    I --> J[Clean Text Output]
+    
+    %% Technical annotations
+    B -.-> B1["pypdf.PdfReader<br/>Binary parsing"]
+    E -.-> E1["Content stream<br/>decompression"]
+    G -.-> G1["UTF-8, ASCII,<br/>font encodings"]
+    H -.-> H1["Remove headers,<br/>footers, page numbers"]
