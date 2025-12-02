@@ -19,7 +19,7 @@ The fundamental architecture of the Consol system follows a layered approach tha
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/basic_system_architecture_dataflow.png}
-{\color{maroon}\tiny\caption[Basic System Architecture and Data Flow]{Basic system architecture showing the complete data flow cycle from user input through semantic processing to educational feedback. The diagram illustrates five core layers: User Interface, Frontend Web Application, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}}
+\caption[System Architecture and Data Flow]{{\color{maroon}\tiny System architecture showing the complete data flow cycle from user input through semantic processing to educational feedback. The diagram illustrates five core layers: User Interface, Frontend Web Application, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}}
 \label{fig:basic_system_architecture}
 \end{figure}
 \FloatBarrier
@@ -102,7 +102,7 @@ The SimCSE architecture forms the core of Consol's semantic similarity assessmen
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/simcse_architecture.png}
-{\color{maroon}\tiny\caption[SimCSE Architecture Implementation]{Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}}
+\caption[SimCSE Architecture Implementation]{{\color{maroon}\tiny Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}}
 \label{fig:simcse_architecture}
 \end{figure}
 \FloatBarrier
@@ -135,7 +135,7 @@ One of the critical aspects of developing Consol was establishing appropriate si
 
 \begin{table}[!htbp]
 \centering
-{\color{maroon}\tiny\caption[Similarity Score Thresholds for Educational Assessment]{Initial similarity score thresholds established for the star rating system based on educational assessment principles}}
+\caption[Similarity Score Thresholds for Educational Assessment]{{\color{maroon}\tiny Initial similarity score thresholds established for the star rating system based on educational assessment principles}}
 \label{tab:similarity_thresholds}
 \begin{tabular}{|c|c|c|p{6cm}|}
 \hline
@@ -165,7 +165,7 @@ This systematic approach ensured that the final threshold settings would be both
 
 \begin{table}[!htbp]
 \centering
-{\color{maroon}\tiny\caption[Test Cases for Scoring Threshold Adjustment]{Test sentences to feed to SimCSE for scoring threshold adjustment, with expected results. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
+\caption[Test Cases for Scoring Threshold Adjustment]{{\color{maroon}\tiny Test sentences to feed to SimCSE for scoring threshold adjustment, with expected results. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
 \label{tab:test_cases}
 \begin{tabular}{|p{0.8cm}|p{6.5cm}|p{2.5cm}|p{2.2cm}|}
 \hline
@@ -198,7 +198,7 @@ The systematic testing revealed both strengths and areas for improvement in SimC
 
 \begin{table}[!htbp]
 \centering
-{\color{maroon}\tiny\caption[Test Case Results for Scoring Threshold Adjustment]{Resulting scores of the test cases for scoring threshold adjustment. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
+\caption[Test Case Results for Scoring Threshold Adjustment]{{\color{maroon}\tiny Resulting scores of the test cases for scoring threshold adjustment. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
 \label{tab:test_case_results}
 \begin{tabular}{|c|p{6cm}|c|c|}
 \hline
@@ -281,7 +281,7 @@ The development architecture encompasses the complete technical stack integratio
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
-{\color{maroon}\tiny\caption[Development Architecture with API Schema]{Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}}
+\caption[Development Architecture with API Schema]{{\color{maroon}\tiny Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}}
 \label{fig:development_architecture}
 \end{figure}
 \FloatBarrier
@@ -319,7 +319,7 @@ profile\_picture\_url & verbatim & duration\_secs \\
 
 
 \end{minipage}
-{\color{maroon}\tiny\caption{Entity-Relationship Diagram of the Consol Database Schema}}
+\caption{{\color{maroon}\tiny Entity-Relationship Diagram of the Consol Database Schema}}
 \label{fig:database-erd}
 \end{figure}
 
@@ -335,7 +335,7 @@ The Consol system implements a comprehensive educational workflow designed to op
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/user_interaction_flow_decisions.png}
-{\color{maroon}\tiny\caption[User Interaction Flow with Decision Trees]{Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}}
+\caption[User Interaction Flow with Decision Trees]{{\color{maroon}\tiny Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}}
 \label{fig:user_interaction_flow}
 \end{figure}
 \FloatBarrier
