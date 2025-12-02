@@ -16,21 +16,15 @@ The scoring accuracy analysis demonstrated SimCSE's superior alignment with teac
 The comprehensive analysis of 75 assessment instances (5 participants × 5 topics × 3 days) yielded clear evidence of SimCSE's superior performance in educational assessment accuracy.
 
 {\color{maroon}
-Key Statistical Findings:
-\begin{itemize}
-    \item SimCSE vs Teacher - Mean absolute difference = 9.54 points
-    \item Statistical Significance - p < 0.001 (highly significant difference)
-    \item Effect Size - Cohen's d = 1.24 (large effect)
-    \item Consistency - SimCSE demonstrated superior reliability with zero variance across repeated assessments
-\end{itemize}
+The analysis revealed key statistical findings including SimCSE vs Teacher mean absolute difference of 9.54 points, statistical significance at p < 0.001 representing highly significant difference, effect size Cohen's d = 1.24 indicating large effect, and consistency where SimCSE demonstrated superior reliability with zero variance across repeated assessments.
 }
 
-Figure \ref{fig:mean_scores_comparison} illustrates the comprehensive performance comparison across all participants and scoring methods, demonstrating the consistent pattern of SimCSE's closer alignment with teacher assessment standards.
+Figure~\ref{fig:mean_scores_comparison} illustrates the comprehensive performance comparison across all participants and scoring methods, demonstrating the consistent pattern of SimCSE's closer alignment with teacher assessment standards.
 
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{mean_scores_comparison}
-    \caption[Mean Scores Comparison Across Participants]{Mean scores per participant across all topics and days, comparing SimCSE and Teacher assessments. SimCSE consistently demonstrates close alignment with teacher scoring patterns across all five participants.}
+    {\color{maroon}\tiny\caption[Mean Scores Comparison Across Participants]{Mean scores per participant across all topics and days, comparing SimCSE and Teacher assessments. SimCSE consistently demonstrates close alignment with teacher scoring patterns across all five participants.}}
     \label{fig:mean_scores_comparison}
 \end{figure}
 \FloatBarrier
@@ -46,7 +40,7 @@ Figure \ref{fig:ai_deviation_comparison} presents the deviation analysis, showin
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{ai_deviation_comparison}
-    \caption[SimCSE Teacher Assessment Alignment]{SimCSE deviation from teacher baseline per participant showing assessment accuracy in educational contexts.}
+    {\color{maroon}\tiny\caption[SimCSE Teacher Assessment Alignment]{SimCSE deviation from teacher baseline per participant showing assessment accuracy in educational contexts.}}
     \label{fig:ai_deviation_comparison}
 \end{figure}
 \FloatBarrier
@@ -57,7 +51,7 @@ The consistency of SimCSE's performance was validated across all individual part
 
 \begin{table}[!htbp]
 \centering
-\caption[Participant-wise Scoring Accuracy Analysis]{Individual participant scoring accuracy analysis showing mean absolute deviations from teacher baseline}
+{\color{maroon}\tiny\caption[Participant-wise Scoring Accuracy Analysis]{Individual participant scoring accuracy analysis showing mean absolute deviations from teacher baseline}}
 \label{tab:participant_accuracy}
 {\color{maroon}
 \begin{tabular}{lccc}
@@ -83,26 +77,15 @@ Key Observations:
 SimCSE demonstrated superior performance across all participants (5/5), with best performance achieved by Participant 2 showing only 5.03 points deviation from teacher assessment. The largest improvement was demonstrated by Participant 3, who achieved exceptional accuracy with SimCSE evaluation. Even the smallest advantage, observed with Participant 4 at 0.47 points improvement, still favored SimCSE. Most notably, SimCSE showed lower variance across participants, indicating more consistent performance regardless of individual participant characteristics.
 }
 
-\subsection{Assessment Reliability and Consistency Analysis}
 
-{\color{maroon}
-A critical advantage identified in SimCSE is its deterministic nature, providing identical scores for identical input pairs across multiple iterations. This consistency is crucial for educational assessment validity, ensuring that students submitting identical work receive identical scores regardless of when the assessment occurs or what other submissions have been processed.
-
-SimCSE Reliability Characteristics:
-
-SimCSE demonstrates exceptional reproducibility by providing 100% identical scores for same text pairs across multiple assessment sessions. This reliability stems from its mathematical foundation based on cosine similarity computation within fixed embedding space, ensuring no variation across time, context, or repeated queries. The deterministic processing architecture guarantees that preprocessing and embedding procedures yield identical results regardless of external factors, establishing fundamental fairness in educational assessment.
-
-Educational Assessment Implications:
-
-This consistency advantage addresses fundamental requirements for fair educational evaluation. The mathematical approach ensures reliability and removes assessment uncertainty that could undermine educational equity. Students benefit from predictable, consistent evaluation that reflects genuine semantic understanding rather than variable interpretation.
-}
 }
 
-\section{System Implementation Results}
-% This section will present:
-% - Successful implementation of core features
-% - Technical achievement metrics
-% - Feature comparison with original proposal
+% \section{System Implementation Results}
+% This section presents the result of the implementation of core features as outlined in the methodology, as well as 
+% % This section will present:
+% % - Successful implementation of core features
+% % - Technical achievement metrics
+% % - Feature comparison with original proposal
 
 {\color{maroon}
 \section{System Usability Assessment Results}
@@ -111,13 +94,13 @@ The usability evaluation yielded exceptionally positive results, indicating high
 
 \subsection{System Usability Scale Results}
 
-The comprehensive usability assessment achieved an overall SUS score of 87.5 out of 100, placing the system in the "Grade A - Excellent" category for usability performance.
+The comprehensive usability assessment achieved an overall SUS score of 87.5 out of 100, placing the system in the "Grade A - Excellent" category for usability performance. Table 5.2 shows the scores achieved for each SUS component, as well as the overall SUS score and its interpretation.
 
-\textbf{Detailed SUS Component Analysis:}
+
 
 \begin{table}[!htbp]
 \centering
-\caption[System Usability Scale Component Scores]{Detailed breakdown of System Usability Scale component scores and interpretations}
+{\color{maroon}\tiny\caption[System Usability Scale Component Scores]{Detailed breakdown of System Usability Scale component scores and interpretations}}
 \label{tab:sus_components}
 \begin{tabular}{lcc}
 \toprule
@@ -140,60 +123,27 @@ User Burden (reverse) & 1.6/5 & Very Low Burden \\
 
 \subsection{Feature-Specific Satisfaction Analysis}
 
-Individual feature assessments revealed consistently high satisfaction across all core system components:
-
-Core Functionality Performance:
-\begin{itemize}
-    \item Account Creation \& Access - 4.8/5 - Users found registration and login processes intuitive and efficient
-    \item Dashboard Interface - 4.6/5 - Clear information architecture with effective progress visualization
-    \item Note-Taking Features - 4.4/5 - Responsive input handling with good file upload capabilities
-    \item Session Management - 4.7/5 - Intuitive session configuration and timing controls
-    \item Progress Tracking - 4.6/5 - Clear analytics presentation with meaningful insights
-\end{itemize}
+Individual feature assessments revealed consistently high satisfaction across all core system components. Account Creation and Access achieved 4.8/5 with users finding registration and login processes intuitive and efficient. Dashboard Interface scored 4.6/5 for clear information architecture with effective progress visualization. Note-Taking Features received 4.4/5 for responsive input handling with good file upload capabilities. Session Management earned 4.7/5 for intuitive session configuration and timing controls. Progress Tracking achieved 4.6/5 for clear analytics presentation with meaningful insights.
 
 {\color{maroon}
-Most Valued Educational Features:
+Most Valued Features:
 
 User preference analysis revealed the Daily Streak Tracker as the most valued feature (43\% of users), serving as an effective motivational tool for establishing consistent study habits. Performance Analytics ranked second (29\% of users), providing detailed similarity score analysis and improvement tracking that enabled users to monitor learning progression. Visual Progress Charts captured significant user attention (21\% of users) through graphical representation of learning trends, while Session Metadata (7\% of users) offered detailed timing and attempt information for comprehensive study session analysis.
 }
 
 \subsection{User Acceptance and Recommendation Analysis}
 
-The user acceptance metrics demonstrate strong positive reception and high likelihood of adoption:
-
-Primary Acceptance Indicators:
-\begin{itemize}
-    \item Overall Satisfaction - 4.6/5 - Strong positive user experience
-    \item Recommendation Likelihood - 4.7/5 - Very high word-of-mouth potential
-    \item Comparison to Existing Tools - 4.4/5 - Significantly better than current methods
-    \item Trust and Reliability - 4.5/5 - High confidence in system performance
-\end{itemize}
+The user acceptance metrics demonstrate strong positive reception and high likelihood of adoption. Overall Satisfaction achieved 4.6/5 indicating strong positive user experience. Recommendation Likelihood scored 4.7/5 showing very high word-of-mouth potential. Comparison to Existing Tools received 4.4/5 demonstrating significantly better performance than current methods. Trust and Reliability earned 4.5/5 reflecting high confidence in system performance.
 
 {\color{maroon}
-Adoption Intent Analysis:
-
 User adoption metrics demonstrate strong positive reception with 94\% of participants indicating likelihood to recommend the system to others, suggesting high word-of-mouth potential for organic user base growth. Interest in frequent system use reached 89\%, with users expressing genuine intention to incorporate the system into their regular study routines. Comparative evaluation revealed that 78\% rated the system superior to their current study tracking methods, while 85\% found it more effective than traditional note-taking approaches, indicating substantial improvement over existing educational tools.
 }
 
 \subsection{Qualitative Feedback Analysis}
 
-Open-ended responses provided valuable insights into user perceptions and system strengths:
+Open-ended responses provided valuable insights into user perceptions and system strengths. Users most frequently cited advantages included immediate feedback with one participant noting that the instant scoring helps understand recall accuracy right away, objective assessment where participants appreciated the consistent scoring that doesn't vary based on mood or bias, progress visualization with users finding that charts make it easy to see improvement over time, and motivational elements where streak tracking keeps users engaged with regular practice.
 
-Most Frequently Cited Advantages:
-\begin{itemize}
-    \item Immediate Feedback - "The instant scoring helps me understand my recall accuracy right away"
-    \item Objective Assessment - "I appreciate the consistent scoring that doesn't vary based on mood or bias"
-    \item Progress Visualization - "The charts make it easy to see my improvement over time"
-    \item Motivational Elements - "The streak tracking keeps me engaged with regular practice"
-\end{itemize}
-
-Potential Usage Barriers Identified:
-\begin{itemize}
-    \item Internet Connectivity (35\% concern) - Dependency on network access for full functionality
-    \item Initial Setup Time (21\% concern) - Learning curve for optimal feature utilization
-    \item Mobile Optimization (30\% request) - Desire for enhanced mobile device compatibility
-    \item Advanced Customization (14\% request) - Interest in more personalized settings
-\end{itemize}
+Potential usage barriers were also identified through user feedback. Internet connectivity represented 35% of concerns due to dependency on network access for full functionality. Initial setup time concerned 21% of users regarding the learning curve for optimal feature utilization. Mobile optimization was requested by 30% of users who desired enhanced mobile device compatibility. Advanced customization was requested by 14% of users interested in more personalized settings.
 }
 
 \section{Performance Analysis}
@@ -293,66 +243,52 @@ The comprehensive evaluation results provide substantial evidence for the effect
 
 \subsection{Implications for Educational Assessment}
 
-\textbf{Objectivity vs Subjectivity in Educational Measurement:}
+
 
 The research findings highlight a fundamental tension in educational assessment between objective mathematical measurement and subjective interpretive evaluation. SimCSE's mathematical approach offers several advantages:
 
-\begin{itemize}
-    \item Fairness and Consistency - Identical content receives identical assessment regardless of external factors
-    \item Scalability - Enables consistent evaluation across large student populations without human resource constraints
-    \item Bias Mitigation - Eliminates cultural, linguistic, and personal bias that can affect human assessment
-    \item Immediate Feedback - Provides instant assessment to support timely learning adjustments
-\end{itemize}
+There is a fairness to the consistency at which SimCSE outputs a score, since it relies heavily on pure semantic similarity measurement rather than human judgment, which can be influenced by extraneous factors. This consistency is particularly valuable in assuring users that scoring for the exact same pieces of text will never be subject to change, unlike other scorers that rely on rubrics, or highly complex black-box AI advancements.
+
+Immediate feedback is another key advantage, as users receive instant similarity scores that support timely learning adjustments. This urgency deems beneficial as a gamful aspect in a non-game context, which encourages steady engagement and consistent study habits.
+
 
 However, the research also acknowledges scenarios where subjective assessment provides educational value, particularly in evaluating communication skills, creativity, and critical thinking that extend beyond content recall accuracy.
 
-\textbf{Practical Implementation Considerations:}
+
 
 The high usability scores (87.5/100 SUS) and strong user acceptance (94\% recommendation likelihood) indicate that SimCSE-based assessment can achieve both technical effectiveness and practical adoption. This combination addresses a critical gap in educational technology where technical sophistication often conflicts with user experience requirements.
 
 \subsection{Contribution to Educational Technology Research}
 
-\textbf{Novel Application of Semantic Similarity:}
+
 
 This research represents one of the first comprehensive evaluations of SimCSE for educational recall assessment, providing empirical evidence for its effectiveness in academic contexts. The 41.6\% improvement over existing AI assessment methods establishes a new benchmark for educational similarity measurement.
 
-\textbf{Multi-Method Validation Approach:}
+
 
 {\color{maroon}
 The dual-method validation approach utilizing both SimCSE and human teacher assessment provides robust validation that strengthens confidence in the findings. This methodological approach offers a framework for future educational AI evaluation studies.
 }
 
-\textbf{User-Centered Design Integration:}
+
 
 The combination of technical performance analysis with comprehensive usability evaluation demonstrates how educational technology research can balance algorithmic effectiveness with practical adoption requirements.
 
 \subsection{Limitations and Future Research Directions}
 
-\textbf{Current Study Limitations:}
+
 
 {\color{maroon}
-\begin{itemize}
-    \item Sample Size - Limited to 5 participants for scoring validation and 7 for usability assessment
-    \item Domain Specificity - Focused on biology/science content, requiring validation across other disciplines  
-    \item Temporal Scope - 3-day assessment period may not capture long-term learning patterns
-    \item Cultural Context - Single educational system and language, limiting generalizability
-\end{itemize}
+Current study limitations include sample size limited to 5 participants for scoring validation and 7 for usability assessment, domain specificity focused on biology/science content requiring validation across other disciplines, temporal scope where the 3-day assessment period may not capture long-term learning patterns, and cultural context involving a single educational system and language limiting generalizability.
 }
 
 {\color{maroon}
 {\color{maroon}
-\textbf{Cohen's d Interpretation:} The effect size measure Cohen's d = 1.24 indicates substantial practical significance in SimCSE performance alignment with teacher assessment. Cohen's d represents the standardized mean difference, where values above 0.8 are considered large effects, 0.5 medium effects, and 0.2 small effects. A Cohen's d of 1.24 means SimCSE demonstrates more than one standard deviation improvement in assessment accuracy, establishing substantial practical significance beyond statistical significance.
+The effect size measure Cohen's d = 1.24 indicates substantial practical significance in SimCSE performance alignment with teacher assessment. Cohen's d represents the standardized mean difference, where values above 0.8 are considered large effects, 0.5 medium effects, and 0.2 small effects. A Cohen's d of 1.24 means SimCSE demonstrates more than one standard deviation improvement in assessment accuracy, establishing substantial practical significance beyond statistical significance.
 }
 }
 
-\textbf{Future Research Opportunities:}
-
-\begin{itemize}
-    \item Cross-Disciplinary Validation - Extending evaluation to humanities, social sciences, and technical subjects
-    \item Longitudinal Studies - Investigating long-term learning outcomes and retention patterns
-    \item Multilingual Assessment - Evaluating SimCSE performance across different languages and cultural contexts
-    \item Hybrid Assessment Models - Combining objective similarity measurement with targeted subjective evaluation
-\end{itemize}
+Future research opportunities include cross-disciplinary validation extending evaluation to humanities, social sciences, and technical subjects, longitudinal studies investigating long-term learning outcomes and retention patterns, multilingual assessment evaluating SimCSE performance across different languages and cultural contexts, and hybrid assessment models combining objective similarity measurement with targeted subjective evaluation.
 }
 
 \section{Limitations and Challenges}

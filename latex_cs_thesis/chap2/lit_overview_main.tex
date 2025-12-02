@@ -208,7 +208,7 @@ For a given sentence $s_i$, all other sentences $s_j$ where $j \neq i$ in the ba
     \[
     \ell_i = - \log \frac{\exp(\text{sim}(h_i, h_i^+)/\tau)}{\sum_{j=1}^N \exp(\text{sim}(h_i, h_j)/\tau)}
     \]
-    \caption[Formula for Contrastive Learning]{Formula for Contrastive Learning}
+    {\color{maroon}\tiny\caption[Formula for Contrastive Learning]{\tiny Formula for Contrastive Learning}}
     \label{fig:contrastive_learning}
 \end{figure}
 
@@ -225,7 +225,7 @@ The temperature parameter $\tau$ in the contrastive learning formula plays a cri
     \[
     \text{sim}(h_1, h_2) = \frac{h_1^\top h_2}{\|h_1\|\|h_2\|}
     \]
-    \caption[Formula for Cosine Similarity]{Formula for Cosine Similarity}
+    {\color{maroon}\scriptsize\caption[Formula for Cosine Similarity]{\scriptsize Formula for Cosine Similarity}}
     \label{fig:cosine_similarity}
 \end{figure}
 
@@ -274,10 +274,25 @@ or features that are relevant to the proposed approach. It highlights which aspe
 addressed and identifies gaps that the proposed approach aims to fill by integrating
 these features into a unified framework.
 
-\begin{figure}[ht!]
+\begin{table}[ht!]
     \centering
-    \includegraphics[width=0.9\textwidth]{comparison_table.png} % Replace with your image file's name
-    \caption[Comparison Table of Related Literature]{Comparison Table of Related Literature}
-    \label{fig:comparison_table}
-\end{figure}
+    {\color{maroon}\tiny\caption{Comparison Table of Related Literature}}
+    \label{tab:comparison_table}
+    \tiny
+    \begin{tabular}{|p{1.6cm}|p{1.3cm}|p{1.2cm}|p{1.6cm}|p{1.4cm}|p{1.4cm}|p{1.2cm}|p{1.5cm}|}
+    \hline
+    \textbf{Aspects/ Features:} & \textbf{Integration of Semantic Similarity Models} & \textbf{Progress Tracking} & \textbf{Focus on Knowledge Consolidation, Memory, and Recall} & \textbf{Flexibility for Varied Note Structures (Formatting)} & \textbf{Feedback and Performance Metrics} & \textbf{App with Interactive UI for Enhanced Usability} & \textbf{Use of NLP for Evaluating Semantic Understanding} \\
+    \hline
+    \textbf{Studies:} & & & & & & & \\[1ex]
+    \hline
+    Stojanovic et al., 2020 & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{green}{\checkmark} & \textcolor{red}{\textbf{×}} \\[1.5ex]
+    \hline
+    Tran et al., 2020 & \textcolor{red}{\textbf{×}} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{red}{\textbf{×}} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{red}{\textbf{×}} \\[1.5ex]
+    \hline
+    Baars et al., 2003 & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{green}{\checkmark} & \textcolor{red}{\textbf{×}} & \textcolor{red}{\textbf{×}} & \textcolor{green}{\checkmark} & \textcolor{red}{\textbf{×}} \\[1.5ex]
+    \hline
+    Proposed Approach & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} & \textcolor{green}{\checkmark} \\[1.5ex]
+    \hline
+    \end{tabular}
+\end{table}
 

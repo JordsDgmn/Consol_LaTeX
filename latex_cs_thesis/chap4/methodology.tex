@@ -19,7 +19,7 @@ The fundamental architecture of the Consol system follows a layered approach tha
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/basic_system_architecture_dataflow.png}
-\caption[Basic System Architecture and Data Flow]{Basic system architecture showing the complete data flow cycle from user input through semantic processing to educational feedback. The diagram illustrates five core layers: User Interface, Frontend Web Application, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}
+{\color{maroon}\tiny\caption[Basic System Architecture and Data Flow]{Basic system architecture showing the complete data flow cycle from user input through semantic processing to educational feedback. The diagram illustrates five core layers: User Interface, Frontend Web Application, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}}
 \label{fig:basic_system_architecture}
 \end{figure}
 \FloatBarrier
@@ -102,7 +102,7 @@ The SimCSE architecture forms the core of Consol's semantic similarity assessmen
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/simcse_architecture.png}
-\caption[SimCSE Architecture Implementation]{Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}
+{\color{maroon}\tiny\caption[SimCSE Architecture Implementation]{Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}}
 \label{fig:simcse_architecture}
 \end{figure}
 \FloatBarrier
@@ -135,7 +135,7 @@ One of the critical aspects of developing Consol was establishing appropriate si
 
 \begin{table}[!htbp]
 \centering
-\caption[Similarity Score Thresholds for Educational Assessment]{Initial similarity score thresholds established for the star rating system based on educational assessment principles}
+{\color{maroon}\tiny\caption[Similarity Score Thresholds for Educational Assessment]{Initial similarity score thresholds established for the star rating system based on educational assessment principles}}
 \label{tab:similarity_thresholds}
 \begin{tabular}{|c|c|c|p{6cm}|}
 \hline
@@ -163,12 +163,30 @@ Seven representative test cases were developed and evaluated to assess SimCSE pe
 
 This systematic approach ensured that the final threshold settings would be both educationally meaningful and technically robust, providing students with fair and consistent assessment of their recall performance.
 
-\begin{figure}[!htbp]
+\begin{table}[!htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{images/test-cases.png}
-\caption[Test Cases for Scoring Threshold Adjustment]{Test sentences to feed to SimCSE for scoring threshold adjustment, with expected results.}
-\label{fig:test_cases}
-\end{figure}
+{\color{maroon}\tiny\caption[Test Cases for Scoring Threshold Adjustment]{Test sentences to feed to SimCSE for scoring threshold adjustment, with expected results. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
+\label{tab:test_cases}
+\begin{tabular}{|p{0.8cm}|p{6.5cm}|p{2.5cm}|p{2.2cm}|}
+\hline
+\textbf{Test} & \textbf{Scenario Description} & \textbf{Expected Score} & \textbf{Actual Score} \\
+\hline
+1 & Simple Opposite Meanings (green vs. red apple) & 0.40 - 0.60 & 0.8998 \\
+\hline
+2 & Paraphrased Sentences (homework completion) & 0.75 - 0.95 & 0.6628 \\
+\hline
+3 & Sentence Expansion (cat on mat elaboration) & 0.65 - 0.85 & 0.8407 \\
+\hline
+4 & Summarization (Rome city description condensed) & 0.70 - 0.85 & 0.8295 \\
+\hline
+5 & False Similarity (different meanings of "runs") & 0.30 - 0.50 & 0.2707 \\
+\hline
+6 & Different Sentence Structures (storm destruction) & 0.75 - 0.95 & 0.8846 \\
+\hline
+7 & Markdown Symbols (punctuation effects) & 0.85 - 0.98 & 0.9750 \\
+\hline
+\end{tabular}
+\end{table}
 \FloatBarrier
 
 
@@ -178,14 +196,34 @@ The systematic testing revealed both strengths and areas for improvement in SimC
 
 {\color{maroon}The analysis revealed five critical insights: 1) False Similarity Detection where SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments, 2) Structural Robustness where the model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding, 3) Formatting Resilience where punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style, 4) Paraphrasing Sensitivity where synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording, and 5) Opposite Meaning Handling where contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.}
 
-
-\begin{figure}[!htbp]
+\begin{table}[!htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{images/test-case-results.png}
-\caption[Test Case Results for Scoring Threshold Adjustment]{Resulting scores of the test cases for scoring threshold adjustment.}
-\label{fig:test_cases}
-\end{figure}
+{\color{maroon}\tiny\caption[Test Case Results for Scoring Threshold Adjustment]{Resulting scores of the test cases for scoring threshold adjustment. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
+\label{tab:test_case_results}
+\begin{tabular}{|c|p{6cm}|c|c|}
+\hline
+\textbf{Test} & \textbf{Scenario Description} & \textbf{Expected Score} & \textbf{Actual Score} \\
+\hline
+1 & Simple Opposite Meanings (green vs. red apple) & 0.40 - 0.60 & 0.8998 \\
+\hline
+2 & Paraphrased Sentences (homework completion) & 0.75 - 0.95 & 0.6628 \\
+\hline
+3 & Sentence Expansion (cat on mat elaboration) & 0.65 - 0.85 & 0.8407 \\
+\hline
+4 & Summarization (Rome city description condensed) & 0.70 - 0.85 & 0.8295 \\
+\hline
+5 & False Similarity (different meanings of "runs") & 0.30 - 0.50 & 0.2707 \\
+\hline
+6 & Different Sentence Structures (storm destruction) & 0.75 - 0.95 & 0.8846 \\
+\hline
+7 & Markdown Symbols (punctuation effects) & 0.85 - 0.98 & 0.9750 \\
+\hline
+\end{tabular}
+\end{table}
 \FloatBarrier
+
+\textbf{Note:} Expected scores represent anticipated similarity ranges based on semantic preservation and educational value. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.
+
 
 These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
 
@@ -243,7 +281,7 @@ The development architecture encompasses the complete technical stack integratio
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
-\caption[Development Architecture with API Schema]{Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}
+{\color{maroon}\tiny\caption[Development Architecture with API Schema]{Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}}
 \label{fig:development_architecture}
 \end{figure}
 \FloatBarrier
@@ -279,12 +317,14 @@ profile\_picture\_url & verbatim & duration\_secs \\
 
 \vspace{0.8cm}
 
-{\color{maroon}\textbf{Relationships and Constraints:} The database implements three primary relationships: 1) \textbf{Users $\rightarrow$ Notes}: One-to-Many (1:N) relationship where one user can create multiple notes, implemented through foreign key notes.user\_id references users.id with cascade deletion ensuring notes are deleted when user is removed, 2) \textbf{Users $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one user can have multiple assessment sessions, implemented through foreign key sessions.user\_id references users.id with cascade deletion ensuring sessions are deleted when user is removed, and 3) \textbf{Notes $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one note can be assessed multiple times, implemented through foreign key sessions.note\_id references notes.id with cascade deletion ensuring sessions are deleted when note is removed.}
 
 \end{minipage}
-\caption{Entity-Relationship Diagram of the Consol Database Schema}
+{\color{maroon}\tiny\caption{Entity-Relationship Diagram of the Consol Database Schema}}
 \label{fig:database-erd}
 \end{figure}
+
+{\color{maroon}\textbf{Relationships and Constraints:} The database implements three primary relationships: 1) \textbf{Users $\rightarrow$ Notes}: One-to-Many (1:N) relationship where one user can create multiple notes, implemented through foreign key notes.user\_id references users.id with cascade deletion ensuring notes are deleted when user is removed, 2) \textbf{Users $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one user can have multiple assessment sessions, implemented through foreign key sessions.user\_id references users.id with cascade deletion ensuring sessions are deleted when user is removed, and 3) \textbf{Notes $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one note can be assessed multiple times, implemented through foreign key sessions.note\_id references notes.id with cascade deletion ensuring sessions are deleted when note is removed.}
+
 
 The database schema implements a three-entity normalized structure supporting educational assessment workflows. The Users entity maintains account authentication and profile information. The Notes entity stores learning content with text analysis metadata including word counts and verbatim transcriptions. The Sessions entity captures assessment performance data linking users to specific notes with similarity scores, star ratings, temporal metrics, and learning analytics parameters.
 
@@ -295,7 +335,7 @@ The Consol system implements a comprehensive educational workflow designed to op
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/user_interaction_flow_decisions.png}
-\caption[User Interaction Flow with Decision Trees]{Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}
+{\color{maroon}\tiny\caption[User Interaction Flow with Decision Trees]{Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}}
 \label{fig:user_interaction_flow}
 \end{figure}
 \FloatBarrier
@@ -308,17 +348,6 @@ The frontend and API architecture implements responsive user interface design in
 
 The Next.js frontend leverages server-side rendering for optimal page load performance while maintaining client-side interactivity, utilizing React composition patterns for reusable interface elements and Chart.js integration for immediate visual feedback. The RESTful API separates user management, content operations, and assessment processing concerns, with SimCSE integration through dedicated microservice architecture providing asynchronous similarity computation that prevents NLP processing delays from affecting interface responsiveness.
 
-\subsection{Deployment and Performance Considerations}
-
-This subsection addresses the technical performance characteristics and deployment requirements essential for educational platform reliability and scalability.
-
-\subsubsection{Computational Performance Analysis}
-
-SimCSE inference processing dominates system performance, requiring 50-200 milliseconds per comparison depending on text length, which proves acceptable for educational applications requiring sub-second feedback. Memory requirements include 110MB for SimCSE model, 500MB for Node.js runtime, and variable PostgreSQL storage, with offline deployment ensuring consistent performance independent of internet connectivity while supporting horizontal scaling through distributed similarity computation for higher throughput requirements.
-
-\subsubsection{Educational Effectiveness Validation}
-
-The assessment framework implements construct validity through SimCSE-human expert correlation analysis and content validity through correspondence with educational literature objectives. Reliability measurement focuses on consistency across identical inputs and stability under varying conditions, while the deterministic nature ensures perfect test-retest reliability, with multi-dimensional assessment providing comprehensive performance profiles through measurement triangulation and usability evaluation emphasizing technological accessibility and motivational impact.
 
 \subsection{Data Visualization Integration}
 
@@ -383,7 +412,6 @@ Five participants were recruited for the scoring accuracy evaluation phase, repr
 
 Selection criteria emphasized current enrollment in junior to senior high school with strong performance in biology/science courses, ensuring participants possessed adequate subject matter knowledge for meaningful assessment. Participants demonstrated willingness to engage in the 3-day testing protocol involving 5 topics assessed daily, maintained basic computer literacy sufficient for Google Docs interaction, and provided informed consent for comprehensive data collection and analysis procedures.
 
-\paragraph{Experimental Design}
 
 A within-subjects experimental design was employed, where each participant served as their own control across multiple conditions. Five distinct biology/science topics were chosen to represent varying complexity levels and content types: Cellular Biology, Endocrine System, Applied Science, Psoriasis, and Earthquakes.
 
@@ -391,7 +419,6 @@ Each topic was assessed over three consecutive days to capture learning progress
 
 For each topic-day combination, participants completed a standardized individual assessment procedure on Google Docs rather than through the main application interface. The scoring testing was conducted separately from app usability testing to ensure methodological isolation. Days 1 and 2 were conducted simultaneously under supervised conditions with strict 5-minute time limits per topic recollection.
 
-\paragraph{Multi-Scorer Evaluation Framework}
 
 To establish assessment validity and comparative analysis, three distinct scoring methodologies were employed simultaneously: SimCSE automated scoring utilizing the princeton-nlp/unsup-simcse-bert-base-uncased model, human teacher baseline providing experienced educator assessment with biology/science teaching background, and standardized data collection procedures ensuring consistency across all assessment sessions.
 
@@ -404,10 +431,12 @@ Seven participants were recruited for usability testing, representing a diverse 
 Each participant underwent a standardized evaluation process including concept debriefing about Consol system purpose and recollection methodology, guided hands-on exploration of core functionalities, independent task completion covering key use cases, survey completion addressing all evaluation categories, and optional interview for additional qualitative feedback.
 
 \subsection{Statistical Analysis Framework}
+This section shows the analyses used to evaluate the system's effectiveness in assessment and general user experience.  
+
 
 \subsubsection{Quantitative Analysis Plan}
 
-The collected data underwent comprehensive statistical analysis including descriptive statistics with central tendency measures and variability assessments, comparative analysis with statistical validation of SimCSE accuracy relative to teacher baseline, correlation analysis measuring agreement between scoring methods, and learning progression correlation analysis across the 3-day assessment periods.
+The collected data underwent comprehensive statistical analysis including descriptive statistics with central tendency measures and variability assessments, comparative analysis with statistical validation of SimCSE accuracy relative to a teacher's scoring as the baseline, and correlation analysis measuring agreement and/or dissonance between scoring methods across the 3-day assessment periods.
 
 \subsubsection{Qualitative Analysis Integration}
 
