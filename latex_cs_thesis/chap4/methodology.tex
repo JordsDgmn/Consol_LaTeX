@@ -14,19 +14,31 @@ The Consol system architecture integrates semantic similarity evaluation with us
 
 \subsection{Basic System Architecture}
 
-% Placeholder for future basic user architecture image
-% \begin{figure}[!htbp]
-% \centering
-% \includegraphics[width=0.95\textwidth]{images/basic_system_architecture.png}
-% \caption[Basic System Architecture]{Basic user interaction and system architecture overview}
-% \label{fig:basic_system_architecture}
-% \end{figure}
+The fundamental architecture of the Consol system follows a layered approach that facilitates clear separation of concerns while maintaining efficient data flow throughout the educational assessment process. Figure \ref{fig:basic_system_architecture} presents the high-level system architecture, illustrating the complete data flow cycle from user input through semantic analysis to performance feedback.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/basic_system_architecture_dataflow.png}
+\caption[Basic System Architecture and Data Flow]{Basic system architecture showing the complete data flow cycle from user input through semantic processing to educational feedback. The diagram illustrates five core layers: User Interface, Frontend Web Application, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}
+\label{fig:basic_system_architecture}
+\end{figure}
+\FloatBarrier
 
 \subsection{Architectural Overview}
 
-The system architecture follows a client-server model where the frontend handles user interactions and immediate feedback presentation, while the backend manages semantic similarity computation, data persistence, and learning analytics. This separation enables independent scaling of user interface responsiveness and computational processing, crucial for educational applications that must maintain low-latency feedback while performing complex NLP operations.
+As illustrated in Figure \ref{fig:basic_system_architecture}, the Consol system implements a five-layer architecture that ensures clear separation of concerns while maintaining optimal data flow for educational assessment. The architecture follows a top-down design where each layer transforms data into increasingly refined states, culminating in meaningful educational feedback for students.
 
-The architectural design prioritizes educational outcomes over technical complexity, ensuring that technology choices directly support learning objectives rather than introducing unnecessary overhead. Each component serves specific pedagogical functions while maintaining technical coherence throughout the system.
+The User Interface Layer serves as the primary interaction point where students input their original study notes and recalled content. This layer captures raw textual data in its most natural form, preserving the authentic student expression essential for accurate recall assessment. The interface design prioritizes simplicity and cognitive load reduction, ensuring that technical complexity does not interfere with the learning process.
+
+The Frontend Web Application Layer transforms raw user input into structured data formats suitable for backend processing. This layer implements the user experience design principles, providing immediate visual feedback and maintaining responsive interaction patterns. The frontend handles data validation, session management, and preliminary formatting while preparing content for semantic analysis through JSON payload structuring.
+
+The API Gateway Layer serves as the central orchestration point for all system operations, managing request routing, business logic execution, and data transformation coordination. This layer preprocesses textual content to remove formatting artifacts while preserving semantic meaning, ensuring consistent input quality for AI processing. The API gateway also handles performance metric calculation and coordinates data flow between the AI engine and database systems.
+
+The AI Engine Layer represents the core technological innovation of the Consol system, implementing SimCSE-based semantic similarity computation. This layer processes text pairs through transformer-based encoding, generating 768-dimensional embeddings and computing cosine similarity scores that range from 0.0 to 1.0. The AI engine operates independently from other system components, enabling scalable processing and potential future model upgrades without affecting overall system functionality.
+
+The Database Storage Layer provides persistent data management for user profiles, learning content, and session performance records. This layer stores similarity scores, performance metrics, and historical data that enable longitudinal learning analytics. The database design prioritizes educational data integrity through ACID compliance while supporting complex queries for progress tracking and performance visualization.
+
+Data Flow Characteristics - The circular data flow design ensures that every user input ultimately generates meaningful educational feedback. Data transformation occurs at each layer boundary, with specific attention to maintaining semantic fidelity while adapting to technical processing requirements. The return path from database through API to frontend enables rich analytics presentation, supporting student metacognition and learning strategy development.
 
 
 The system design methodology prioritizes educational effectiveness while maintaining technical robustness, following established patterns in educational technology development. The methodology emphasizes iterative refinement based on user feedback and empirical performance data, ensuring that technical decisions support pedagogical objectives.
@@ -81,7 +93,7 @@ where $h_i$ represents the hidden representation of input sentence $i$, $h_i^+$ 
 
 The 768-dimensional embedding space exhibits structured semantic organization with dimensions 1-100 capturing basic semantic concepts, dimensions 101-300 encoding grammatical features, dimensions 301-500 representing domain knowledge, and dimensions 501-768 modeling complex relationships including causality and contextual associations.
 
-\textbf{CLS Token Extraction}: The system extracts sentence representations from position 0 of the transformer output, corresponding to the [CLS] token that aggregates information from all sequence tokens. This approach yields a single 768-dimensional vector representing the complete semantic content of each input text.
+CLS Token Extraction: The system extracts sentence representations from position 0 of the transformer output, corresponding to the [CLS] token that aggregates information from all sequence tokens. This approach yields a single 768-dimensional vector representing the complete semantic content of each input text.
 
 \subsection{SimCSE Architecture Implementation}
 
@@ -141,13 +153,13 @@ Poor & 0 stars & $< 0.44$ & Requires significant improvement and concept review 
 \end{table}
 \FloatBarrier}
 
-To validate these thresholds, we designed a comprehensive test suite encompassing various linguistic transformations that students might employ during recall sessions. The test cases were selected to represent common scenarios in educational recall, including paraphrasing, summarization, expansion, and potential edge cases that could lead to misleading similarity scores.
+To validate these thresholds, a series of test cases were fed into the barebones SimCSE and the scoring threshold was arbitrarily adjusted based on the results.
 
 \subsubsection{Test Case Design and Implementation}
 
 Seven representative test cases were developed and evaluated to assess SimCSE performance across different linguistic scenarios. Each test case consisted of an original sentence (S1) and a student response variant (S2), with expected similarity ranges based on semantic preservation and educational value.
 
-{\color{maroon}The test cases were specifically designed to address: 1) \textbf{Semantic Opposition} for testing SimCSE's ability to detect contradictory meanings, 2) \textbf{Paraphrasing Detection} for evaluating performance on synonym-based rewording, 3) \textbf{Content Expansion} for assessing similarity when students provide additional detail, 4) \textbf{Content Summarization} for testing condensed versions of original content, 5) \textbf{False Similarity Traps} for identifying cases where word overlap doesn't indicate understanding, 6) \textbf{Structural Variations} for examining different sentence constructions with preserved meaning, and 7) \textbf{Formatting Robustness} for testing resilience to punctuation and formatting changes.}
+{\color{maroon}The test cases were specifically designed to address: 1) Semantic Opposition for testing SimCSE's ability to detect contradictory meanings, 2) Paraphrasing Detection for evaluating performance on synonym-based rewording, 3) Content Expansion for assessing similarity when students provide additional detail, 4) Content Summarization for testing condensed versions of original content, 5) False Similarity Traps for identifying cases where word overlap doesn't indicate understanding, 6) Structural Variations for examining different sentence constructions with preserved meaning, and 7) Formatting Robustness for testing resilience to punctuation and formatting changes.}
 
 This systematic approach ensured that the final threshold settings would be both educationally meaningful and technically robust, providing students with fair and consistent assessment of their recall performance.
 
@@ -155,7 +167,7 @@ This systematic approach ensured that the final threshold settings would be both
 
 The systematic testing revealed both strengths and areas for improvement in SimCSE's performance for educational assessment. Analysis of the seven test cases provided crucial insights into the model's behavior across different linguistic scenarios.
 
-{\color{maroon}\textbf{Key Findings:} The analysis revealed five critical insights: 1) \textbf{False Similarity Detection} where SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments, 2) \textbf{Structural Robustness} where the model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding, 3) \textbf{Formatting Resilience} where punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style, 4) \textbf{Paraphrasing Sensitivity} where synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording, and 5) \textbf{Opposite Meaning Handling} where contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.}
+{\color{maroon}Key Findings: The analysis revealed five critical insights: 1) False Similarity Detection where SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments, 2) Structural Robustness where the model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding, 3) Formatting Resilience where punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style, 4) Paraphrasing Sensitivity where synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording, and 5) Opposite Meaning Handling where contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.}
 
 These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
 }
@@ -171,41 +183,49 @@ A web-based application integrating the SimCSE Model was implemented following e
 
 The technology selection process prioritized three key criteria: educational effectiveness, technical reliability, and development efficiency. Each technology choice was evaluated based on its ability to support the core research objectives of semantic similarity assessment and user engagement optimization.
 
-\textbf{Frontend Architecture} - Next.js was selected as the primary frontend framework due to its hybrid rendering capabilities that enable both static content delivery for consistent educational resources and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness.
+Frontend Architecture - Next.js was selected as the primary frontend framework due to its hybrid rendering capabilities that enable both static content delivery for consistent educational resources and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness.
 
 React's component-based architecture facilitates the development of reusable educational interface elements, enabling consistent user experience across different assessment contexts. The virtual DOM implementation provides efficient updates to progress indicators and similarity feedback displays, essential for maintaining engagement during recall sessions.
 
-\textbf{Backend Architecture} - The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and potential inconsistencies. The RESTful API design separates user management, content operations, and assessment processing concerns, ensuring modularity essential for educational platform maintenance and future feature expansion.
+Backend Architecture - The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and potential inconsistencies. The RESTful API design separates user management, content operations, and assessment processing concerns, ensuring modularity essential for educational platform maintenance and future feature expansion.
 
 The SimCSE integration utilizes Python Flask microservice architecture, providing dedicated natural language processing capabilities while maintaining independence from the main application stack. This separation enables specialized optimization for similarity computation while preserving overall system responsiveness.
 
-\textbf{Database and Infrastructure} - PostgreSQL provides robust relational database capabilities essential for educational data integrity, supporting complex queries for learning analytics while maintaining ACID compliance for assessment accuracy. The database design emphasizes educational workflow patterns, optimizing for user progress tracking and similarity score analysis rather than generic web application patterns.
+Database and Infrastructure - PostgreSQL provides robust relational database capabilities essential for educational data integrity, supporting complex queries for learning analytics while maintaining ACID compliance for assessment accuracy. The database design emphasizes educational workflow patterns, optimizing for user progress tracking and similarity score analysis rather than generic web application patterns.
 
 Cloud deployment utilizes Vercel for frontend hosting, ensuring global content delivery network access essential for diverse educational environments, while Supabase provides managed database services with built-in authentication systems suitable for educational institution integration requirements.}
 
-\subsection{Implementation Process}
-
-The implementation process followed an iterative development approach aligned with educational software best practices, emphasizing user testing integration and continuous refinement based on pedagogical feedback. The development cycle prioritized core semantic similarity functionality before expanding to advanced features, ensuring that fundamental recall assessment capabilities remained robust throughout system evolution.
-
 \subsection{Development Environment Configuration}
+
+The following subsection outlines the technical infrastructure and tooling configurations employed throughout the development lifecycle.
 
 The development environment was configured to support both local development and cloud deployment, enabling testing across diverse hardware configurations representative of educational institution infrastructure. TypeScript integration provided static type checking that reduces runtime errors, particularly important for educational applications where system reliability directly impacts learning outcomes.
 
 Tailwind CSS was selected for interface styling due to its utility-first approach that accelerates responsive design implementation while maintaining visual consistency across educational content types. The framework's predefined utility classes enable rapid prototyping of interface variants for user testing, essential for optimizing educational user experience through empirical feedback.
 
-\subsection{Performance Optimization Strategy}
-
-The system implements real-time similarity calculation rather than pre-computed vector storage, prioritizing consistency and educational integrity over computational efficiency. Each similarity assessment follows a four-stage pipeline: tokenization requiring approximately 1ms, transformer processing consuming 50-200ms depending on text length, embedding extraction taking 0.1ms for CLS token isolation, and cosine similarity calculation completing in 0.1ms.
-
-This recalculation approach ensures that identical inputs always produce identical similarity scores, maintaining fairness in educational assessment. Alternative vector storage approaches, while offering sub-millisecond similarity computation, introduce potential inconsistencies and require additional storage overhead of approximately 3KB per note and 4KB per recollection.
-
 \subsection{Multi-Dimensional Assessment Implementation}
+
+The assessment framework design integrates multiple evaluation criteria to provide comprehensive educational feedback beyond simple similarity scoring.
 
 The assessment framework integrates semantic similarity with complementary performance metrics to provide holistic evaluation. The scoring algorithm computes completeness ratio through word count comparison, adjusts speed metrics based on content completeness, normalizes performance indicators to prevent artificial inflation, and maps similarity scores to star ratings using educationally meaningful thresholds.
 
 Star rating assignment follows empirically determined thresholds: 3 stars for similarity $\geq$ 0.8 indicating mastery-level comprehension, 2 stars for similarity $\geq$ 0.6 representing proficient understanding, 1 star for similarity $\geq$ 0.4 showing developing knowledge, and 0 stars for similarity $<$ 0.4 indicating novice-level recall requiring additional study.
 
 \subsection{System Implementation Details}
+
+This subsection presents the technical implementation architecture and database design that supports the Consol educational assessment platform.
+
+\subsubsection{Development Architecture Overview}
+
+The development architecture encompasses the complete technical stack integration from frontend components through API services to database management. Figure \ref{fig:development_architecture} illustrates the comprehensive development architecture showing API endpoints, database schema relationships, and component interactions that facilitate educational assessment processing.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
+\caption[Development Architecture with API Schema]{Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}
+\label{fig:development_architecture}
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Database Architecture and Optimization}
 
@@ -249,15 +269,27 @@ The database schema implements a three-entity normalized structure supporting ed
 
 \subsubsection{User Interaction Flow and System Architecture}
 
-The Consol system implements a comprehensive educational workflow designed to optimize recall assessment through structured interaction patterns. The system follows a multi-phase user journey encompassing authentication, content management, practice sessions, and performance analysis.
+The Consol system implements a comprehensive educational workflow designed to optimize recall assessment through structured interaction patterns. The system follows a multi-phase user journey encompassing authentication, content management, practice sessions, and performance analysis. Figure \ref{fig:user_interaction_flow} presents the complete user interaction workflow including decision points, session management, and the cyclical nature of educational assessment.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/user_interaction_flow_decisions.png}
+\caption[User Interaction Flow with Decision Trees]{Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}
+\label{fig:user_interaction_flow}
+\end{figure}
+\FloatBarrier
 
 The comprehensive workflow demonstrates how the Consol system integrates multiple educational functions into a cohesive user experience. The flow begins with user authentication and dashboard initialization, progressing through content creation and management phases before entering the core assessment cycles. The workflow emphasizes the cyclical nature of educational assessment, with multiple feedback loops enabling iterative improvement and sustained engagement.
 
 \subsection{Frontend and API Implementation}
 
+The frontend and API architecture implements responsive user interface design integrated with efficient backend processing to support educational assessment workflows.
+
 The Next.js frontend leverages server-side rendering for optimal page load performance while maintaining client-side interactivity, utilizing React composition patterns for reusable interface elements and Chart.js integration for immediate visual feedback. The RESTful API separates user management, content operations, and assessment processing concerns, with SimCSE integration through dedicated microservice architecture providing asynchronous similarity computation that prevents NLP processing delays from affecting interface responsiveness.
 
 \subsection{Deployment and Performance Considerations}
+
+This subsection addresses the technical performance characteristics and deployment requirements essential for educational platform reliability and scalability.
 
 \subsubsection{Computational Performance Analysis}
 
@@ -269,11 +301,15 @@ The assessment framework implements construct validity through SimCSE-human expe
 
 \subsection{Data Visualization Integration}
 
+The system incorporates comprehensive data visualization capabilities to support educational analytics and student progress monitoring.
+
 Chart.js integration provides interactive progress visualization that supports learning analytics and student self-assessment capabilities. The library's responsive design ensures that progress indicators remain comprehensible across different device sizes, addressing the diverse technology access patterns common in educational environments.
 
 The visualization components focus on educational relevance rather than technical complexity, presenting similarity scores, progress tracking, and performance trends in formats that support metacognitive awareness and learning motivation. Interactive elements enable students to explore their performance patterns while maintaining focus on learning objectives rather than technical details.
 
 \subsection{Cloud Infrastructure and Media Management}
+
+The platform utilizes cloud-based infrastructure and media optimization services to ensure reliable access and performance across diverse educational environments.
 
 Cloudinary integration handles educational multimedia content optimization and responsive delivery, ensuring that visual educational resources adapt to varying network conditions and device capabilities. The platform's automatic optimization reduces loading times that could otherwise interrupt learning flow, while responsive delivery maintains content quality across diverse access scenarios.
 

@@ -1,0 +1,40 @@
+```mermaid
+flowchart TD
+    %% USER LAYER
+    USER[👤 User<br/>Input Interface]
+    
+    %% FRONTEND LAYER
+    FRONTEND[🖥️ Frontend<br/>Web Interface<br/>User Experience]
+    
+    %% API LAYER
+    API[🔌 API Gateway<br/>Request Processing<br/>Business Logic]
+    
+    %% AI PROCESSING LAYER
+    AI[🤖 AI Engine<br/>Semantic Analysis<br/>Similarity Computation]
+    
+    %% DATABASE LAYER
+    DATABASE[💾 Database<br/>Data Storage<br/>Session Records]
+    
+    %% DATA FLOW ARROWS WITH LABELS
+    USER -->|Raw Text Input<br/>Original Notes & Recalled Content| FRONTEND
+    FRONTEND -->|Structured Request<br/>JSON Payload with Texts| API
+    API -->|Text Pair for Analysis<br/>Preprocessed Content| AI
+    AI -->|Similarity Score<br/>0.0 - 1.0 Range| API
+    API -->|Performance Metrics<br/>Score + Stars + Metadata| DATABASE
+    DATABASE -->|Session History<br/>Stored Performance Data| API
+    API -->|Assessment Results<br/>Score + Analytics| FRONTEND
+    FRONTEND -->|Visual Feedback<br/>Stars, Charts, Progress| USER
+    
+    %% STYLING
+    classDef userLayer fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    classDef frontendLayer fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef apiLayer fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef aiLayer fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef dbLayer fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    
+    class USER userLayer
+    class FRONTEND frontendLayer
+    class API apiLayer
+    class AI aiLayer
+    class DATABASE dbLayer
+```
