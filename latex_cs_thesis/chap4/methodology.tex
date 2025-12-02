@@ -163,13 +163,34 @@ Seven representative test cases were developed and evaluated to assess SimCSE pe
 
 This systematic approach ensured that the final threshold settings would be both educationally meaningful and technically robust, providing students with fair and consistent assessment of their recall performance.
 
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/test-cases.png}
+\caption[Test Cases for Scoring Threshold Adjustment]{Test sentences to feed to SimCSE for scoring threshold adjustment, with expected results.}
+\label{fig:test_cases}
+\end{figure}
+\FloatBarrier
+
+
 \subsubsection{Validation Results and Threshold Refinement}
 
 The systematic testing revealed both strengths and areas for improvement in SimCSE's performance for educational assessment. Analysis of the seven test cases provided crucial insights into the model's behavior across different linguistic scenarios.
 
-{\color{maroon}Key Findings: The analysis revealed five critical insights: 1) False Similarity Detection where SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments, 2) Structural Robustness where the model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding, 3) Formatting Resilience where punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style, 4) Paraphrasing Sensitivity where synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording, and 5) Opposite Meaning Handling where contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.}
+{\color{maroon}The analysis revealed five critical insights: 1) False Similarity Detection where SimCSE successfully identified semantically different sentences with common words (Test 5: 0.27 score), validating its ability to prevent false positive assessments, 2) Structural Robustness where the model demonstrated strong performance with different sentence structures expressing the same concept (Test 6: 0.88 score), indicating reliable semantic understanding, 3) Formatting Resilience where punctuation and formatting changes showed minimal impact on similarity scores (Test 7: 0.98 score), ensuring consistent assessment regardless of student writing style, 4) Paraphrasing Sensitivity where synonym-based paraphrasing yielded lower scores than anticipated (Test 2: 0.66 vs expected 0.75-0.95), suggesting the need for threshold adjustment to accommodate valid rewording, and 5) Opposite Meaning Handling where contrary to expectations, semantically opposite statements received high similarity scores (Test 1: 0.90 vs expected 0.40-0.60), indicating a limitation in contradiction detection.}
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/test-case-results.png}
+\caption[Test Case Results for Scoring Threshold Adjustment]{Resulting scores of the test cases for scoring threshold adjustment.}
+\label{fig:test_cases}
+\end{figure}
+\FloatBarrier
 
 These findings informed the refinement of similarity thresholds and provided validation that SimCSE could serve as a reliable foundation for educational assessment, while highlighting specific scenarios requiring careful interpretation in the final system implementation.
+
+
+
 }
 
 {\color{maroon}
@@ -183,11 +204,11 @@ A web-based application integrating the SimCSE Model was implemented following e
 
 The technology selection process prioritized three key criteria: educational effectiveness, technical reliability, and development efficiency. Each technology choice was evaluated based on its ability to support the core research objectives of semantic similarity assessment and user engagement optimization.
 
-Frontend Architecture - Next.js was selected as the primary frontend framework due to its hybrid rendering capabilities that enable both static content delivery for consistent educational resources and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness.
+For the frontend, Next.js was selected as the primary framework due to its hybrid rendering capabilities that enable both static content delivery and server-side rendering for dynamic user interactions. The framework's automatic code splitting ensures optimal performance across diverse devices commonly used in educational settings, while its built-in optimization features reduce cognitive load through faster interface responsiveness. Adding to that, Tailwind CSS was chosen for its ease-of-use, and utility-first approach that accelerates responsive design implementation while maintaining visual consistency across various essential content types.
 
 React's component-based architecture facilitates the development of reusable educational interface elements, enabling consistent user experience across different assessment contexts. The virtual DOM implementation provides efficient updates to progress indicators and similarity feedback displays, essential for maintaining engagement during recall sessions.
 
-Backend Architecture - The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and potential inconsistencies. The RESTful API design separates user management, content operations, and assessment processing concerns, ensuring modularity essential for educational platform maintenance and future feature expansion.
+The backend employs a Node.js runtime environment to maintain JavaScript consistency across the technology stack, reducing development complexity and potential inconsistencies. The RESTful API design separates user management, content operations, and assessment processing concerns, ensuring modularity essential for educational platform maintenance and future feature expansion.
 
 The SimCSE integration utilizes Python Flask microservice architecture, providing dedicated natural language processing capabilities while maintaining independence from the main application stack. This separation enables specialized optimization for similarity computation while preserving overall system responsiveness.
 
