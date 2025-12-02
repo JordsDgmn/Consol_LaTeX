@@ -484,11 +484,12 @@ The development architecture encompasses the complete technical stack integratio
 
 The PostgreSQL implementation follows normalized design with three core entities (users, notes, sessions) implementing cascade deletion for referential integrity and index optimization on user identification, temporal sorting, and similarity filtering to support real-time dashboard updates. Query optimization prioritizes educational use patterns where users access recent performance data, compare progress across notes, and analyze learning trends through temporal indexing and efficient join operations.
 
-\begin{figure}[H]
+\begin{table}[H]
 \centering
+\caption{{\color{maroon}\tiny Entity-Relationship Diagram of the Consol Database Schema}}
+\label{tab:database-erd}
 \begin{minipage}{\textwidth}
 \centering
-\textbf{Consol Database Schema - Entity Relationship Model}
 \vspace{0.5cm}
 
 \begin{tabular}{|l|l|l|}
@@ -513,11 +514,9 @@ profile\_picture\_url & verbatim & duration\_secs \\
 
 
 \end{minipage}
-\caption{{\color{maroon}\tiny Entity-Relationship Diagram of the Consol Database Schema}}
-\label{fig:database-erd}
-\end{figure}
+\end{table}
 
-{\color{maroon}\textbf{Relationships and Constraints:} The database implements three primary relationships: 1) \textbf{Users $\rightarrow$ Notes}: One-to-Many (1:N) relationship where one user can create multiple notes, implemented through foreign key notes.user\_id references users.id with cascade deletion ensuring notes are deleted when user is removed, 2) \textbf{Users $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one user can have multiple assessment sessions, implemented through foreign key sessions.user\_id references users.id with cascade deletion ensuring sessions are deleted when user is removed, and 3) \textbf{Notes $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one note can be assessed multiple times, implemented through foreign key sessions.note\_id references notes.id with cascade deletion ensuring sessions are deleted when note is removed.}
+{\color{maroon} The database implements three primary relationships: 1) \textbf{Users $\rightarrow$ Notes}: One-to-Many (1:N) relationship where one user can create multiple notes, implemented through foreign key notes.user\_id references users.id with cascade deletion ensuring notes are deleted when user is removed, 2) \textbf{Users $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one user can have multiple assessment sessions, implemented through foreign key sessions.user\_id references users.id with cascade deletion ensuring sessions are deleted when user is removed, and 3) \textbf{Notes $\rightarrow$ Sessions}: One-to-Many (1:N) relationship where one note can be assessed multiple times, implemented through foreign key sessions.note\_id references notes.id with cascade deletion ensuring sessions are deleted when note is removed.}
 
 
 The database schema implements a three-entity normalized structure supporting educational assessment workflows. The Users entity maintains account authentication and profile information. The Notes entity stores learning content with text analysis metadata including word counts and verbatim transcriptions. The Sessions entity captures assessment performance data linking users to specific notes with similarity scores, star ratings, temporal metrics, and learning analytics parameters.
