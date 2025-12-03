@@ -21,7 +21,7 @@ The fundamental architecture of the Consol system follows a pipeline approach th
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/basic_system_architecture_dataflow.png}
-\caption[System Architecture and Data Flow]{{\color{maroon}\tiny System architecture showing the complete data flow cycle from user input through semantic processing to feedback. The diagram illustrates four core components: Frontend Web Interface, API Gateway, AI Engine, and Database Storage, with labeled data transformations at each processing stage.}}
+\caption[System Architecture and Data Flow]{{System Architecture}}
 \label{fig:basic_system_architecture}
 \end{figure}
 \FloatBarrier
@@ -77,18 +77,22 @@ The PDF preprocessing pipeline utilizes the \texttt{PyPDFLoader} from the \textt
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/pdf_processing_pipeline}
-\caption[PDF Processing Pipeline]{PDF document processing pipeline showing binary parsing, page object extraction, and text reconstruction for semantic similarity preparation.}
+\caption[PDF Processing Pipeline]{PyPDFLoader Preprocessing Pipeline}
 \label{fig:pdf_pipeline}
 \end{figure}
 \FloatBarrier
 
-The PDF processing pipeline operates through a systematic approach that begins with binary stream parsing using the \texttt{pypdf} library's PDF reader functionality. The system treats PDF files as structured binary documents containing page objects, content streams, and metadata dictionaries that require specialized parsing to extract meaningful textual content.
+The PDF processing pipeline executes through ten sequential stages that systematically transform binary PDF documents into clean, semantically-meaningful text suitable for similarity analysis. This process follows a carefully orchestrated workflow designed to handle the complexities inherent in PDF structure while maintaining content fidelity.
 
-Initial processing involves PDF structure validation and page object enumeration, where the system identifies and catalogs all page objects within the document structure. Each page object contains content streams that encode text positioning, font references, and character encodings using PDF's internal representation format.
+The pipeline initiates with PDF file input and upload (1), where the system receives the target PDF document for processing through the \texttt{PyPDFLoader} interface. The system immediately begins binary stream reading (2), treating the PDF as a structured binary document that requires specialized parsing techniques to access its internal components using the \texttt{pypdf} library's PDF reader functionality.
 
-Text extraction occurs through content stream decompression and parsing, where the system processes PDF operators and operands to reconstruct readable text from encoded content streams. The pipeline handles various text encoding schemes including ASCII, UTF-8, and proprietary font encodings, ensuring accurate character representation across diverse PDF creation sources.
+PDF structure validation (3) ensures document integrity by verifying the PDF header, cross-reference table, and trailer structure before proceeding with content extraction. This validation prevents processing errors that could arise from corrupted or malformed PDF files while establishing the foundation for reliable text extraction. The system then advances to page object enumeration (4), where it identifies and catalogs all page objects within the document structure, with each page object containing essential metadata and references to content streams that encode the actual textual information.
 
-Post-extraction processing includes metadata removal and text normalization, where system-generated content such as page numbers, headers, and footers are filtered to maintain focus on document body content. The pipeline outputs clean, structured text that preserves paragraph organization while eliminating PDF-specific formatting artifacts that could interfere with semantic similarity computation.
+Content stream extraction (5) accesses the compressed data streams within each page object, which contain the PDF operators and operands that define text positioning, font references, and character encodings. This stage handles the technical complexity of PDF's internal representation format through systematic decompression and stream parsing. Text operator processing (6) interprets PDF drawing commands and text-showing operators to reconstruct readable text from the encoded content streams, processing various text encoding schemes including ASCII, UTF-8, and proprietary font encodings to ensure accurate character representation across diverse PDF creation sources.
+
+Encoding scheme handling (7) addresses character encoding variations that may exist within the document, applying appropriate conversion techniques to maintain Unicode compatibility throughout the processing pipeline. The system ensures consistent character representation regardless of the original PDF creation method or embedded font encoding schemes. Metadata filtering (8) removes extraneous content such as page numbers, headers, footers, and other page-level artifacts that do not contribute to the document's semantic content, maintaining focus on meaningful textual information while eliminating potential noise that could interfere with similarity analysis.
+
+Text normalization (9) standardizes the extracted content by applying consistent formatting, spacing, and character representation. This normalization ensures that the text output maintains semantic coherence while removing PDF-specific formatting artifacts that could impact downstream processing accuracy. Finally,the clean text output (10) is the final processed text, set in a standardized Unicode string format, preserving paragraph organization and semantic structure while ensuring compatibility with SimCSE processing components. The resulting output maintains the document's logical organization while eliminating technical artifacts that could interfere with semantic similarity computation.
 
 \subsubsection{DOCX Processing Pipeline}
 \label{subsubsec:docx_pipeline}
@@ -98,18 +102,14 @@ The Microsoft Word document processing pipeline employs the \texttt{Docx2txtLoad
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/docx_processing_pipeline}
-\caption[DOCX Processing Pipeline]{DOCX document processing pipeline illustrating ZIP extraction, XML parsing, and structured text assembly for semantic analysis preparation.}
+\caption[DOCX Processing Pipeline]{Docx2txtLoader Preprocessing Pipeline}
 \label{fig:docx_pipeline}
 \end{figure}
 \FloatBarrier
 
-The DOCX processing pipeline begins with ZIP archive handling, treating the DOCX file as a compressed container that includes XML documents, media files, and relationship mappings. The system utilizes Python's \texttt{zipfile.ZipFile} functionality to access the internal structure and locate primary content within the \texttt{word/document.xml} file.
+The DOCX processing pipeline begins with DOCX file input (1), followed by ZIP archive handler (2) that treats the DOCX file as a compressed container including XML documents, media files, and relationship mappings. Internal structure access (3) uses Python's \texttt{zipfile.ZipFile} functionality to navigate the archive contents, leading to XML document location (4) which identifies the primary content within the \texttt{word/document.xml} file. DOM tree parsing (5) employs \texttt{xml.etree.ElementTree} to process Microsoft Word's XML schema through hierarchical document structure analysis.
 
-XML parsing employs \texttt{xml.etree.ElementTree} to navigate Microsoft Word's XML schema, processing the hierarchical document structure through systematic traversal of paragraph elements (\texttt{w:p}), run elements (\texttt{w:r}), and text nodes (\texttt{w:t}). The system handles formatting markers including tabs (\texttt{w:tab}) and line breaks (\texttt{w:br}) while maintaining document structure.
-
-Content assembly processes additional document elements including headers and footers from \texttt{word/header*.xml} and \texttt{word/footer*.xml} files, hyperlink resolution through relationship mappings in \texttt{word/\_rels/document.xml.rels}, and structured content extraction that preserves paragraph organization.
-
-Final text assembly combines all extracted elements into a unified Unicode string, eliminating proprietary formatting codes while preserving semantic structure essential for similarity assessment. The pipeline outputs clean, standardized text suitable for SimCSE processing while maintaining the original document's logical organization.
+Element traversal (6) systematically navigates paragraph elements (\texttt{w:p}), run elements (\texttt{w:r}), and formatting markers while text node extraction (7) captures actual textual content from \texttt{w:t} elements including tabs and line breaks. Content assembly (8) combines extracted text elements with additional document components from headers, footers, and relationship mappings to maintain document structure. Structure preservation (9) ensures paragraph organization and semantic coherence are maintained throughout the extraction process, culminating in clean text output (10) as a unified Unicode string suitable for SimCSE processing while eliminating proprietary formatting codes.
 
 \subsubsection{TXT Processing Pipeline}
 \label{subsubsec:txt_pipeline}
@@ -119,18 +119,14 @@ The plain text processing pipeline utilizes the \texttt{TextLoader} to handle UT
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/txt_processing_pipeline}
-\caption[TXT Processing Pipeline]{Plain text processing pipeline demonstrating encoding detection, UTF-8 normalization, and content validation for semantic similarity preparation.}
+\caption[TXT Processing Pipeline]{TextLoader Preprocessing Pipeline}
 \label{fig:txt_pipeline}
 \end{figure}
 \FloatBarrier
 
-The TXT processing pipeline initiates with character encoding detection using the \texttt{chardet} library to identify file encoding schemes and ensure proper character interpretation. The system supports various encoding formats including UTF-8, ASCII, ISO-8859-1, and Windows-1252, automatically detecting and converting to standardized UTF-8 representation.
+The TXT processing pipeline initiates with TXT file input (1), followed by encoding detection using the \texttt{chardet} library (2) to identify file encoding schemes including UTF-8, ASCII, ISO-8859-1, and Windows-1252 for proper character interpretation. Character set validation (3) examines encoding compatibility and determines whether UTF-8 conversion (4) is required to standardize text representation, while line ending normalization (5) converts various line ending formats into consistent Unix-style endings regardless of operating system origin.
 
-Content validation processes include line ending normalization, where the system converts various line ending formats into consistent Unix-style line endings, ensuring uniform text structure across different operating system origins.
-
-Unicode validation examines the text content for character validity and replaces invalid byte sequences with appropriate Unicode replacement characters, maintaining text integrity while preventing processing errors in downstream components.
-
-Final processing includes whitespace normalization and content cleaning, where excessive whitespace is reduced and any remaining encoding artifacts are removed. The pipeline outputs clean, standardized UTF-8 text ready for SimCSE semantic similarity processing, ensuring consistent input quality regardless of the original text file's encoding or formatting characteristics.
+Unicode validation (6) examines text content for character validity and replaces invalid byte sequences with appropriate Unicode replacement characters, followed by whitespace processing and artifact removal (7) that reduces excessive spacing and eliminates encoding artifacts. Content cleaning (8) performs final text standardization to ensure consistent input quality, culminating in clean text output (9) that produces UTF-8 standardized text ready for SimCSE semantic similarity processing while maintaining text integrity throughout the conversion process.
 }
 
 {\color{maroon}
@@ -155,17 +151,17 @@ The system extracts sentence representations from position 0 of the transformer 
 
 \subsection{SimCSE Architecture Implementation}
 
-The SimCSE architecture forms the core of Consol's semantic similarity assessment, implementing sophisticated contrastive learning mechanisms optimized for educational content evaluation. Figure \ref{fig:simcse_architecture} illustrates the complete SimCSE processing pipeline from input tokenization through embedding generation to similarity computation, demonstrating the systematic flow from training phase through local deployment to inference and response generation.
+The SimCSE architecture forms the core of Consol's semantic similarity assessment, implementing sophisticated contrastive learning mechanisms optimized for textual content comparison. Figure \ref{fig:simcse_architecture} illustrates the complete SimCSE processing pipeline from input tokenization at its pre-training stages, through embedding generation during inference, to similarity computation done locally in the host machine, demonstrating the systematic flow from start to finish.
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/simcse_architecture.png}
-\caption[SimCSE Architecture Implementation]{{\color{maroon}\tiny Comprehensive SimCSE architecture diagram showing the complete processing pipeline from input sentence tokenization through BERT encoding, contrastive learning mechanisms, and final similarity computation. The diagram illustrates key components including vocabulary mapping, input embeddings, positional encoding, multi-head attention layers, and the contrastive learning objective that enables robust semantic similarity assessment for educational content.}}
+\caption[SimCSE Architecture Implementation]{SimCSE Architecture Diagram }
 \label{fig:simcse_architecture}
 \end{figure}
 \FloatBarrier
 
-The architecture implementation emphasizes educational robustness, ensuring consistent similarity assessment across diverse note-taking styles and content domains. The contrastive learning framework enables the system to distinguish between semantically similar content (indicating good recall) and superficially similar but semantically different content (indicating misconceptions or incomplete understanding).
+
 
 \subsubsection{Training Phase}
 
@@ -213,7 +209,7 @@ Group D in the diagram represents the response phase transforming sentence embed
 
 Cosine similarity calculation (17a) computes similarity between sentence embeddings using the formula $\text{similarity} = \frac{\mathbf{A} \cdot \mathbf{B}}{||\mathbf{A}|| \times ||\mathbf{B}||}$ where $\mathbf{A}$ and $\mathbf{B}$ represent the 768-dimensional embeddings for reference and recalled content respectively, producing similarity scores (17b) as normalized values between 0.0 and 1.0 providing standardized measures of semantic similarity suitable for educational assessment interpretation.
 
-Star threshold evaluation (18a) applies the finalized similarity score thresholds (discusssed in Section \ref{subsubsec:validation}) determining star ratings where scores $\geq 0.81$ indicate 3 stars for excellent understanding, $\geq 0.60$ indicate 2 stars for good recall with minor gaps, $\geq 0.44$ indicate 1 star for basic understanding requiring improvement, and $< 0.44$ indicate 0 stars requiring significant improvement and concept review. Final result generation (18b) combines numerical similarity scores with categorical star ratings providing both precise measurement and interpretable feedback for educational assessment.
+Star threshold evaluation (18a) applies the finalized similarity score thresholds (discussed in Section \ref{subsubsec:validation_results}) determining star ratings where scores $\geq 0.81$ indicate 3 stars for excellent understanding, $\geq 0.60$ indicate 2 stars for good recall with minor gaps, $\geq 0.44$ indicate 1 star for basic understanding requiring improvement, and $< 0.44$ indicate 0 stars requiring significant improvement and concept review. Final result generation (18b) combines numerical similarity scores with categorical star ratings providing both precise measurement and interpretable feedback for educational assessment.
 
 JSON response formatting (19) structures assessment results containing similarity score, star rating, and processing metadata for frontend consumption, enabling database storage (20) for learning analytics and progress tracking while supporting frontend display (21) for immediate visual feedback in the user interface across multiple assessment sessions.
 
@@ -240,7 +236,7 @@ One of the critical aspects of developing Consol was establishing appropriate si
 
 \begin{table}[!htbp]
 \centering
-\caption[Similarity Score Thresholds for Educational Assessment]{{\color{maroon}\tiny Initial similarity score thresholds established for the star rating system based on educational assessment principles}}
+\caption[Similarity Score Thresholds for Educational Assessment]{Initial Similarity Score Thresholds}
 \label{tab:similarity_thresholds}
 \begin{tabular}{|c|c|c|p{6cm}|}
 \hline
@@ -258,7 +254,7 @@ Poor & 0 stars & $< 0.30$ & Requires significant improvement and concept review 
 \end{table}
 \FloatBarrier}
 
-To validate these thresholds, a series of test cases were fed into the barebones SimCSE and the scoring threshold was arbitrarily adjusted based on the results.
+To refine and validate these thresholds, a series of test cases were fed into the barebones SimCSE and the scoring threshold was arbitrarily adjusted based on the results.
 
 \subsubsection{Test Case Design and Implementation}
 
@@ -337,7 +333,7 @@ This systematic approach ensured that the final threshold settings would be both
 \vspace{0.2cm}
 \end{minipage}}
 \end{minipage}
-\caption[Test Case Scenarios for SimCSE Validation]{Seven representative test case scenarios designed to evaluate SimCSE performance across different linguistic challenges commonly encountered in educational assessment contexts.}
+\caption[Test Case Scenarios for SimCSE Validation]{Scoring Test Cases for Threshold Adjustment}
 \label{fig:test_case_scenarios}
 \end{figure}
 \FloatBarrier
@@ -373,6 +369,7 @@ This systematic approach ensured that the final threshold settings would be both
 
 
 \subsubsection{Validation Results and Threshold Refinement}
+\label{subsubsec:validation_results}
 
 The systematic testing revealed both strengths and areas for improvement in SimCSE's performance for educational assessment. Analysis of the seven test cases provided crucial insights into the model's behavior across different linguistic scenarios.
 
@@ -380,7 +377,7 @@ The systematic testing revealed both strengths and areas for improvement in SimC
 
 \begin{table}[!htbp]
 \centering
-\caption[Test Case Results for Scoring Threshold Adjustment]{{\color{maroon}\tiny Resulting scores of the test cases for scoring threshold adjustment. Actual scores reflect SimCSE model output during the initial test case feeding onto the barebones SimCSE.}}
+\caption[Test Case Results for Scoring Threshold Adjustment]{{Scoring Test Case Results}}
 \label{tab:test_case_results}
 \begin{tabular}{|c|p{6cm}|c|c|}
 \hline
@@ -473,7 +470,7 @@ The development architecture encompasses the complete technical stack integratio
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
-\caption[Development Architecture with API Schema]{{\color{maroon}\tiny Comprehensive development architecture diagram detailing API endpoints, database schema relationships, and system component interactions. The diagram shows the technical infrastructure supporting educational assessment workflows including user management, content processing, and performance analytics.}}
+\caption[Development Architecture with API Schema]{Development Architecture Diagram}
 \label{fig:development_architecture}
 \end{figure}
 \FloatBarrier
@@ -484,7 +481,7 @@ The PostgreSQL implementation follows normalized design with three core entities
 
 \begin{table}[H]
 \centering
-\caption{{\color{maroon}\tiny Entity-Relationship Diagram of the Consol Database Schema}}
+\caption{{Entity-Relationship Diagram}}
 \label{tab:database-erd}
 \begin{minipage}{\textwidth}
 \centering
@@ -526,7 +523,7 @@ The Consol system implements a comprehensive educational workflow designed to op
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/user_interaction_flow_decisions.png}
-\caption[User Interaction Flow with Decision Trees]{{\color{maroon}\tiny Comprehensive user interaction flow diagram showing the complete educational workflow including decision trees, session management processes, and iterative assessment cycles. The diagram illustrates user pathways from authentication through content creation, assessment sessions, and performance analysis.}}
+\caption[User Interaction Flow with Decision Trees]{User Interaction Flow Diagram}
 \label{fig:user_interaction_flow}
 \end{figure}
 \FloatBarrier
@@ -556,19 +553,19 @@ Cloudinary integration handles educational multimedia content optimization and r
 
 The cloud infrastructure supports scalable deployment patterns that accommodate varying user loads typical in educational settings, from individual practice sessions to classroom-wide assessment activities.
 
-\subsection{Development Process}
+% \subsection{Development Process}
 
-The development process followed an iterative approach prioritizing core semantic similarity functionality before expanding to advanced educational features. Initial development focused on establishing robust SimCSE integration and database architecture to ensure reliable assessment capability as the foundational system component.
+% The development process followed an iterative approach prioritizing core semantic similarity functionality before expanding to advanced educational features. Initial development focused on establishing robust SimCSE integration and database architecture to ensure reliable assessment capability as the foundational system component.
 
-Project evolution progressed through three distinct phases beginning with proof-of-concept implementation validating SimCSE integration with basic note comparison functionality. The second phase introduced user interface development with authentication systems, dashboard design, and session management capabilities. The final phase incorporated advanced analytics features, performance optimization, and comprehensive testing protocols.
+% Project evolution progressed through three distinct phases beginning with proof-of-concept implementation validating SimCSE integration with basic note comparison functionality. The second phase introduced user interface development with authentication systems, dashboard design, and session management capabilities. The final phase incorporated advanced analytics features, performance optimization, and comprehensive testing protocols.
 
-Feature development prioritization emphasized educational effectiveness over technical complexity, ensuring that each component directly supported learning objectives. User feedback integration occurred throughout development cycles, with rapid prototyping enabling continuous refinement based on pedagogical requirements and usability observations.
+% Feature development prioritization emphasized educational effectiveness over technical complexity, ensuring that each component directly supported learning objectives. User feedback integration occurred throughout development cycles, with rapid prototyping enabling continuous refinement based on pedagogical requirements and usability observations.
 
 \subsection{Implementation Tools and Technologies}
 
-The technology stack implementation emphasized educational effectiveness and development efficiency. Next.js 15 with React 19 provided the frontend framework, PostgreSQL served as the database system, and Python Flask handled SimCSE processing. Cloud deployment utilized Vercel for frontend hosting, Supabase for database management, and Cloudinary for media optimization.
+The technology stack implementation's aim was to prioritize effectiveness of features and development efficiency. Next.js 15 with React 19 provided the frontend framework, PostgreSQL served as the database system, and Python Flask handled SimCSE processing. Cloud deployment utilized Vercel for frontend hosting, Supabase for database management, and Cloudinary for media optimization.
 
-Development tools included TypeScript for type safety, Tailwind CSS for interface design, Chart.js for data visualization, and Prisma for database operations. The technology selection prioritized educational platform requirements including scalability, reliability, and ease of maintenance while ensuring optimal user experience across diverse educational technology environments.
+Development tools aside from the main system's architecture included TypeScript for type safety, Tailwind CSS for interface design, and Chart.js for data visualization. The technology selection prioritized the platform's requirements including scalability, reliability, and ease of maintenance while ensuring optimal user experience.
 }
 
 {\color{maroon}

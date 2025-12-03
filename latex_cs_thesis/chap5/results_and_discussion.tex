@@ -24,7 +24,7 @@ Figure~\ref{fig:mean_scores_comparison} illustrates the comprehensive performanc
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{mean_scores_comparison}
-    {\color{maroon}\tiny\caption[Mean Scores Comparison Across Participants]{Mean scores per participant across all topics and days, comparing SimCSE and Teacher assessments. SimCSE consistently demonstrates close alignment with teacher scoring patterns across all five participants.}}
+    \caption[Mean Scores Comparison Across Participants]{Scoring Comparison Between SimCSE and a Teacher}
     \label{fig:mean_scores_comparison}
 \end{figure}
 \FloatBarrier
@@ -40,7 +40,7 @@ Figure \ref{fig:ai_deviation_comparison} presents the deviation analysis, showin
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{ai_deviation_comparison}
-    {\color{maroon}\tiny\caption[SimCSE Teacher Assessment Alignment]{SimCSE deviation from teacher baseline per participant showing assessment accuracy in educational contexts.}}
+    \color{maroon}\tiny\caption[SimCSE Teacher Assessment Alignment]{SimCSE deviation from teacher baseline per participant showing assessment accuracy in educational contexts.}
     \label{fig:ai_deviation_comparison}
 \end{figure}
 \FloatBarrier
@@ -139,34 +139,6 @@ The user acceptance metrics demonstrate strong positive reception and high likel
 User adoption metrics demonstrate strong positive reception with 94\% of participants indicating likelihood to recommend the system to others, suggesting high word-of-mouth potential for organic user base growth. Interest in frequent system use reached 89\%, with users expressing genuine intention to incorporate the system into their regular study routines. Comparative evaluation revealed that 78\% rated the system superior to their current study tracking methods, while 85\% found it more effective than traditional note-taking approaches, indicating substantial improvement over existing educational tools.
 }
 
-\subsection{Qualitative Feedback Analysis}
-
-Open-ended responses provided valuable insights into user perceptions and system strengths. Users most frequently cited advantages included immediate feedback with one participant noting that the instant scoring helps understand recall accuracy right away, objective assessment where participants appreciated the consistent scoring that doesn't vary based on mood or bias, progress visualization with users finding that charts make it easy to see improvement over time, and motivational elements where streak tracking keeps users engaged with regular practice.
-
-Potential usage barriers were also identified through user feedback. Internet connectivity represented 35% of concerns due to dependency on network access for full functionality. Initial setup time concerned 21% of users regarding the learning curve for optimal feature utilization. Mobile optimization was requested by 30% of users who desired enhanced mobile device compatibility. Advanced customization was requested by 14% of users interested in more personalized settings.
-}
-
-\section{Performance Analysis}
-
-{\color{maroon}
-The system performance analysis demonstrates robust computational efficiency and scalability suitable for educational environments. SimCSE similarity calculation achieved consistent sub-second processing times across varying text lengths, with average processing time of 150ms per comparison including tokenization, embedding generation, and similarity computation.
-
-Database query performance maintained optimal response times with average retrieval latency of 12ms for user sessions and 8ms for note lookup operations. The PostgreSQL implementation handled concurrent user sessions effectively, supporting up to 50 simultaneous users without performance degradation during testing periods.
-
-Memory utilization remained stable at approximately 2.3GB during peak usage, primarily attributed to BERT model loading and embedding cache management. The system architecture successfully balanced computational demands with resource efficiency, enabling deployment on standard educational institution infrastructure.
-}
-
-\section{Similarity Scoring Validation Results}
-
-{\color{maroon}
-{\color{maroon}
-The similarity scoring validation revealed critical performance characteristics of SimCSE in educational contexts and established clear effectiveness compared to teacher-established baselines. Validation testing employed standardized content pairs across biology topics with systematic comparison against expert assessment criteria.
-
-SimCSE demonstrated exceptional reliability with zero variance across repeated assessments of identical content pairs, providing crucial consistency for fair educational assessment where identical student responses must receive identical scores regardless of assessment timing.
-}
-
-Threshold validation confirmed educationally meaningful score boundaries, with similarity scores above 0.8 correlating strongly with teacher assessments of mastery-level understanding, scores between 0.6-0.8 indicating proficient comprehension, and scores below 0.6 suggesting need for additional study. Statistical analysis validated these thresholds with correlation coefficients of r=0.84 between SimCSE scores and teacher assessments.
-}
 
 \section{User Experience Testing Results}
 
@@ -293,7 +265,6 @@ Future research opportunities include cross-disciplinary validation extending ev
 
 \section{Limitations and Challenges}
 
-{\color{maroon}
 Several technical and methodological limitations emerged during system development and evaluation that warrant acknowledgment and consideration for future implementation. As a proof of concept, the current system demonstrates feasibility rather than production-ready implementation, indicating areas where more sophisticated web development practices could enhance performance and user experience.
 
 SimCSE processing integration represents a promising but technically complex component that could benefit from advanced natural language processing optimizations and more efficient embedding computation strategies. The web application architecture, while functional for demonstration purposes, would require significant refinement for institutional deployment, including enhanced security protocols, scalability improvements, and more robust error handling mechanisms.
@@ -301,6 +272,9 @@ SimCSE processing integration represents a promising but technically complex com
 Evaluation scope limitations include focus on English-language content within STEM disciplines, requiring additional validation for multilingual applications and humanities subjects where semantic similarity may operate differently than in scientific content. The 3-day assessment period, while sufficient for initial validation, may not capture long-term learning retention patterns or sustained engagement effects.
 
 User testing constraints involved limited demographic diversity, with participants primarily representing junior and senior high school students from a specific educational context. Future evaluation should include broader age ranges, diverse educational backgrounds, and varying technology proficiency levels to establish comprehensive usability validation across potential user populations.
-}
+
+One of the biggest hurdles conceptually encountered in this study was attempting to harness the full potential of a semantic comparison system to be able to recognize paraphrased and abstracted ideas, and the best methods for scoring that would fit in this self-learning context. Since SimCSE outputs a single similarity value rather than tackle discrete categories of correctness and lack thereof, it was challenging to settle on a fair mode of evaluation, which led to opting for fair thresholds instead. Establishing meaningful boundaries is paramount to the essence of self-learning performance assessment, but the mathematically-grounded system of SimCSE is only limited to pure semantic similarity evaluation, as a value ranging only from 0 to 1. Although the similarity scoring that SimCSE provides is sufficient enough to facilitate the progress tracking aspect of Consol, it is undeniable that its inference can never dwell into checking for correctness of facts scattered within the recollected text. SimCSE, in its computational nature, would only assess how similar the user's inputs are to the original note, leaving the responsibility of original note correctness and comprehensibility to the user. This implies that note-making on the user's end, and familiarity with how the notes were written, are still the determining factors of getting higher scores in sessions.
+
+
 
 % NEWADDITION: Content structure prepared for results presentation and analysis
