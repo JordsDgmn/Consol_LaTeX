@@ -96,7 +96,7 @@ The computational assessment of semantic similarity forms the technical core of 
 
 Devlin et al. (2019) establish the transformer architecture as a breakthrough in natural language understanding through bidirectional encoder representations. BERT's key innovation lies in training on masked language modeling and next sentence prediction tasks that force the model to develop comprehensive understanding of linguistic relationships rather than relying on surface-level patterns.
 
-The theoretical significance extends beyond technical improvement to fundamental changes in how machines process language. BERT's bidirectional attention mechanism enables each token to attend to all other tokens in the sequence, creating rich contextual representations where word meanings depend on complete sentence context. This architectural foundation provides the embedding space within which semantic similarity measurements operate, establishing vector representations that capture nuanced meaning relationships essential for educational assessment.
+The theoretical significance extends beyond technical improvement to fundamental changes in how machines process language. BERT's bidirectional attention mechanism enables each token to attend to all other tokens in the sequence, creating rich contextual representations where word meanings depend on complete sentence context. This architectural foundation provides the embedding space within which semantic similarity measurements operate, establishing vector representations that capture nuanced meaning relationships essential for learning assessment.
 
 {\color{maroon}
 \subsection{SimCSE Contrastive Learning Theory and Technical Implementation}
@@ -131,35 +131,35 @@ SimCSE addresses the anisotropy problem by encouraging uniform distribution of s
 
 The uniform distribution property ensures that high similarity scores indicate genuine semantic relationships rather than distributional artifacts. This addresses the critical limitation of standard BERT sentence embeddings where random sentences often achieve similarity scores above 0.5 despite having no meaningful semantic relationship.
 
-\subsection{Consol's Implementation of SimCSE Assessment}
+\subsection{Consol's Implementation of SimCSE Scoring}
 
 {\color{maroon}
-Consol implements unsupervised SimCSE models based on BERT pre-training to ensure robust semantic similarity measurement for educational assessment. The platform utilizes contrastive learning principles that align with natural memory processes, providing assessment that reflects genuine semantic understanding rather than superficial textual matching.
+Consol implements unsupervised SimCSE models based on BERT pre-training to ensure robust semantic similarity measurement for notes-to-recollection assessment. The platform utilizes contrastive learning principles that align with natural memory processes, providing assessment that reflects genuine semantic understanding rather than superficial textual matching.
 }
 
-The three-tier threshold system directly applies SimCSE similarity scores: scores above 0.8 indicate comprehensive semantic alignment where student responses demonstrate mastery-level understanding equivalent to paraphrasing or detailed explanation, scores between 0.6-0.8 suggest adequate comprehension with minor conceptual gaps, and scores between 0.3-0.6 indicate partial understanding requiring additional study. This threshold calibration reflects SimCSE's demonstrated correlation with human semantic similarity judgments across educational contexts.
+The three-tier threshold system directly applies SimCSE similarity scores: scores above 0.8 indicate comprehensive semantic alignment where user responses demonstrate mastery-level understanding equivalent to paraphrasing or detailed explanation, scores between 0.6-0.8 suggest adequate comprehension with minor conceptual gaps, and scores between 0.3-0.6 indicate partial understanding requiring additional study. This initial threshold calibration reflects SimCSE's demonstrated correlation with human semantic similarity judgments across various educational contexts.
 
-The immediate feedback mechanism provides real-time similarity scores that enable students to observe their recall precision while the memory retrieval process remains active. This design accommodates Karpicke and Roediger's (2008) findings about retrieval practice effectiveness by allowing students to immediately assess whether their recall maintains semantic fidelity to the original material.
+The immediate feedback mechanism provides real-time similarity scores that enable users to observe their recall precision while the memory retrieval process remains active. This design accommodates Karpicke and Roediger's (2008) findings about retrieval practice effectiveness by allowing users to immediately assess whether their recall maintains semantic fidelity to the original material.
 }
 
 {\color{maroon}
 \subsection{Semantic Assessment Integration with Consol Note Management}
 
-Consol's note management system leverages SimCSE semantic similarity to support the natural progression from initial note creation through recall assessment. Students create notes using either manual input through the note editor interface or file upload functionality, establishing a knowledge base that serves as the semantic reference for subsequent recall sessions.
+Consol's note management system leverages SimCSE semantic similarity to support the natural progression from initial note creation through recall assessment. Users create notes using either manual input through the note editor interface or file upload functionality, establishing a knowledge base that serves as the semantic reference for subsequent recall sessions.
 
-The note creation interface accommodates diverse content types while maintaining focus on meaningful information capture rather than formatting constraints. This approach aligns with Sachs' (1967) findings about memory's preference for semantic content over syntactic structure, enabling students to focus on conceptual understanding rather than exact reproduction requirements.
+The note creation interface accommodates diverse content types while maintaining focus on meaningful information capture rather than formatting constraints. This approach aligns with Sachs' (1967) findings about memory's preference for semantic content over syntactic structure, enabling users to focus on conceptual understanding rather than exact reproduction requirements.
 
-During recall sessions, the platform compares student-generated responses against their original notes using SimCSE similarity calculation. The immediate similarity feedback enables students to assess whether their recall maintains semantic fidelity to their original understanding, supporting the retrieval practice principles established by Karpicke and Roediger (2008) through objective performance measurement.
+During recall sessions, the platform compares user-generated responses against their original notes using SimCSE similarity calculation. The immediate similarity feedback enables users to assess whether their recall maintains semantic fidelity to their original understanding, and performance from each session gets stored as metadata inside each note, supporting and further enhancing the concept of the retrieval practice principles established by Karpicke and Roediger (2008) through objective performance measurement.
 }
 
 {\color{maroon}
 \subsection{Three-Star Rating System Implementation}
 
-Consol implements the three-star rating system directly based on Gaston and Cooper's (2017) research demonstrating that three-tier performance indicators optimize motivation while maintaining meaningful differentiation. The star allocation follows graduated similarity thresholds: three stars for scores above 0.8 (comprehensive semantic alignment), two stars for scores between 0.6-0.8 (adequate comprehension), one star for scores between 0.3-0.6 (partial understanding), and zero stars for scores below 0.3 (insufficient recall).
+Consol implements the three-star rating system directly based on Gaston and Cooper's (2017) research demonstrating that three-tier performance indicators optimize motivation while maintaining meaningful differentiation. The initial star allocation follows graduated similarity thresholds: three stars for scores above 0.8 (comprehensive semantic alignment), two stars for scores between 0.6-0.8 (adequate comprehension), one star for scores between 0.3-0.6 (partial understanding), and zero stars for scores below 0.3 (insufficient recall).
 
-These thresholds reflect SimCSE's calibrated performance on semantic similarity benchmarks, where scores above 0.8 correspond to human judgments of semantic equivalence, and scores below 0.3 indicate semantic independence. The three-star system provides immediate performance feedback that students can interpret without requiring technical understanding of similarity measurement algorithms.
+These thresholds reflect SimCSE's calibrated performance on semantic similarity benchmarks, where scores above 0.8 correspond to human judgments of semantic equivalence, and scores below 0.3 indicate semantic independence. The three-star system provides immediate performance feedback that users can interpret without requiring technical understanding of similarity measurement algorithms.
 
-The daily streak calendar visualizes consistency performance by tracking consecutive days with successful note recall sessions, implementing the habit formation principles established by Stojanovic et al. (2020). The calendar interface displays the highest star rating achieved each day, enabling students to observe their learning consistency patterns while providing motivation for sustained engagement through visible progress accumulation.
+The daily streak calendar visualizes consistency performance by tracking consecutive days with successful note recall sessions, implementing the habit formation principles established by Stojanovic et al. (2020). The calendar interface displays the highest star rating achieved each day, enabling users to observe their learning consistency patterns while providing motivation for sustained engagement through visible progress accumulation.
 }
 }
 
@@ -200,7 +200,7 @@ The theoretical framework recognizes that educational gamification must maintain
 
 Stojanovic, Grund, and Fries (2020) establish that app-based habit building systems effectively reduce motivational impairments during studying through structured progress feedback and consistency tracking. Their research identifies key theoretical factors: specific goal setting that provides clear learning targets, immediate feedback that confirms progress toward objectives, progress visualization that makes improvement visible over time, and consistency rewards that recognize sustained engagement patterns.
 
-These factors work synergistically to support long-term engagement beyond initial motivation phases, enabling learners to maintain educational practices even when immediate enthusiasm wanes. Consol accommodates these principles by providing an environment where students can observe their own study consistency patterns and improvement trends without external pressure to maintain artificial performance standards.
+These factors work synergistically to support long-term engagement beyond initial motivation phases, enabling learners to maintain educational practices even when immediate enthusiasm wanes. Consol accommodates these principles by providing an environment where users can observe their own study consistency patterns and improvement trends without external pressure to maintain artificial performance standards.
 
 
 
@@ -208,9 +208,9 @@ These factors work synergistically to support long-term engagement beyond initia
 {\color{maroon}
 \subsection{Immediate Feedback Implementation in Consol}
 
-Karpicke and Roediger (2008) establish that feedback timing significantly impacts learning effectiveness, with immediate feedback promoting better knowledge consolidation than delayed feedback. The Consol system provides immediate similarity feedback that enables students to assess their recall accuracy in real-time during the note recollection process.
+Karpicke and Roediger (2008) establish that feedback timing significantly impacts learning effectiveness, with immediate feedback promoting better knowledge consolidation than delayed feedback. The Consol system provides immediate similarity feedback that enables users to assess their recall accuracy in real-time during the note recollection process.
 
-The immediate feedback mechanism displays similarity scores as students complete their recall attempts, enabling them to understand the quality of their memory retrieval while the cognitive processes remain active. This real-time assessment supports metacognitive awareness by helping students identify conceptual gaps and adjust their understanding during the learning session rather than waiting for delayed evaluation.
+The immediate feedback mechanism displays similarity scores as users complete their recall attempts, enabling them to understand the quality of their memory retrieval while the cognitive processes remain active. This real-time assessment supports metacognitive awareness by helping users identify conceptual gaps and adjust their understanding during the learning session rather than waiting for delayed evaluation.
 }
 
 {\color{maroon}
@@ -219,7 +219,7 @@ The immediate feedback mechanism displays similarity scores as students complete
 
 A valid automated assessment requires consistency in measurement across equivalent inputs, sensitivity to meaningful differences in understanding quality, objectivity through elimination of human scorer bias, and educational relevance through alignment with learning objectives. SimCSE-based assessment satisfies these criteria by providing deterministic similarity scores that reflect semantic relationships while maintaining objectivity across diverse response styles.
 
-In this study, this implies that Consol having a consistent and deterministic scoring agent prevents situations such as arbitrary scoring, which is undeniably prevalent in human interventions. It is unrealistic for human-like logic to constantly affirm similarity by arriving at a certain number without injecting a degree of subjectivity or personal bias. Automated assessment, especially from the likes of SimCSE, would not be susceptible to fluctuations in scoring. In return, this would provide students with a more reliable and consistent feedback mechanism that they can trust to accurately reflect their learning progress.
+In this study, this implies that Consol having a consistent and deterministic scoring agent prevents situations such as arbitrary scoring, which is undeniably prevalent in human interventions. It is unrealistic for human-like logic to constantly affirm similarity by arriving at a certain number without injecting a degree of subjectivity or personal bias. Automated assessment, especially from the likes of SimCSE, would not be susceptible to fluctuations in scoring. In return, this would provide users with a more reliable and consistent feedback mechanism that they can trust to accurately reflect their learning progress.
 
 Confidence in the assessment is foundational for the rest of the progress tracking and motivation theories, as well as its implementations. 
 } 
@@ -231,16 +231,16 @@ Building upon the foundation of reliable automated assessment, effective educati
 
 Vișcu (2024) provides comprehensive analysis of optimizing educational environments for active learning methodologies, establishing that effective educational technology must balance challenge and support while addressing three key motivational factors: autonomy (student control over learning processes), competence (achievable yet challenging goals), and relatedness (meaningful outcomes connected to personal objectives). The research emphasizes that immediate feedback systems prove most effective when providing actionable information that students can use to improve their performance rather than merely documenting their current achievement level.
 
-This integrated foundation encompasses data visualization principles supported by educational technology research (Vișcu, 2024), self-regulated learning theory that emphasizes student autonomy in monitoring their own progress (Baars et al., 2022), and educational measurement approaches that support rather than replace human judgment in learning assessment. Stojanovic et al. (2020) demonstrate that systematic progress tracking through app-based systems effectively reduces motivational impairments during studying by providing structured feedback and consistency visualization that enables learners to maintain educational practices beyond initial motivation phases.
+This integrated foundation encompasses data visualization principles supported by educational technology research (Vișcu, 2024), self-regulated learning theory that emphasizes student autonomy in monitoring their own progress (Baars et al., 2022), and measurement approaches that support rather than replace human judgment in learning assessment. Stojanovic et al. (2020) demonstrate that systematic progress tracking through app-based systems effectively reduces motivational impairments during studying by providing structured feedback and consistency visualization that enables learners to maintain self-learning practices beyond initial motivation phases.
 
 The distinction between formative and summative feedback approaches proves critical in educational technology design, enabling students to make informed decisions about their learning strategies based on objective performance data derived from the reliable assessment foundation established through automated scoring consistency.
 }
 
 \subsection{Multi-Dimensional Performance Assessment}
 
-Effective educational assessment requires multiple performance indicators that capture different aspects of learning achievement. Consol implements multi-dimensional measurement through the radar chart visualization that displays three primary metrics: comprehension (average semantic similarity across sessions), speed (words per minute during recall), and mastery (percentage of sessions achieving three-star performance).
+Effective learning assessment requires multiple performance indicators that capture different aspects of learning achievement. Consol implements multi-dimensional measurement through the radar chart visualization that displays three primary metrics: comprehension (average semantic similarity across sessions), speed (words per minute during recall), and mastery (percentage of sessions achieving three-star performance).
 
-This three-dimensional assessment recognizes that learning involves multiple cognitive processes that cannot be captured through single metrics. Students achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while balanced performance across all three dimensions indicates comprehensive learning development. The session metadata provides additional granular analysis including word count tracking and attempt frequency measurement.
+This three-dimensional assessment recognizes that learning involves multiple cognitive processes that cannot be captured through single metrics. Users achieving high comprehension with moderate speed demonstrate thorough understanding that prioritizes accuracy over efficiency, while balanced performance across all three dimensions indicates comprehensive learning development. The session metadata provides additional granular analysis including word count tracking and attempt frequency measurement.
 
 % \subsection{Formative Assessment Through Similarity Scoring}
 
