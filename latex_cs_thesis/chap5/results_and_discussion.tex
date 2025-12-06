@@ -4,6 +4,14 @@
 
 % NEWADDITION: Section structure based on ClassiFish reference format
 
+
+
+This chapter presents the findings of the study, including the implemented features inside the web application, results of the usability testing of Consol, and the evaluation of the SimCSE similarity scoring. These results are interpreted and discussed in relation to the objectives of this research.
+
+
+
+
+
 {\color{maroon}
 \section{Scoring Accuracy Assessment Results}
 
@@ -24,7 +32,7 @@ Figure~\ref{fig:mean_scores_comparison} illustrates the comprehensive performanc
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{mean_scores_comparison}
-    \caption[Mean Scores Comparison Across Participants]{Scoring Comparison Between SimCSE and a Teacher}
+    \caption[Scoring Comparison Between SimCSE and a Teacher]{Scoring Comparison Between SimCSE and a Teacher}
     \label{fig:mean_scores_comparison}
 \end{figure}
 \FloatBarrier
@@ -40,31 +48,30 @@ Figure \ref{fig:ai_deviation_comparison} presents the deviation analysis, showin
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.85\linewidth]{ai_deviation_comparison}
-    \color{maroon}\tiny\caption[SimCSE Teacher Assessment Alignment]{SimCSE deviation from teacher baseline per participant showing assessment accuracy in educational contexts.}
+    \color{maroon}\tiny\caption[SimCSE-Teacher Deviation Chart]{SimCSE-Teacher Deviation Chart}
     \label{fig:ai_deviation_comparison}
 \end{figure}
 \FloatBarrier
 
-Individual Participant Analysis:
 
-The consistency of SimCSE's performance was validated across all individual participants:
+The consistency of SimCSE's performance was validated across all individual participants through analyzing its deviation from the teacher's scoring. Table 5.1 shows the mean deviation from SimCSE compared to the teacher's assessment, and also by how many points on average SimCSE overscores or underscores.
 
 \begin{table}[!htbp]
 \centering
-{\color{maroon}\tiny\caption[Participant-wise Scoring Accuracy Analysis]{Individual participant scoring accuracy analysis showing mean absolute deviations from teacher baseline}}
+{\color{maroon}\tiny\caption[Participant Scoring Accuracy Analysis]{Participant Scoring Accuracy Analysis}}
 \label{tab:participant_accuracy}
 {\color{maroon}
-\begin{tabular}{lccc}
+\begin{tabular}{lcc}
 \toprule
-\textbf{Participant} & \textbf{SimCSE Deviation} & \textbf{Teacher Comparison} & \textbf{SimCSE Performance} \\
+\textbf{Participant} & \textbf{SimCSE Deviation} & \textbf{SimCSE Performance} \\
 \midrule
-Participant 1    & 9.71 points      & 18.59 points      & +8.88 points difference     \\
-Participant 2    & 5.03 points      & 8.73 points       & +3.70 points difference     \\
-Participant 3    & 8.59 points      & 22.53 points      & +13.94 points difference    \\
-Participant 4    & 16.66 points     & 17.13 points      & +0.47 points difference     \\
-Participant 5    & 7.72 points      & 14.67 points      & +6.95 points difference     \\
+Participant 1    & 9.71 points            & +8.88 points difference     \\
+Participant 2    & 5.03 points            & +3.70 points difference     \\
+Participant 3    & 8.59 points            & +13.94 points difference    \\
+Participant 4    & 16.66 points           & +0.47 points difference     \\
+Participant 5    & 7.72 points            & +6.95 points difference     \\
 \midrule
-\textbf{Overall Mean} & \textbf{9.54 points} & \textbf{16.33 points} & \textbf{+6.79 points difference} \\
+\textbf{Overall Mean} & \textbf{9.54 points} & \textbf{+6.79 points difference} \\ 
 \bottomrule
 \end{tabular}
 }
@@ -72,9 +79,8 @@ Participant 5    & 7.72 points      & 14.67 points      & +6.95 points differenc
 \FloatBarrier
 
 {\color{maroon}
-Key Observations:
 
-SimCSE demonstrated superior performance across all participants (5/5), with best performance achieved by Participant 2 showing only 5.03 points deviation from teacher assessment. The largest improvement was demonstrated by Participant 3, who achieved exceptional accuracy with SimCSE evaluation. Even the smallest advantage, observed with Participant 4 at 0.47 points improvement, still favored SimCSE. Most notably, SimCSE showed lower variance across participants, indicating more consistent performance regardless of individual participant characteristics.
+It is apparent on the performance column, the one that describes how much SimCSE overscores or underscores from the teacher baseline, that it always gives a higher score across all participants. SimCSE demonstrated superior performance across all five participants, with best performance achieved by Participant 2 showing only 5.03 points deviation from teacher assessment. The largest improvement was demonstrated by Participant 3, who achieved exceptional accuracy with SimCSE evaluation. Even the smallest advantage, observed with Participant 4 at 0.47 points improvement, still favored SimCSE. Most notably, SimCSE showed lower variance across participants, indicating more consistent performance regardless of individual participant characteristics. 
 }
 
 
@@ -86,6 +92,71 @@ SimCSE demonstrated superior performance across all participants (5/5), with bes
 % % - Successful implementation of core features
 % % - Technical achievement metrics
 % % - Feature comparison with original proposal
+
+
+
+\section{Consol Web Application}
+
+This section pertains the implementation results of the Consol web application, including the main features that establish its scoring system for recall sessions, and features that support progress tracking and motivation in Consol's self-learning and assessment environment.
+
+\subsection{Dashboard Page}
+The dashboard page is the main interface of the Consol web application, as it facilitates note management, note recollection analytics, and a gateway to the recollection sessions, as shown in Figure~\ref{fig:dashboard_page}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{images/dashboard_page.png}
+    \caption[Dashboard Page Interface]{Dashboard Page Interface}
+    \label{fig:dashboard_page}
+\end{figure}
+
+The dashboard page serves as the central hub for users to manage their notes, initiate recall sessions, and access learning analytics per selected note. On this page, users can either create new notes, or upload existing notes provided that they are in either DOCX, PDF, or TXT formats, which they can then continue to edit, or start a recollection session with, by pressing the play button. On the rightmost side of the page, users can access the analytics section of the particular note that would be selected. The analytics section displays metadata involving the note's word count, number of sessions attempted by the user thus far, the latest occurrence of a session, average score for the particular note, and mastery score of the particular note. One of the more important analytic features would be the line graph visualization of all session scores for the opened note.
+
+
+
+\subsubsection{Note Recollection Session}
+When a user starts a recollection session, they are first presented with a settings modal, shown in Figure~\ref{fig:session_settings}, where the user can opt to enable hints, or a timer, and it also shows the achieved metrics of the previous session attempt. Once the user confirms their settings and presses the start button, they are directed to the session page, as shown in Figure~\ref{fig:session_page}, where they can begin recalling the content of the selected note. The session interface provides a text area for users to input their recalled text. Once the user completes their recall and submits their response, SimCSE processes the input to calculate the semantic similarity score compared to the original note. The system then provides immediate feedback, which is show in Figure~\ref{fig:session_score}, displaying the similarity score of the adjourned session, along with finishing a session, a dedicated session metadata section complete with details of performance metrics such as words per minute and mastery level achieved during the session that can be viewed in the user's profile page shown in Figure~\ref{fig:profile_page}.
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/session_settings.png}
+    \caption[Session Settings Modal]{Session Settings Modal}
+    \label{fig:session_settings}
+\end{figure}
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{images/session_page.png}
+    \caption[Note Recollection Session Interface]{Note Recollection Session Interface}
+    \label{fig:session_page}
+\end{figure}
+
+Once a session is completed, the user is presented with immediate feedback on their performance, as shown in Figure~\ref{fig:session_score}. This feedback includes the semantic similarity score calculated by SimCSE.
+
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{images/session_score.png}
+    \caption[Session Score]{Session Score}
+    \label{fig:session_score}
+\end{figure}    
+
+
+\subsection{Profile Page}
+The profile page is where all detailed information is shown regarding the user's performance from sessions. It also includes progress tracking features like a session history panel and a daily streak calendar, to promote self-assessment and incentives to maintain consistent study habits, as shown in Figure~\ref{fig:profile_page}.
+
+
+
+
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.95\linewidth]{images/profile_page.png}
+    \caption[Profile Page Interface]{Profile Page Interface}
+    \label{fig:profile_page}
+\end{figure}    
+
+On the upper left side of the profile page is the user's name and optional profile picture for personalization, along with assorted user statistics such as total sessions, total session time, numbers of current and highest daily streak, and last active date and time. Beside that, on the upper right side of the profile page, is the note history panel, which lists all note sessions that have occurred, along with its duration. Directly beside the note session history is the session metadata for each selected session, which displays the details of performance achieved on any particular session. Below these, in the bottom right area of the profile page, is the daily streak calendar, which shows the user's highest achieved star score for that particular day. The daily streak calendar allows users to see their consistency in a calendar visualization style. Lastly, on the lower left side of the profile page, is the radar chart with its comparison table for any selected date. The radar chart, as conceptualized in Chapter 3, Section \ref{multi_dimensional_performance_assessment}, displays three major metrics of overall performance which are: mastery (percentage of sessions achieving three-star performance), comprehension (average semantic similarity across sessions), and speed (average words per minute during recall sessions). The comparison table beside the radar chart shows the numerical values of these three metrics in order to compare them with past dates, allowing a user to see improvements or declines in their performance for any selected gap of time.
+
 
 {\color{maroon}
 \section{System Usability Assessment Results}
@@ -100,7 +171,7 @@ The comprehensive usability assessment achieved an overall SUS score of 87.5 out
 
 \begin{table}[!htbp]
 \centering
-{\color{maroon}\tiny\caption[System Usability Scale Component Scores]{Detailed breakdown of System Usability Scale component scores and interpretations}}
+\caption[System Usability Scale Results]{System Usability Scale Results}
 \label{tab:sus_components}
 \begin{tabular}{lcc}
 \toprule
@@ -232,9 +303,9 @@ The high usability scores (87.5/100 SUS) and strong user acceptance (94\% recomm
 
 \subsection{Contribution to Educational Technology Research}
 
+%%%%%%%%%redacted
 
-
-This research represents one of the first comprehensive evaluations of SimCSE for educational recall assessment, providing empirical evidence for its effectiveness in academic contexts. The 41.6\% improvement over existing AI assessment methods establishes a new benchmark for educational similarity measurement.
+% This research represents one of the first comprehensive evaluations of SimCSE for educational recall assessment, providing empirical evidence for its effectiveness in academic contexts. The 41.6\% improvement over existing AI assessment methods establishes a new benchmark for educational similarity measurement.
 
 
 

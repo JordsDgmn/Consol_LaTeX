@@ -6,7 +6,7 @@
 
 % NEWADDITION: Section structure based on ClassiFish reference and research best practices
 
-The methodology for Consol's holistic development includes the conception of its system architecture, along with the methods used to arrive at a reasonable threshold for its scoring. These goals aim to satisfy the specific objectives outlined in Chapter \ref{chap:introduction}. 
+This chapter walks through the methodology for Consol's development includes the conception of its system architecture, along with the methods used to arrive at a reasonable threshold for its scoring. These goals aim to satisfy the specific objectives outlined in Chapter \ref{chap:introduction}. 
 
 {\color{maroon}
 \section{System Architecture Design}
@@ -21,7 +21,7 @@ The fundamental architecture of the Consol system follows a pipeline approach th
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/basic_system_architecture_dataflow.png}
-\caption[System Architecture and Data Flow]{{System Architecture}}
+\caption[System Architecture]{System Architecture}
 \label{fig:basic_system_architecture}
 \end{figure}
 \FloatBarrier
@@ -77,7 +77,7 @@ The PDF preprocessing pipeline utilizes the \texttt{PyPDFLoader} from the \textt
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/pdf_processing_pipeline}
-\caption[PDF Processing Pipeline]{PyPDFLoader Preprocessing Pipeline}
+\caption[PyPDFLoader Preprocessing Pipeline]{PyPDFLoader Preprocessing Pipeline}
 \label{fig:pdf_pipeline}
 \end{figure}
 \FloatBarrier
@@ -102,7 +102,7 @@ The Microsoft Word document processing pipeline employs the \texttt{Docx2txtLoad
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/docx_processing_pipeline}
-\caption[DOCX Processing Pipeline]{Docx2txtLoader Preprocessing Pipeline}
+\caption[Docx2txtLoader Preprocessing Pipeline]{Docx2txtLoader Preprocessing Pipeline}
 \label{fig:docx_pipeline}
 \end{figure}
 \FloatBarrier
@@ -119,7 +119,7 @@ The plain text processing pipeline utilizes the \texttt{TextLoader} to handle UT
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{images/txt_processing_pipeline}
-\caption[TXT Processing Pipeline]{TextLoader Preprocessing Pipeline}
+\caption[TextLoader Preprocessing Pipeline]{TextLoader Preprocessing Pipeline}
 \label{fig:txt_pipeline}
 \end{figure}
 \FloatBarrier
@@ -156,7 +156,7 @@ The SimCSE architecture forms the core of Consol's semantic similarity assessmen
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/simcse_architecture.png}
-\caption[SimCSE Architecture Implementation]{SimCSE Architecture Diagram }
+\caption[SimCSE Architecture Diagram]{SimCSE Architecture Diagram}
 \label{fig:simcse_architecture}
 \end{figure}
 \FloatBarrier
@@ -236,7 +236,7 @@ One of the critical aspects of developing Consol was establishing appropriate si
 
 \begin{table}[!htbp]
 \centering
-\caption[Similarity Score Thresholds for Educational Assessment]{Initial Similarity Score Thresholds}
+\caption[Initial Similarity Score Thresholds]{Initial Similarity Score Thresholds}
 \label{tab:similarity_thresholds}
 \begin{tabular}{|c|c|c|p{6cm}|}
 \hline
@@ -333,7 +333,7 @@ This systematic approach ensured that the final threshold settings would be both
 \vspace{0.2cm}
 \end{minipage}}
 \end{minipage}
-\caption[Test Case Scenarios for SimCSE Validation]{Scoring Test Cases for Threshold Adjustment}
+\caption[Scoring Test Cases for Threshold Adjustment]{Scoring Test Cases for Threshold Adjustment}
 \label{fig:test_case_scenarios}
 \end{figure}
 \FloatBarrier
@@ -377,7 +377,7 @@ The systematic testing revealed both strengths and areas for improvement in SimC
 
 \begin{table}[!htbp]
 \centering
-\caption[Test Case Results for Scoring Threshold Adjustment]{{Scoring Test Case Results}}
+\caption[Scoring Test Case Results]{Scoring Test Case Results}
 \label{tab:test_case_results}
 \begin{tabular}{|c|p{6cm}|c|c|}
 \hline
@@ -457,31 +457,67 @@ The assessment framework design integrates multiple evaluation criteria to provi
 
 The assessment framework integrates semantic similarity with complementary performance metrics to provide holistic evaluation. The scoring algorithm computes completeness ratio through word count comparison, adjusts speed metrics based on content completeness, normalizes performance indicators to prevent artificial inflation, and maps similarity scores to star ratings using educationally meaningful thresholds.
 
-Star rating assignment follows empirically determined thresholds: 3 stars for similarity $\geq$ 0.8 indicating mastery-level comprehension, 2 stars for similarity $\geq$ 0.6 representing proficient understanding, 1 star for similarity $\geq$ 0.4 showing developing knowledge, and 0 stars for similarity $<$ 0.4 indicating novice-level recall requiring additional study.
+Star rating assignment follows the finalized empirically determined thresholds established in Section \ref{subsubsec:validation_results}: 3 stars for similarity $\geq$ 0.81 indicating mastery-level comprehension, 2 stars for similarity $\geq$ 0.6 representing proficient understanding, 1 star for similarity $\geq$ 0.44 showing developing knowledge, and 0 stars for similarity $<$ 0.44 indicating novice-level recall requiring additional study.
 
 \subsection{System Implementation Details}
 
 This subsection presents the technical implementation architecture and database design that supports the Consol's recollection assessment platform.
 
-\subsubsection{Development Architecture Overview}
 
-The development architecture encompasses the complete technical stack integration from frontend components through API services to database management. Figure \ref{fig:development_architecture} illustrates the comprehensive development architecture showing API endpoints, database schema relationships, and component interactions that facilitate educational assessment processing.
+
+
+
+
+
+% \subsubsection{Development Architecture Overview}
+
+% The development architecture encompasses the complete technical stack integration from frontend components through API services to database management. Figure \ref{fig:development_architecture} illustrates the comprehensive development architecture showing API endpoints, database schema relationships, and component interactions that facilitate educational assessment processing.
+
+% \begin{figure}[!htbp]
+% \centering
+% \includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
+% \caption[Development Architecture Diagram]{Development Architecture Diagram}
+% \label{fig:development_architecture}
+% \end{figure}
+% \FloatBarrier
+
+
+\subsubsection{User Interface Mockup}
+
+To provide a visual representation of the application during its development phase, these user interface mockups were created to outline the layout and intended functionality of the application. These preliminary mockups served as the earliest and most basic blueprint of the user interface for Consol. Figures \ref{fig:wireframe-dashboard} and \ref{fig:wireframe-profile} illustrate the initial wireframes for the dashboard and profile pages, respectively.
+
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.95\textwidth]{images/development_architecture_api_schema.png}
-\caption[Development Architecture with API Schema]{Development Architecture Diagram}
-\label{fig:development_architecture}
+\includegraphics[width=0.95\textwidth]{images/wireframe-dashboard.png}
+\caption[Initial Wireframe for Dashboard Page]{Initial Wireframe for Dashboard Page}
+\label{fig:wireframe-dashboard}
 \end{figure}
 \FloatBarrier
 
-\subsubsection{Database Architecture and Optimization}
+
+The dashboard page's initial wireframe, although very basic, plots out the key components that will later show on the dashboard page, including the note list, note editing area, start session button, and analytics section.
+
+
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{images/wireframe-profile.png}
+\caption[Initial Wireframe for Profile Page]{Initial Wireframe for Profile Page}
+\label{fig:wireframe-profile}
+\end{figure}
+\FloatBarrier
+
+The initial wireframe for the profile page entails the arrangement of the progress tracking tools and features. These are not labeled in the wireframe to accommodate changes during development, but these empty spaces represent where the progress tracking features such as the session history, along with session metadata, and calendar for daily streak tracking. The radar chart represents the feature that will display the three major metrics of overall performance detailed in Chapter 3, Section \ref{multi_dimensional_performance_assessment} which are: mastery (percentage of sessions achieving three-star performance), comprehension(average semantic similarity across sessions), and speed (average words per minute during recall sessions).
+
+\subsubsection{Database Design}
 
 The PostgreSQL implementation follows normalized design with three core entities (users, notes, sessions) implementing cascade deletion for referential integrity and index optimization on user identification, temporal sorting, and similarity filtering to support real-time dashboard updates. Query optimization prioritizes educational use patterns where users access recent performance data, compare progress across notes, and analyze learning trends through temporal indexing and efficient join operations.
 
 \begin{table}[H]
 \centering
-\caption{{Entity-Relationship Diagram}}
+\caption[Database Schema]{Database Schema}
 \label{tab:database-erd}
 \begin{minipage}{\textwidth}
 \centering
@@ -494,10 +530,10 @@ The PostgreSQL implementation follows normalized design with three core entities
 \underline{id} (PK) & \underline{id} (PK) & \underline{id} (PK) \\
 username & title & similarity \\
 created\_at & content & stars \\
-profile\_picture\_url & verbatim & duration\_secs \\
- & created\_at & wpm \\
- & word\_count & created\_at \\
- & \textit{user\_id} (FK $\rightarrow$ users.id) & hints\_used \\
+profile\_picture\_url & created\_at  & duration\_secs \\
+ & word\_count  & wpm \\
+ &\textit{user\_id} (FK $\rightarrow$ users.id) & created\_at \\
+ &  & hints\_used \\
  &  & word\_count \\
  &  & session\_group\_id \\
  &  & \textit{user\_id} (FK $\rightarrow$ users.id) \\
@@ -523,7 +559,7 @@ The Consol system implements a comprehensive educational workflow designed to op
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{images/user_interaction_flow_decisions.png}
-\caption[User Interaction Flow with Decision Trees]{User Interaction Flow Diagram}
+\caption[User Interaction Flow Diagram]{User Interaction Flow Diagram}
 \label{fig:user_interaction_flow}
 \end{figure}
 \FloatBarrier
@@ -545,13 +581,22 @@ Chart.js integration provides interactive progress visualization that supports l
 
 The visualization components focus on educational relevance rather than technical complexity, presenting similarity scores, progress tracking, and performance trends in formats that support metacognitive awareness and learning motivation. Interactive elements enable students to explore their performance patterns while maintaining focus on learning objectives rather than technical details.
 
-\subsection{Cloud Infrastructure and Media Management}
 
-The platform utilizes cloud-based infrastructure and media optimization services to ensure reliable access and performance across diverse educational environments.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %redacted
 
-Cloudinary integration handles educational multimedia content optimization and responsive delivery, ensuring that visual educational resources adapt to varying network conditions and device capabilities. The platform's automatic optimization reduces loading times that could otherwise interrupt learning flow, while responsive delivery maintains content quality across diverse access scenarios.
 
-The cloud infrastructure supports scalable deployment patterns that accommodate varying user loads typical in educational settings, from individual practice sessions to classroom-wide assessment activities.
+% \subsection{Cloud Infrastructure and Media Management}
+
+% The platform utilizes cloud-based infrastructure and media optimization services to ensure reliable access and performance across diverse educational environments.
+
+% Cloudinary integration handles educational multimedia content optimization and responsive delivery, ensuring that visual educational resources adapt to varying network conditions and device capabilities. The platform's automatic optimization reduces loading times that could otherwise interrupt learning flow, while responsive delivery maintains content quality across diverse access scenarios.
+
+% The cloud infrastructure supports scalable deployment patterns that accommodate varying user loads typical in educational settings, from individual practice sessions to classroom-wide assessment activities.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % \subsection{Development Process}
 
@@ -621,11 +666,11 @@ Each participant underwent a standardized evaluation process including concept d
 This section shows the analyses used to evaluate the system's effectiveness in assessment and general user experience.  
 
 
-\subsubsection{Quantitative Analysis Plan}
+\subsubsection{Quantitative Analysis}
 
 The collected data underwent comprehensive statistical analysis including descriptive statistics with central tendency measures and variability assessments, comparative analysis with statistical validation of SimCSE accuracy relative to a teacher's scoring as the baseline, and correlation analysis measuring agreement and/or dissonance between scoring methods across the 3-day assessment periods.
 
-\subsubsection{Qualitative Analysis Integration}
+\subsubsection{Qualitative Analysis }
 
 Qualitative feedback from usability testing and participant observations provided contextual insights through thematic analysis of open-ended survey responses, content analysis of feature preference rankings and suggestions, and integration of quantitative usability scores with qualitative user experience narratives.
 
